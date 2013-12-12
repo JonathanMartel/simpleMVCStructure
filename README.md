@@ -31,7 +31,7 @@ Contiendra les classes de Vues. La classe Vue qui contient une simple fonction s
 #### /lib
 Ce dossier contiendra les classes personnalisées (accès SQL, traduction, classe de gestion des exceptions) que vous pourriez ajouter au projet (autres que les vues et les modèles). Notez qu'il faut mettre à jour la fonction d'autoload dans le fichier config.php afin de tenir compte de l'ajout de dossier. 
 
-## License
+## Licence
 Copyright (c) 2013 Jonathan Martel  
 Creative Commons BY-NC 3.0 (Licence Creative Commons Attribution - Pas d’utilisation commerciale 3.0 non transposé)
 http://creativecommons.org/licenses/by-nc/3.0/deed.fr
