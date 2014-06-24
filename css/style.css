@@ -1,0 +1,229 @@
+/*	* Autor: Abdellah Ait hadji;
+	* Feuille de style site Journal Eureka
+	* Modifé le : 16-Juin-2014 11:50;
+	*/
+html /* La police d'écriture pour tous le site*/
+{ 
+	font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+body /* background pour le body*/
+{ 
+	background-image:url(../img/bg-body.png);
+}
+body > .container-globale /* container-globale du document */
+{ 
+	width:85%;
+	margin:0 auto;
+	padding-left:0;
+	padding-right:0;
+	padding-top:10px;
+	background-image:url(../img/bg-contenu.png);
+}
+.menu{
+    margin-top: 75px;
+}
+nav:first-of-type{
+    background-color: #000000;
+    border:solid 1px #000000;
+}
+.nav-principale > .navbar{
+	margin:0;
+    border:solid 1px red
+}
+/* fin partie a modifier */
+figure{
+	width:144px;
+	height:144px;
+	float:left;
+
+}
+.item1{
+	border:solid 1px red;
+}
+.inscription /*la rubrique inscription du site */
+{ 
+	background-color:#131418;
+	color:#ffffff;
+	padding-right:2%;
+}
+.inscription > .container > h2{ /* non du site slogan*/
+	padding-left:10px;
+	font-size:33.5px;
+	font-weight:600;
+}
+.menu-mobile /* le menu version mobile */
+{ 
+	background-color:#0054FF;
+}
+.menu-mobile > .navbar-toggle /* la partie qui contient les liens */
+{ 
+	border:none;
+	background-color:#0054FF;
+}
+.menu-mobile > .navbar-toggle:hover /* au moment du hover*/
+{ 
+	background-color:#2D303C;
+
+}
+.navbar-toggle > span /* les trois bordure supporposées*/
+{ 
+	border:solid 2px #ffffff;
+}
+.container-globale > .nav-principale{ /* navigation principale du site*/
+	background-color:#ffffff;
+	height:auto;
+	border-radius:0;
+	margin-bottom:0;
+}
+.container-fluid > .collapse > .nav > li > a /*liens menu mobile*/
+{
+	color:#000000;
+}
+.container-globale > .header-principal /*header principale*/
+{ 
+	height:auto;
+	color:#ffffff;
+	
+}
+.enssemble-articles , .col-xs-12 /* enleve le padding par defaut*/
+{ 
+	
+	padding:0;
+}
+.contenu /* laisser une marge entre le menu et le contenu*/
+{ 
+	
+	padding-top:25px;
+
+}
+
+.thumbnail /*mettre une couleur aux thumbnails*/
+{ 
+	background-color:#EAE7D8;
+	
+}
+.idee /* ajouter une goutierre entre chaque bloc d'idée*/
+{ 
+	
+	padding-left:2%;
+	padding-right:0%;
+}
+	/* le texte a l'interieur des thumbnail*/
+
+
+.thumbnail > .caption > p > a 
+{ 
+	background-color:#F6F6F6;
+	color:#0054FF;
+	border:none;
+	border-radius:0;
+
+}
+	/* le texte du bouton consultez de chaque thumbnail*/
+.caption > a:last-child 
+{ 
+	
+	background-color:#019875;
+	color:#ffffff;
+	margin-left:3px;
+	border:none;
+	border-radius:0;
+	padding:4.9px;
+	text-decoration:none;
+
+}
+.thumbnail > .caption a > p /* paragraphe des thumbnail*/
+{ 
+	text-decoration:none;
+	color:#333333;
+
+}
+.thumbnail > .caption > h4 /* titres des thumbnail*/
+{ 
+	color:#027EE4;
+}
+	/* icone rubrique articles populaires (voir aside)*/
+.media .media-body >  a > .glyphicon-comment
+{
+	color:#E7711B;
+}
+	/* couleur pour l'icone comment de chaque article (idée)*/
+.caption  > .comment
+{
+	color:#E7711B;
+} 
+	/* couleur pour input qui est dans comment*/
+.caption  > .comment > input[type=text]
+{
+	color:#999999;
+}
+.btnThumbs /* les icones dans les thumbnails */
+{ 
+	float:left;
+	color:#999999;
+	padding:5px;
+	background-color:#F6F6F6;
+}
+.btnThumbs  > input[type=text] /* les input dans les thumbnails*/
+{ 
+  float: left;
+  width: 20px;
+  font: bold 12px Helvetica, sans-serif;
+  padding: 3px 0 0 0;
+  text-align: center;
+  border:none;
+  background-color:#F6F6F6;
+  
+}
+	/* pour uniquement le bouton like thumbnails*/
+.thumbs-up > .button 
+{ 
+  
+  cursor: pointer;
+  
+}
+	/* bouton onsultez voir les thumbnails*/
+.caption > div:nth-of-type(4) 
+{ 
+	color:#E7711B;
+}
+aside > ul > .active
+{ 
+	font-size: 14px;
+	color: #555570;
+	padding: 10px 20px; 
+	font-weight:600;
+}
+footer{ /* le footer */
+	
+	background-color:#2D303C;
+	color:#ffffff;
+	padding:1% 1% 5% 1%;
+}
+footer > .container-footer > ul > li /* les liste a puces footer*/
+{ 
+	list-style-type:none;
+	padding:1% 1%;
+	color:#9C9EA3;	    
+}
+	/* pour changer type de style*/	
+footer > .container-footer > ul > li:before 
+{ 
+	content: "→ ";
+	color:#0054FF;
+}
+footer > .btn /* bouton de l'ancran nomée dans le footer*/
+{ 
+	float:right;
+	
+	border-radius:0px;
+	border:none;
+	background-color:#0054FF;
+}
+details > summary > h6 /* partie copyright*/
+{ 
+	color:#6B6E7A;
+	margin-left:1%;
+	margin-top:2%;
+}
+/*#######################################*/
