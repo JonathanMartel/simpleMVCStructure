@@ -1,0 +1,50 @@
+#sidebar {
+ 	margin-left:15px;
+  }
+
+  #content {
+ 	padding-right:15px;
+  }
+
+  #sidebar.affix-top {
+      position: static;
+  }
+  
+  #sidebar.affix {
+      position: fixed !important;
+      top: 20px;
+      width:200px;
+  }
+
+  #midCol.affix-top {
+      position: static;
+  }
+
+  #midCol.affix-bottom {
+      padding-top:0;
+  }
+  
+  #midCol.affix {
+      position:fixed !important;
+  	  top: 20px;
+  	  width:292px;
+  }
+.boite-recherche {
+   height: 19px;
+   font-size: 12px; 
+}
+.td-milieu {
+   text-align: center;   
+}
+
+.affix {
+      position:static;
+}
+.pousser_bas {
+      margin-top:40px;
+      padding-top:40px;
+}
+.m-panel-body {
+    padding:15px;
+}
+

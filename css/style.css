@@ -1,0 +1,48 @@
+/**
+	* Auto Abdellah Ait hadji
+	* Page css admin	*
+	*/
+
+html { /* le document*/
+   margin:0;
+   padding:0;
+   background: url(./img/bg.jpg) no-repeat center fixed; 
+   -webkit-background-size: cover; /* pour Chrome et Safari */
+   -moz-background-size: cover; /* pour Firefox */
+   -o-background-size: cover; /* pour Opera */
+   background-size: cover; /* version standardisée */
+}
+
+.page-header{ /* le header*/
+	background-color:#3B5E80;
+	border:solid 1px #2681B9;
+	color:#ffffff;
+	padding: 1%;
+	margin:0 0;
+
+}
+.container{ /* le container*/
+	
+	border-right:solid 1px #2681B9;
+	border-left:solid 1px #2681B9;
+}
+header > h2{ /* le h2 dans le header*/
+	font-weight:800;
+
+}
+.navbar{ /* la navigation principale*/
+	background-color:#273B4E;
+	border:solid 1px #273B4E;
+	border-radius:0;
+}
+.collapse{ /* le collpase*/
+	color:#ffffff;
+}
+.thumbnail{ /* le thumbnail de chaque rubrique*/
+	background-color:#e2e2e2;
+	border:solid 1px #ffffff;
+}
+aside > .panel > .panel-heading{ /* le aside*/
+	background-color:#3B5E80;
+	color:#ffffff;
+}
