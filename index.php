@@ -1,7 +1,5 @@
 <?php
-///////////////////////////////////
-//   Autor: Abdellah Ait hadji   //
-///////////////////////////////////
+
 
 // déclaration par défault la variable "p" (represente la page) si elle n'est pas déclaré
 if(!isset($_GET["p"])){$_GET["p"]="accueil";}
