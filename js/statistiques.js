@@ -16,7 +16,7 @@ $(function() {
   $(".comment").append('<span class="inc "><span class="glyphicon glyphicon-comment"></span></span>');
   
   // mettre tous les like dans une variable
-  var recompence = $(".like");
+  var recompence = $(".like").val();
     console.log(recompence);
             // le switch qui va attribuer une medaille selon le like
             switch (recompence) {
@@ -24,11 +24,13 @@ $(function() {
           case 0:
               recompence < 50;
                $(".star").append('<span class="inc "><img src="./img/medaille-bronze.png" alt="medaille bronze">');
-              break;
+                console.log('bronze');
+			  break;
           case 1:
               recompence > 50;
                 $(".star").append('<span class="inc "><img src="./img/medaille-or.png" alt="medaille or">');
-              break;
+              console.log('or');
+			  break;
           case 2:
              recompence > 100;
               $(".star").append('<span class="inc "><img src="./img/medaille-diamon.png" alt="medaille diamon">');

@@ -6,3 +6,15 @@
   background-color:#019875;
  color: white;
 }
+.contact /*mettre une couleur aux thumbnails*/
+{ 
+	background-color:#FFFFFF;
+	
+}
+aside > ul > .active
+{ 
+	font-size: 14px;
+	color: #555570;
+	padding: 10px 20px; 
+	font-weight:600;
+}

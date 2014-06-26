@@ -1,6 +1,6 @@
 /* formulaire */
 
-input:valid {
+.valid:valid {
     border: 1px solid #00FF00;
 }
 

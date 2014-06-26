@@ -1,7 +1,4 @@
-/*	* Autor: Abdellah Ait hadji;
-	* Feuille de style site Journal Eureka
-	* Modifé le : 16-Juin-2014 11:50;
-	*/
+
 html /* La police d'écriture pour tous le site*/
 { 
 	font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -19,38 +16,98 @@ body > .container-globale /* container-globale du document */
 	padding-top:10px;
 	background-image:url(../img/bg-contenu.png);
 }
-.menu{
-    margin-top: 75px;
+.reseau-social {
+    list-style:none;
+    margin:0;
 }
-nav:first-of-type{
-    background-color: #000000;
-    border:solid 1px #000000;
+ul.reseau-social li {
+    display: inline;
+    margin: 0 5px;
+}
+.support-navs{
+	width:87%;
+	height:145px;
+	float:left;
+}
+.navbar-header > a:first-of-type(1){
+
+	color:#ffffff; 
+
+}
+nav:nth-of-type(1){
+	background-color:#131418;
+	border:solid 1px #131418;
+	height:82px;
+	
+}
+nav:nth-of-type(1) > .container > a{
+	color:#ffffff;
+}
+nav:nth-of-type(1) > .container > a > img{
+	padding:0;
+	margin:0;
+	width:200px;
+}
+.logo{
+	padding-left:45%;
+	padding-right:20%;
+	color:#ffffff;
+}
+.glyphicon-home{
+	padding-left:45%;
+	padding-right:20%;
+	color:#ffffff;
+}
+.nav-support-liens{
+	height:80px;
 }
 .nav-principale > .navbar{
 	margin:0;
-    border:solid 1px red
 }
-/* fin partie a modifier */
+.fixed{
+    width:86%;
+}
 figure{
-	width:144px;
-	height:144px;
+	width:180px;
+	height:80px;
 	float:left;
+	background-color:#019875;
+    padding: 0;
+	
+}
+figure > h1{
+	height: 20px;
+	font-weight:800;
+	margin-left:2%;
+}
+figure > span{
+    margin-left: 2%;
+    letter-spacing: 5px;
+}
+.inscription{
+	float:right;
+	padding-top:20px;
+   
+}
+.inscription  > button{
 
+	border-radius:0;
+}
+.inscription  > button:first-of-type(1){
+
+	background-color:#019875;
 }
 .item1{
 	border:solid 1px red;
 }
-.inscription /*la rubrique inscription du site */
-{ 
-	background-color:#131418;
-	color:#ffffff;
-	padding-right:2%;
+
+.menu{
+    margin-top: 75px;
 }
-.inscription > .container > h2{ /* non du site slogan*/
-	padding-left:10px;
-	font-size:33.5px;
-	font-weight:600;
+.navbar-header{
+	background-color:#019875;
 }
+
 .menu-mobile /* le menu version mobile */
 { 
 	background-color:#0054FF;
@@ -87,7 +144,6 @@ figure{
 }
 .enssemble-articles , .col-xs-12 /* enleve le padding par defaut*/
 { 
-	
 	padding:0;
 }
 .contenu /* laisser une marge entre le menu et le contenu*/
@@ -109,8 +165,6 @@ figure{
 	padding-right:0%;
 }
 	/* le texte a l'interieur des thumbnail*/
-
-
 .thumbnail > .caption > p > a 
 { 
 	background-color:#F6F6F6;
@@ -199,6 +253,7 @@ footer{ /* le footer */
 	background-color:#2D303C;
 	color:#ffffff;
 	padding:1% 1% 5% 1%;
+    
 }
 footer > .container-footer > ul > li /* les liste a puces footer*/
 { 
@@ -210,15 +265,15 @@ footer > .container-footer > ul > li /* les liste a puces footer*/
 footer > .container-footer > ul > li:before 
 { 
 	content: "→ ";
-	color:#0054FF;
+	color:#019875;
 }
 footer > .btn /* bouton de l'ancran nomée dans le footer*/
 { 
 	float:right;
-	
+	margin-right;
 	border-radius:0px;
 	border:none;
-	background-color:#0054FF;
+	background-color:#019875;
 }
 details > summary > h6 /* partie copyright*/
 { 
@@ -226,4 +281,10 @@ details > summary > h6 /* partie copyright*/
 	margin-left:1%;
 	margin-top:2%;
 }
-/*#######################################*/
+.sondage  label{
+    display: block;  
+}
+.sondage input{
+    float: left;
+}
+

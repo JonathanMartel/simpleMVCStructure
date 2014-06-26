@@ -1,0 +1,33 @@
+
+body {
+min-width:1000px;
+}
+
+#article_ajout {
+    visibility:hidden;
+   
+}
+
+#article_modif {
+    visibility:hidden;
+    
+}
+
+#article_effacer {
+    visibility:hidden;
+   
+}
+
+.affichage {
+    padding-top:60px;
+   margin-top: 40px;
+    
+}
+
+td {
+    padding-bottom: 10px;
+}
+.dropdown-menu {
+    
+    margin-left:16px;
+}
