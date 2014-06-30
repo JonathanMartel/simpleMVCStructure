@@ -1,0 +1,16 @@
+.content{
+	padding:1%;
+	padding-top:2%;
+	background-color:#ffffff;
+}
+.row{
+
+	background-color:#ffffff;
+}
+
+.imageForum{
+    float: left;
+    margin:0 15px 15px 0;
+    width: 50px;
+        height: 45px;
+}
