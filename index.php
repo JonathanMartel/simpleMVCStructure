@@ -1,27 +1,17 @@
 <?php
 
-/**
- * Fichier de lancement du MVC, Il appel le var.init et le gabarit HTML 
- * @author Jonathan Martel
- * @version 1.0
- * @update 2013-03-11
- * @license Creative Commons BY-NC 3.0 (Licence Creative Commons Attribution - Pas d’utilisation commerciale 3.0 non transposé)
- * @license http://creativecommons.org/licenses/by-nc/3.0/deed.fr
- * 
- */
-	 /***************************************************/
-    /** Fichier de configuration, contient l'autoloader **/
-    /***************************************************/
-	require_once("./config.php");
-	
-   /***************************************************/
-    /** Initialisation des variables **/
-    /***************************************************/
-	require_once("./var.init.php");
-   
-   /***************************************************/
-    /** Gabarit **/
-    /***************************************************/
-	require_once("./gabarit.projet.php");
 
+// déclaration par défault la variable "p" (represente la page) si elle n'est pas déclaré
+if(!isset($_GET["p"])){$_GET["p"]="controleur";}
+//si la variable "p" (la page)  n'existe pas 404 va s'afficher à la place
+//if(!file_exists("includes/".$_GET["p"].".php")){$_GET["p"]="404";}
+// si tous va bien la page va s'afficher
+
+ob_start();
+include "controleurs/".$_GET["p"].".php";
+ 
+$content = ob_get_contents();
+ob_end_clean();
+// template qui va recevoir chaque page dans la partie  contenu
+include "./vues/htmlWrapper.php";
 ?>

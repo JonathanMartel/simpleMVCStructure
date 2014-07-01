@@ -1,0 +1,48 @@
+/* section admin */
+
+header section{
+    text-align: center;
+    padding-top: 20px;
+    Height:75px;
+    background: -webkit-linear-gradient(#336633, grey); 
+}
+.btn-danger a {
+    text-decoration: none;
+    color:black;
+}
+.admin {
+    font-family: calibri;   
+}    
+.admin nav{
+    float:left;
+    display: block;
+}    
+    
+.admin nav ul li{
+    text-align: center;    
+    height:40px;
+    width:150px;    
+    border:1px solid black;    
+    list-style: none; 
+}    
+
+.admin li{
+    color:black;
+    font-size :1.1em;
+    font-weight: bold;
+    text-decoration: none;
+}  
+
+.admin li:hover {
+    background: grey;   
+}  
+
+main {
+    text-align: center; 
+    width:70%; 
+    margin-left:150px;
+} 
+main form{
+    margin-left: 100px;   
+    
+} 

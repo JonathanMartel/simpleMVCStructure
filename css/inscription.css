@@ -1,0 +1,13 @@
+/* formulaire */
+
+.valid:valid {
+    border: 1px solid #00FF00;
+}
+
+/*input:invalid {
+    border: 1px solid #FF0000;
+}*/
+
+.erreur{
+    border: 1px solid #FF0000;
+}
