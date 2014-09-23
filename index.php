@@ -20,8 +20,9 @@
 	require_once("./var.init.php");
    
    /***************************************************/
-    /** Gabarit **/
+    /** Démarrage du controleur **/
     /***************************************************/
-	require_once("./gabarit.projet.php");
+	$oCtl = new Controler();
+	$oCtl->gerer();
 
 ?>
