@@ -11,8 +11,8 @@
  * 
  */
 	define('MODELE_DIR', 'modeles/');	// Chemin vers les modèles
-	define('VUES_DIR', 'lib/');	// Chemin vers les vues
-	define('LIB_DIR', 'vues/');	// Chemin vers les librairies
+	define('VUES_DIR', 'vues/');	// Chemin vers les vues
+	define('LIB_DIR', 'lib/');	// Chemin vers les librairies
 	set_include_path(get_include_path().PATH_SEPARATOR.MODELE_DIR.PATH_SEPARATOR.VUES_DIR.PATH_SEPARATOR.LIB_DIR);	// Ajoute le chemin dans les "path"
     spl_autoload_extensions('.class.php');	// Défini l'extension de fichier ".class.php" = Personne.class.php
     spl_autoload_register();	// Démarre la fonction autoload (chargement automatique de fichier sur appel de new NomClasse())
