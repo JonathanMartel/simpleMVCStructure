@@ -1,3 +1,204 @@
 /********
 * Votre CSS
 ********/
+
+h2 {
+    text-align: center;
+}
+
+header .conteneurNav
+{
+/*    border: solid 1px black;*/
+    height: 95%;
+    background-color: #354a5d;
+    position: static;
+    
+    
+}
+
+.container:after 
+{
+      content:"";
+      display:table;
+      clear:both;
+    
+}
+
+.contenu
+{
+    width : 95%;
+    margin: 60px auto 0 auto;
+    text-align: justify;
+    line-height: 1.5em;
+}
+
+img 
+{
+/*    border: solid 1px black;*/
+    width: 17em;  
+}
+
+.conteneurMenu
+{
+    float: right;    
+}
+
+figure{
+padding:3px;
+margin:3px;
+background-color: #aaaaaa;
+
+
+}
+figure img{
+	display:block;
+	width:100%;
+	
+
+}
+figure figcaption
+{
+	text-align:center;
+}  
+
+
+.menu
+{ 
+    margin: 44px 50px 0 0;
+}
+
+.langue
+{
+    margin-left: 382px;
+  
+}
+
+a
+{
+    text-decoration: none;  
+    color: white;
+    margin-left: 20px;
+    padding: 5px;
+}
+
+.accueil
+{
+    color: #47d4ba; 
+}
+.accueil:hover 
+{
+    background-color: #47d4ba;
+    color:white;
+}
+
+.artiste
+{
+    color: #fc705c;
+
+}
+.artiste:hover 
+{
+    background-color: #fc705c;
+    color:white;
+
+}
+
+.arrondisement 
+{
+    color: #83defe;
+    
+}
+.arrondisement:hover 
+{
+    background-color: #83defe;
+    color:#676767;
+    
+}
+
+.categorie
+{
+    color: #f6c351;
+    
+}
+
+.categorie:hover 
+{
+    background-color: #f6c351;
+    color:white;
+    
+}
+
+.proposser
+{
+    color: #e2e2e2;
+   
+}
+.proposser:hover 
+{
+    background-color: #e2e2e2;
+    color:#676767;
+   
+}
+
+
+#gallery img
+{
+    clear: both;
+    width: 100%;
+}
+
+.artistes {
+   
+}
+
+.artistes:hover {
+    background-color: pink;
+}
+
+.collectif:hover {
+    background-color: greenyellow;
+}
+
+.artistes img, .collectif img {
+    width: 7%;
+    height: auto;
+    float: left;
+    margin: 1% 3% 0 3%;
+    
+}
+
+.accordion-toggle {
+    cursor: pointer;
+}
+.accordion-contenu {
+    display: none;
+}
+
+footer
+{
+    margin-top: 50px;
+    width: 100%;
+    height: 81px;
+/*    position: absolute;*/
+    bottom: 0;
+    left: 0;
+    background-color: #354a5d;
+    color: white;
+    text-align: center;
+}
+
+
+
+/*
+@media only screen and (max-width: 708px){
+    
+    		.contenu
+		{
+			width : 960px;
+		}
+*/
+		
+}
+
+
+

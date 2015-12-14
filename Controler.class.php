@@ -20,22 +20,66 @@ class Controler
 		 */
 		public function gerer()
 		{
-			
 			switch ($_GET['requete']) {
 				case 'accueil':
 					$this->accueil();
 					break;
-				default:
-					$this->accueil();
+                case 'artistes':
+                    $this->artistes();
+                    break;
+               case 'arrondissements':
+                    $this->arrondissements();
+                    break;
+                   case 'categories':
+                    $this->categories();
+                    break;
+                    
+                    default:
+				    $this->accueil();
 					break;
 			}
+            
 		}
-		private function accueil()
+		
+        private function accueil()
 		{
-			$oVue = new Vue();
+            $oVue = new VueDefaut();
+			$oVue->afficheHeader();
 			$oVue->afficheAccueil();
+			$oVue->afficheFooter();
+			
 		}
-		// Placer les méthodes du controleur.
+		
+          private function artistes()
+		{
+            $oArtistes = new MArtistes('', '', '' ,'', '', '');
+            $aArtistes = $oArtistes::listeArtistes();
+              
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+			$oVue->afficheArtistes($aArtistes);
+            $oVue->afficheFooter();
+    
+		}
+    
+        private function arrondissements()
+		{
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+			$oVue->afficheArrondissements();
+            $oVue->afficheFooter();
+    
+		}
+    
+        private function categories()
+		{
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+			$oVue->afficheCategories();
+            $oVue->afficheFooter();
+    
+		}
+    
 		
 		
 }

@@ -14,6 +14,23 @@
 	define('VUES_DIR', 'vues/');	// Chemin vers les vues
 	define('LIB_DIR', 'lib/');	// Chemin vers les librairies
 	
+    /**
+     * @brief HOTE constante qui définit l'adresse de l'hote
+     */
+    define("HOTE", "localhost");
+    /**
+     * @brief UTILISATEUR constante qui définit l'utilisateur
+     */
+    define("UTILISATEUR", "root");
+    /**
+     * @brief UTILISATEUR constante qui définit le mopt de passe
+     */
+    define("PASS", "");
+    /**
+     * @brief BD constante qui définit la BD
+     */
+    define("BD", "chassoeuvre");
+
 	/*
 	set_include_path(get_include_path().PATH_SEPARATOR.MODELE_DIR.PATH_SEPARATOR.VUES_DIR.PATH_SEPARATOR.LIB_DIR);	// Ajoute le chemin dans les "path"
     	spl_autoload_extensions('.class.php');	// Défini l'extension de fichier ".class.php" = Personne.class.php
@@ -21,7 +38,7 @@
 	*/
 	function my_autoloader($class) 
 	{
-		$dossierClasse = array('modeles/', 'vues/', 'lib/mySQL/', '' );
+		$dossierClasse = array('modeles/', 'vues/', 'lib/', 'lib/config/', '' );
 		
 		foreach ($dossierClasse as $dossier) 
 		{
