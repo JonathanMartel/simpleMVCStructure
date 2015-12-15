@@ -2,6 +2,8 @@
 
 // http://culttt.com/2012/10/01/roll-your-own-pdo-php-class/
 
+require_once("./lib/config/mesParametresBD.php");
+
 class PdoBDD {
 
     private $hote = HOTE;
@@ -23,7 +25,7 @@ class PdoBDD {
         $options = array(
             PDO::ATTR_PERSISTENT => true, // Pour des connexions persistantes
             // qui ne sont pas fermées à la fin du script
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION   // PDO lancera une exception PDOException 
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION   // PDO lancera une exception PDOException
                 // en cas d'erreur
         );
         // Créer une nouvelle instance de PDO
@@ -38,18 +40,18 @@ class PdoBDD {
 
     /**
      * @brief  Fonction pour Préparer la requête
-     * 
+     *
      * @param string $requete la requête à préparer.
-     * 
+     *
      */
-    // 
+    //
     public function query($requete) {
         $this->instruction = $this->database->prepare($requete);
     }
 
     /**
      * @brief  Fonction pour lier les paramètres de la requête aux valeurs
-     * 
+     *
      * @param string $param est le marqueur qui sera utiisé dans la requête SQL.
      * @param string $value est la valeur que l'on veut attribuer au paramètre (marqueur)
      * @param string $type est le type du paramètre, exemple string.
@@ -75,7 +77,7 @@ class PdoBDD {
 
     /**
      * @brief Méthode qui  exécute la requête préparée.
-     * 
+     *
      */
     public function execute() {
         return $this->instruction->execute();
@@ -108,7 +110,7 @@ class PdoBDD {
     }
 
     /**
-     * @brief nbLignes retourne l'ID du dernier enregistrement inséré. 
+     * @brief nbLignes retourne l'ID du dernier enregistrement inséré.
      * @return integer id du dernier enregistrement
      */
     public function dernierId() {
