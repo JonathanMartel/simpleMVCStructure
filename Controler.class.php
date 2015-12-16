@@ -27,13 +27,15 @@ class Controler
                 case 'artistes':
                     $this->artistes();
                     break;
-               case 'arrondissements':
+                case 'arrondissements':
                     $this->arrondissements();
                     break;
-                   case 'categories':
+                case 'categories':
                     $this->categories();
                     break;
-                    
+                case 'oeuvreDetails':
+                    $this->oeuvreDetails();
+                    break;
                     default:
 				    $this->accueil();
 					break;
@@ -53,11 +55,13 @@ class Controler
           private function artistes()
 		{
             $oArtistes = new MArtistes('', '', '' ,'', '', '');
+            $oOeuvres = new MOeuvres ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+              
             $aArtistes = $oArtistes::listeArtistes();
               
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-			$oVue->afficheArtistes($aArtistes);
+			$oVue->afficheArtistes($aArtistes, $oOeuvres);
             $oVue->afficheFooter();
     
 		}
@@ -80,7 +84,16 @@ class Controler
     
 		}
     
-		
+		/*private function oeuvreDetails()
+		{
+            $idOeuvre = $_GET["idOeuvre"];
+            $oOeuvre = new MOeuvres ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+			$oVue->afficheOeuvreDetails($idOeuvre, $oOeuvre);
+            $oVue->afficheFooter();
+    
+		}*/
 		
 }
 ?>
