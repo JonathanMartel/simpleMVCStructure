@@ -52,6 +52,13 @@ class MArtistes {
 	 * @access public
 	 * @return 
 	 */
+    
+    public function getIdArtiste() 
+	{
+		return $this->idArtiste;		
+			
+	}
+    
 	public function getPrenom() 
 	{
 		return $this->prenom;		
@@ -76,7 +83,7 @@ class MArtistes {
 			
 	}
     
-    /**
+    /*
 	 * @access public static
      * @author Gautier Piatek
 	 * @return Array Tableau contenant la liste de tous les artistes
@@ -85,11 +92,12 @@ class MArtistes {
 		self::$database->query('SELECT * FROM artiste ORDER BY artiste.nom ASC');
 		$lignes = self::$database->resultset();
 		foreach ($lignes as $ligne) {
-			$unArtiste = new MArtistes('', $ligne['prenom'], $ligne['nom'], $ligne['collectif'],$ligne['noInterne'], $ligne['photoArtiste']);
+			$unArtiste = new MArtistes($ligne['idArtiste'], $ligne['prenom'], $ligne['nom'], $ligne['collectif'],$ligne['noInterne'], $ligne['photoArtiste']);
 			$artistes[] = $unArtiste;
 		}
 		return $artistes;
 	}
+    
 }
 
 

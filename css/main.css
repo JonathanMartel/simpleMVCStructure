@@ -150,7 +150,7 @@ a
 
 /*PAGE ARTISTES */
 
-.artistes, .collectif {
+.artistes p, .collectif p {
     cursor: pointer;
 }
 
@@ -163,7 +163,7 @@ a
 }
 
 .artistes img, .collectif img {
-    width: 7%;
+    width: 5%;
     height: auto;
     float: left;
     overflow: hidden;
@@ -275,6 +275,10 @@ i:after {
     animation-delay: 0.5s;
 }
 
+.accordion-contenu li {
+    text-align: left;
+}
+
 .accordion p {
     font-weight: bold;
 }
@@ -292,6 +296,7 @@ footer
     background-color: #354a5d;
     color: white;
     text-align: center;
+    padding: 1%;
 }
 
 

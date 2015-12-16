@@ -20,7 +20,7 @@ class VueDefaut {
      */
     public function afficheHeader() {
         ?>
-            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
     <head>
         <title>Chass'Oeuvres</title>
@@ -199,21 +199,22 @@ class VueDefaut {
      * @access public
      *
      */
-    public function afficheArtistes($aArtistes) {
+    public function afficheArtistes($aArtistes, $oOeuvres) {
         ?>
-            <h2>Découvrez nos artistes</h2>
+            <h2>Découvrez nos <span class="artistes">artistes</span> et <span class="collectif">collectifs</span></h2>
 
         <?php
         $compteur = 1;
         
         echo "<section class='contenu container'>";
 
-        foreach($aArtistes as $artiste){
+        foreach($aArtistes as $artiste) {
 
             $photo = $artiste->getPhoto();
             $prenom = $artiste->getPrenom();
             $nom = $artiste->getNom();
             $collectif = $artiste->getCollectif();
+            $idArtiste = $artiste->getIdArtiste();
             
             echo "<div class=' accordion sixcol ";
 
@@ -244,29 +245,44 @@ class VueDefaut {
 
             }
             echo "<i></i>"
-            ?>
-                <div class="accordion-contenu">
-                   <div class="sixcol first">
-                    <ul>
-                        <li>Oeuvre 1</li>
-                        <li>Oeuvre 2</li>
-                        <li>Oeuvre 3</li>
-                        <li>Oeuvre 4</li>
-                        <li>Oeuvre 5</li>
-                    </div>
-                    <div class="sixcol last">
-                       <ul>
-                        <li>Oeuvre 6</li>
-                        <li>Oeuvre 7</li>
-                        <li>Oeuvre 8</li>
-                        <li>Oeuvre 9</li>
-                        <li>Oeuvre 10</li>
-                    </ul>
-                   </div>
+        ?>
+            <div class="accordion-contenu">
+               
+        <?php
+            
+            $aOeuvres = $oOeuvres::listeOeuvresParArtiste($idArtiste);
+            //var_dump($idArtiste);
+            //var_dump($aOeuvres);
+            $compteurContenu = 1;
+            
+            echo "<div class='sixcol first'>";
+            echo "<ul>";
+            foreach($aOeuvres as $oeuvre){
                 
+                if ($compteurContenu != 11) {
+                    if($compteurContenu ==6) {
+                    echo "</div><div class='sixcol first'>";
+                    echo "<ul>";
+                    $titreOeuvre = $oeuvre->getTitreOeuvre();
+                    $idOeuvre = $oeuvre->getIdOeuvre();
+                    echo "<li>" . $titreOeuvre . "</li>";
+                    //echo "<li><a href='index.php?requete=oeuvreDetails&idOeuvre=" . $idOeuvre . "'>" . $titreOeuvre . "</a></li>";
+                    $compteurContenu = $compteurContenu+1;
+                }
+                
+                $titreOeuvre = $oeuvre->getTitreOeuvre();
+                $idOeuvre = $oeuvre->getIdOeuvre();
+                echo "<li>" . $titreOeuvre . "</li>";
+                //echo "<li><a href='index.php?requete=oeuvreDetails&idOeuvre=" . $idOeuvre . "'>" . $titreOeuvre . "</a></li>";
+                }
+                
+                $compteurContenu = $compteurContenu+1;
+            }
+        ?>            
+                    </ul>
                 </div>
-
-            <?php
+                
+        <?php
             echo "</figure>";
             echo "</div>";
 
@@ -274,16 +290,14 @@ class VueDefaut {
         }
         echo "</section> ";
     }
-
+    
     /**
      * Affiche les oeuvres par arrondissement
      * @access public
      *
      */
     public function afficheArrondissements() {
-        ?>
-
-        <?php
+       
 
     }
 
@@ -293,10 +307,44 @@ class VueDefaut {
      *
      */
     public function afficheCategories() {
-        ?>
-
-        <?php
+       
 
     }
+    
+    /**
+     * Affiche une oeuvre en détail
+     * @access public
+     *
+     */
+    /*public function afficheOeuvreDetails($idOeuvre, $oOeuvre) {
+       
+        $aOeuvre = $oOeuvre::detailsOeuvreParId($idOeuvre);
+         var_dump($aOeuvre);
+        ?>
+            <div class="contenu container">
+                <div class="sixcol last">
+                   <ul>
+                    
+        <?php
+        foreach($aOeuvre as $oeuvre) {
+            $titre = $oeuvre->getTitreOeuvre();
+            $arrondissement = $oeuvre->getNomArrondissement();
+            $anomArt = $oeuvre->getNomArt();
+            $prenomArt = $oeuvre->getPrenomArt();
+            $collectif = $oeuvre->getCollectif();
+            $categorie = $oeuvre->getNomCategorie();       
+        }
+        echo "<li>Titre : " . $titre . "</li>";    
+        echo "<li>Arrondissement : " . $arrondissement . "</li>";    
+        echo "<li>Prénom : " . $prenom . "</li>";    
+        echo "<li>Nom : " . $nom . "</li>";    
+        echo "<li>Collectif : " . $collectif . "</li>";    
+        echo "<li>Catégorie : " . $categorie . "</li>";    
+        ?>
+                    </ul>
+                </div>
+            </div>
+        <?php
+    }*/
 }
 ?>
