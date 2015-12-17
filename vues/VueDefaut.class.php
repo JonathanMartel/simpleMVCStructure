@@ -102,96 +102,51 @@ class VueDefaut {
      * @access public
      *
      */
-    public function afficheAccueil() {
+    public function afficheAccueil($oeuvres) {
         ?>
             <section id="gallery">
                 <img src="images/img1.jpg">
             </section>
-            <section class='contenu container'>
-                <div class= 'threecol first'>
-
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-                <div class= 'threecol'>
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-                <div class= 'threecol'>
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom 1</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-
-
-                <div class= 'threecol last'>
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom 1</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-            </section>
-
-            <section class='contenu container'>
-                <div class= 'threecol first'>
-
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-                <div class= 'threecol'>
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-                <div class= 'threecol'>
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom 1</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-
-
-                <div class= 'threecol last'>
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom 1</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-            </section>
+            
         <?php
+           $compteur = 1;
+           echo "<section class='contenu container'>";
+           foreach($oeuvres as $oeuvre) {
+                             
+               if($compteur == 1){
+                   echo "<div class= 'threecol first'>";
+               }else if($compteur == 2||$compteur == 3){
+                    echo "<div class= 'threecol'>";
+               }else if  ($compteur == 4){
+                    echo "<div class= 'threecol last'>";
+               }
+                              
+                   $idOeuvre= $oeuvre->getIdOeuvre();
+                   $titre = $oeuvre->getTitreOeuvre();
+                   $arrondissement= $oeuvre ->getNomArrondissement();
+                   $prenom = $oeuvre->getPrenomArtiste();
+                   $nom = $oeuvre->getPreNomArtiste();
+                   $collectif = $oeuvre->getCollectif();
+                   $categorie = $oeuvre->getNomCategorie();
 
+                   echo "<figure>";
+                   echo "<img src='images/img_2.jpg'>";
+                   echo "<figcaption>".$titre."</figcaption>";
+                   echo "</figure>";
+
+                   if($collectif =="") {
+                      echo "<p>Artiste: ". $prenom . " " . $nom . "</p>";
+                   } else {
+                       echo "<p>Collectif: " . $collectif . "</p>";
+                   }
+                   echo "<p>Arondissement: ". $arrondissement ."</p>";
+                   echo "<p>Categorie: ". $categorie ."</p>";
+               echo "</div>";            
+               if  ($compteur == 4){
+                   $compteur=1;
+               }
+            }
+        echo "</section>";
     }
 
     /**

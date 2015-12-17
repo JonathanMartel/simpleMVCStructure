@@ -45,9 +45,11 @@ class Controler
 		
         private function accueil()
 		{
+            $oOeuvres = new MOeuvres ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $aOeuvres = $oOeuvres::listeOeuvres();
             $oVue = new VueDefaut();
 			$oVue->afficheHeader();
-			$oVue->afficheAccueil();
+			$oVue->afficheAccueil($aOeuvres);
 			$oVue->afficheFooter();
 			
 		}
