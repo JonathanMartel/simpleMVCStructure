@@ -20,23 +20,82 @@ class Controler
 		 */
 		public function gerer()
 		{
-			
 			switch ($_GET['requete']) {
 				case 'accueil':
 					$this->accueil();
 					break;
-				default:
-					$this->accueil();
+                case 'artistes':
+                    $this->artistes();
+                    break;
+                case 'arrondissements':
+                    $this->arrondissements();
+                    break;
+                case 'categories':
+                    $this->categories();
+                    break;
+                case 'oeuvreDetails':
+                    $this->oeuvreDetails();
+                    break;
+                    default:
+				    $this->accueil();
 					break;
 			}
+            
 		}
-		private function accueil()
-		{
-			$oVue = new Vue();
-			$oVue->afficheAccueil();
-		}
-		// Placer les méthodes du controleur.
 		
+        private function accueil()
+		{
+            $oOeuvres = new MOeuvres ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $aOeuvres = $oOeuvres::listeOeuvres();
+            $oVue = new VueDefaut();
+			$oVue->afficheHeader();
+			$oVue->afficheAccueil($aOeuvres);
+			$oVue->afficheFooter();
+			
+		}
+		
+          private function artistes()
+		{
+            $oArtistes = new MArtistes('', '', '' ,'', '', '');
+            $oOeuvres = new MOeuvres ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+              
+            $aArtistes = $oArtistes::listeArtistes();
+              
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+			$oVue->afficheArtistes($aArtistes, $oOeuvres);
+            $oVue->afficheFooter();
+    
+		}
+    
+        private function arrondissements()
+		{
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+			$oVue->afficheArrondissements();
+            $oVue->afficheFooter();
+    
+		}
+    
+        private function categories()
+		{
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+			$oVue->afficheCategories();
+            $oVue->afficheFooter();
+    
+		}
+    
+		/*private function oeuvreDetails()
+		{
+            $idOeuvre = $_GET["idOeuvre"];
+            $oOeuvre = new MOeuvres ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+			$oVue->afficheOeuvreDetails($idOeuvre, $oOeuvre);
+            $oVue->afficheFooter();
+    
+		}*/
 		
 }
 ?>
