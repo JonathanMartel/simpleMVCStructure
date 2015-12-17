@@ -256,15 +256,6 @@ class VueDefaut {
 
     }
 
-    /**
-     * Affiche les oeuvres par catégories
-     * @access public
-     *
-     */
-    public function afficheCategories() {
-       
-
-    }
     
     /**
      * Affiche les oeuvres par catégories
