@@ -272,7 +272,7 @@ class VueDefaut {
             //echo "<a href = 'index.php?requete=oeuvresParArr&idArrondissement=$id_Arrondissement'> " . $nom . "</a>";
             //echo "<a href = 'index.php?requete=oeuvresParArr' class='noir'> " . $nom . "</a>";
 
-             echo "<div class=' accordion sixcol ";
+            echo "<div class=' accordion sixcol ";
 
              if($compteur%2 == 1){
                 echo "last'>";
@@ -314,10 +314,8 @@ class VueDefaut {
         foreach($aOevuresParArr as $OevuresParArr){
              $nomOevure_Par_Arr = $OevuresParArr->getTitreOeuvre();
              echo $nomOevure_Par_Arr.'<br/>';   
-    }
-}  //FIN FUNCTION afficheOeuvre_Par_Arr
-
-
+        }
+    }    //FIN FUNCTION afficheOeuvre_Par_Arr
     
     /**
      * Affiche les oeuvres par catégories
