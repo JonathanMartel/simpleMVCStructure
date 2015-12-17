@@ -14,7 +14,11 @@
 			<h1>Test - Modèles</h1>
 		</div>
 		<div id="contenu">
-			<?php // Placer vos tests unitaires ici... ?>
+			<?php 
+			//$oArrondisement = new MArrondissement('', '');
+			//$aArrondissements = $oArrondisement::listeArrondissement();
+			//var_dump($oArrondisement);
+			?>
 		</div>
 		<div id="footer">
 

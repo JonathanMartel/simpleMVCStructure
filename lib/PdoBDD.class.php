@@ -46,6 +46,7 @@ class PdoBDD {
      */
     //
     public function query($requete) {
+        $this->database->query("SET NAMES 'utf8'");//pour faire l'encodage sr la base de donnees
         $this->instruction = $this->database->prepare($requete);
     }
 

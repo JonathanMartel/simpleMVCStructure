@@ -188,7 +188,7 @@ class MOeuvres {
     
 	/*****************************************/
 	
-	
+/*
 	public function setIdOeuvre($valeur) 
 	{
 		$this->idOeuvre = $valeur;	
@@ -286,7 +286,7 @@ class MOeuvres {
 		$this->nomMateriauxAng = $valeur;	
 	}
 	
-	
+*/	
 			
     /**
 	 * @access public static
@@ -295,15 +295,14 @@ class MOeuvres {
 	 */
 	public static function listeOeuvres() {
 		self::$database->query('
-		SELECT oeuvre.idOeuvre, oeuvre.titreOeuvre, arrondissement.nomArrondissement, categorie.nomCategorie, CONCAT(artiste.prenom,artiste.nom) AS nomArt, artiste.collectif, photo.nomPhoto 
+		SELECT oeuvre.idOeuvre, oeuvre.titreOeuvre, arrondissement.nomArrondissement, artiste.prenom,artiste.nom, artiste.collectif, categorie.nomCategorie 
 		FROM oeuvre JOIN artiste ON oeuvre.idArtiste = artiste.idArtiste 
 		JOIN arrondissement ON oeuvre.idArrondissement = arrondissement.idArrondissement 
-		JOIN categorie ON oeuvre.idCategorie = categorie.idCategorie 
-		JOIN est_identifie_par ON oeuvre.idOeuvre = est_identifie_par.idOeuvre 
-		JOIN photo ON photo.idPhoto = est_identifie_par.idPhoto '); 
-		$lignes = self::$database->resultset();
+		JOIN categorie ON oeuvre.idCategorie = categorie.idCategorie ');
+		
+        $lignes = self::$database->resultset();
 		foreach ($lignes as $ligne) {
-			$uneOeuvre = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','',$ligne['nomArrondissement'],'','','','','',$ligne['prenomArt'],$ligne['nomArt'],$ligne['collectif'],'','',$ligne['nomCategorie'],'','','','','');
+			$uneOeuvre = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','',$ligne['nomArrondissement'],'','','','','',$ligne['prenom'],$ligne['nom'],$ligne['collectif'],'','',$ligne['nomCategorie'],'','','','','');
 			$oeuvres[] = $uneOeuvre;
 		}
 		return $oeuvres;
@@ -324,6 +323,28 @@ class MOeuvres {
 		}
 		return $oeuvres;
     }
+
+    /**
+	 *
+	 * @return Array Tableau contenant la liste de toutes les oueuvres par arrondissement
+     * @author Jorge Blanco
+     * @version 1.0
+     * 
+     */
+    /////////////////////////////// DEVELOPPEMENT ////////////////////////////////////
+	//public static function listerOueuvresParArr($id_arrondissement) {
+	public static function listerOeuvresParArr() {
+		self::$database->query('SELECT oeuvre.titreOeuvre FROM oeuvre JOIN arrondissement on arrondissement.idArrondissement=oeuvre.idArrondissement WHERE oeuvre.idArrondissement="1"');
+		//self::$database->query('SELECT oeuvre.titreOeuvre FROM oeuvre JOIN arrondissement on arrondissement.idArrondissement=oeuvre.idArrondissement WHERE oeuvre.idArrondissement=:id_arrondissement');
+
+		$lignes = self::$database->resultset();
+		foreach ($lignes as $ligne) {
+			$unOeuvreParArr = new MOeuvres('',$ligne['titreOeuvre'],'','','','','','','','','','','','','','','','','','','','','','','');
+			$OuvresParArr[] = $unOeuvreParArr;
+		}
+		return $OuvresParArr;
+
+}//FIN FUNCTION listerOeuvresParArr
     
     /**
 	 * @access public static

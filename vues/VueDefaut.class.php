@@ -102,96 +102,51 @@ class VueDefaut {
      * @access public
      *
      */
-    public function afficheAccueil() {
+    public function afficheAccueil($oeuvres) {
         ?>
             <section id="gallery">
                 <img src="images/img1.jpg">
             </section>
-            <section class='contenu container'>
-                <div class= 'threecol first'>
-
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-                <div class= 'threecol'>
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-                <div class= 'threecol'>
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom 1</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-
-
-                <div class= 'threecol last'>
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom 1</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-            </section>
-
-            <section class='contenu container'>
-                <div class= 'threecol first'>
-
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-                <div class= 'threecol'>
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-                <div class= 'threecol'>
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom 1</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-
-
-                <div class= 'threecol last'>
-                    <figure>
-                        <img src="images/img_2.jpg">
-                        <figcaption>nom 1</figcaption>
-                    </figure>
-                    artiste : <br>
-                    arrondissement : <br>
-                    categorie :
-                </div>
-            </section>
+            
         <?php
+           $compteur = 1;
+           echo "<section class='contenu container'>";
+           foreach($oeuvres as $oeuvre) {
+                             
+               if($compteur == 1){
+                   echo "<div class= 'threecol first'>";
+               }else if($compteur == 2||$compteur == 3){
+                    echo "<div class= 'threecol'>";
+               }else if  ($compteur == 4){
+                    echo "<div class= 'threecol last'>";
+               }
+                              
+                   $idOeuvre= $oeuvre->getIdOeuvre();
+                   $titre = $oeuvre->getTitreOeuvre();
+                   $arrondissement= $oeuvre ->getNomArrondissement();
+                   $prenom = $oeuvre->getPrenomArtiste();
+                   $nom = $oeuvre->getPreNomArtiste();
+                   $collectif = $oeuvre->getCollectif();
+                   $categorie = $oeuvre->getNomCategorie();
 
+                   echo "<figure>";
+                   echo "<img src='images/img_2.jpg'>";
+                   echo "<figcaption>".$titre."</figcaption>";
+                   echo "</figure>";
+
+                   if($collectif =="") {
+                      echo "<p>Artiste: ". $prenom . " " . $nom . "</p>";
+                   } else {
+                       echo "<p>Collectif: " . $collectif . "</p>";
+                   }
+                   echo "<p>Arondissement: ". $arrondissement ."</p>";
+                   echo "<p>Categorie: ". $categorie ."</p>";
+               echo "</div>";            
+               if  ($compteur == 4){
+                   $compteur=1;
+               }
+            }
+        echo "</section>";
     }
 
     /**
@@ -291,24 +246,107 @@ class VueDefaut {
         echo "</section> ";
     }
     
-    /**
+/**
+     * Affiche les arrondissements 
+     * @access public
+     * @author Jorge Blanco
+     * @version 1.0
+     * 
+     */
+    public function afficheArrondissements($aArrondissements) {
+        ?>
+
+        <h2>Arrondisements</h2>
+        <?php
+        $compteur = 1;
+        
+        echo "<section class='contenu container'>";
+
+        foreach($aArrondissements as $arrondissement){
+            $id_Arrondissement= $arrondissement->getidArrondissement();
+            $nom = $arrondissement->getnomArrondissement();
+
+            /////////////////////////////// DEVELOPPEMENT ////////////////////////////////////
+            //var_dump($id_Arrondissement);
+            //echo  $nom .'<br/>';
+            //echo "<a href = 'index.php?requete=oeuvresParArr&idArrondissement=$id_Arrondissement'> " . $nom . "</a>";
+            //echo "<a href = 'index.php?requete=oeuvresParArr' class='noir'> " . $nom . "</a>";
+
+             echo "<div class=' accordion sixcol ";
+
+             if($compteur%2 == 1){
+                echo "last'>";
+            } else {
+                 echo "first'>";
+            }
+            /////////////////////////////// DEVELOPPEMENT ////////////////////////////////////
+            //echo "<a href = 'index.php?requete=oeuvresParArr&idArrondissement=$id_Arrondissement' class='arrondisement'> " . $nom . "</a>";
+            //<a href="index.php?requete=categories" class="categorie">CATEGORIE</a>
+            //echo "<a href = 'index.php?requete=oeuvresParArr' class='arrondisement'> " . $nom . "</a>";
+            echo "<figure class='arrondisement'>";   
+            echo "<a href = 'index.php?requete=oeuvresParArr&idArrondissement=$id_Arrondissement' class='arrondisement'> " . $nom . "</a>";
+            echo "</figure>";
+            echo "</div>";
+            $compteur = $compteur + 1;
+        }
+        echo "</section>";
+        
+    } //FIN FUNCTION afficheArrondissements
+
+
+
+        /**
      * Affiche les oeuvres par arrondissement
      * @access public
-     *
+     * @author Jorge Blanco
+     * @version 1.0
+     * 
      */
-    public function afficheArrondissements() {
-       
+        public function afficheOeuvre_Par_Arr($aOevuresParArr) {
+        ?>
 
+        <h2>OevuresParArr</h2>
+        <?php
+
+        /////////////////////////////// DEVELOPPEMENT ////////////////////////////////////
+        //$compteur = 1;
+        //echo "<section class='contenu container'>";
+        foreach($aOevuresParArr as $OevuresParArr){
+             $nomOevure_Par_Arr = $OevuresParArr->getTitreOeuvre();
+             echo $nomOevure_Par_Arr.'<br/>';   
     }
+}  //FIN FUNCTION afficheOeuvre_Par_Arr
 
+
+    
     /**
      * Affiche les oeuvres par catégories
      * @access public
      *
      */
-    public function afficheCategories() {
-       
+    public function afficheCategories($aCategories) 
+    
+    {   echo "<section class='contenu container'>";
+        foreach ( $aCategories as $categorie )
+                {   echo "<div class='bouton'>";
+                    $categorie->afficher(); 
+                    echo "</div>"; 
+                }  
+         echo "</section>";
+    }  
 
+     /**
+     * Affiche les oeuvres par catégories
+     * @access public
+     *
+     */
+  
+    public function afficheOeuvresParCats($aOeuvres)
+        
+    {   $aOeuvres = Categorie::listeOeuvresParCat("Beaux-Arts");
+        foreach ( $aOeuvres as $aOeuvre )
+                {  $aOeuvre->afficher();
+                }
     }
     
     /**
