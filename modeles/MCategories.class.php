@@ -64,19 +64,37 @@ class MCategories {
 
 	}
     
-    /**
+     /**
 	 *
 	 * @return Array Tableau contenant la liste de toutes les categories
 	 */
-	public static function listeCategories() {
-		self::$database->query('SELECT * FROM categorie');
-		$lignes = self::$database->resultset();
-		foreach ($lignes as $ligne) {
-			$uneCategorie = new MCategories('', $ligne['nomCategorie'], $ligne['nomSousCat'], $ligne['nomCatAng'],$ligne['nomSousCatAng']);
-			$categories[] = $uneCategorie;
+	public static function listeCategories() 
+		{
+			self::$database->query('SELECT * FROM categorie');
+			$lignes = self::$database->resultset();
+			foreach ($lignes as $ligne) 
+			{
+				$uneCategorie = new MCategories('', $ligne['nomCategorie'], $ligne['nomCatAng'], $ligne['nomSousCat'],$ligne['nomSousCatAng']);
+				$categories[] = $uneCategorie;
+			}
+			return $categories;
 		}
-		return $categories;
-	}
+
+    public static function listeOeuvresParCat($uneCategorie) 
+    {
+        Oeuvre::$database->query('SELECT oeuvre.titreOeuvre, oeuvre.titreVariante, oeuvre.technique, oeuvre.description
+                                  FROM oeuvre INNER JOIN categorie ON oeuvre.idCategorie=categorie.idCategorie;
+        	                      AND categorie.nomCategorie = :categorie');
+        Oeuvre::$database->bind(':categorie', $uneCategorie);
+        Oeuvre::$database->execute();
+        $lignes = Oeuvre::$database->resultset();
+        foreach ($lignes as $ligne) 
+        {   $unOeuvre = new Oeuvre($ligne['titreOeuvre'], $ligne['titreVariante'], $ligne['technique'], $ligne['description']);
+            $aOeuvres[] = $unOeuvre;
+        }
+
+        return $aOeuvres;
+    }
 }
 
 

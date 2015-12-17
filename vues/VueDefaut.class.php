@@ -267,6 +267,38 @@ class VueDefaut {
     }
     
     /**
+     * Affiche les oeuvres par catégories
+     * @access public
+     *
+     */
+  
+
+    public function afficheCategories($aCategories) 
+    
+    {   echo "<section class='contenu container'>";
+        foreach ( $aCategories as $categorie )
+                {   echo "<div class='bouton'>";
+                    $categorie->afficher(); 
+                    echo "</div>"; 
+                }  
+         echo "</section>";
+    }  
+
+     /**
+     * Affiche les oeuvres par catégories
+     * @access public
+     *
+     */
+  
+    public function afficheOeuvresParCats($aOeuvres)
+        
+    {   $aOeuvres = Categorie::listeOeuvresParCat("Beaux-Arts");
+        foreach ( $aOeuvres as $aOeuvre )
+                {  $aOeuvre->afficher();
+                }
+    }
+    
+    /**
      * Affiche une oeuvre en détail
      * @access public
      *
