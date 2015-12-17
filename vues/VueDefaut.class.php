@@ -246,24 +246,82 @@ class VueDefaut {
         echo "</section> ";
     }
     
-    /**
+/**
+     * Affiche les arrondissements 
+     * @access public
+     * @author Jorge Blanco
+     * @version 1.0
+     * 
+     */
+    public function afficheArrondissements($aArrondissements) {
+        ?>
+
+        <h2>Arrondisements</h2>
+        <?php
+        $compteur = 1;
+        
+        echo "<section class='contenu container'>";
+
+        foreach($aArrondissements as $arrondissement){
+            $id_Arrondissement= $arrondissement->getidArrondissement();
+            $nom = $arrondissement->getnomArrondissement();
+
+            /////////////////////////////// DEVELOPPEMENT ////////////////////////////////////
+            //var_dump($id_Arrondissement);
+            //echo  $nom .'<br/>';
+            //echo "<a href = 'index.php?requete=oeuvresParArr&idArrondissement=$id_Arrondissement'> " . $nom . "</a>";
+            //echo "<a href = 'index.php?requete=oeuvresParArr' class='noir'> " . $nom . "</a>";
+
+            echo "<div class=' accordion sixcol ";
+
+             if($compteur%2 == 1){
+                echo "last'>";
+            } else {
+                 echo "first'>";
+            }
+            /////////////////////////////// DEVELOPPEMENT ////////////////////////////////////
+            //echo "<a href = 'index.php?requete=oeuvresParArr&idArrondissement=$id_Arrondissement' class='arrondisement'> " . $nom . "</a>";
+            //<a href="index.php?requete=categories" class="categorie">CATEGORIE</a>
+            //echo "<a href = 'index.php?requete=oeuvresParArr' class='arrondisement'> " . $nom . "</a>";
+            echo "<figure class='arrondisement'>";   
+            echo "<a href = 'index.php?requete=oeuvresParArr&idArrondissement=$id_Arrondissement' class='arrondisement'> " . $nom . "</a>";
+            echo "</figure>";
+            echo "</div>";
+            $compteur = $compteur + 1;
+        }
+        echo "</section>";
+        
+    } //FIN FUNCTION afficheArrondissements
+
+
+
+        /**
      * Affiche les oeuvres par arrondissement
      * @access public
-     *
+     * @author Jorge Blanco
+     * @version 1.0
+     * 
      */
-    public function afficheArrondissements() {
-       
+        public function afficheOeuvre_Par_Arr($aOevuresParArr) {
+        ?>
 
-    }
+        <h2>OevuresParArr</h2>
+        <?php
 
+        /////////////////////////////// DEVELOPPEMENT ////////////////////////////////////
+        //$compteur = 1;
+        //echo "<section class='contenu container'>";
+        foreach($aOevuresParArr as $OevuresParArr){
+             $nomOevure_Par_Arr = $OevuresParArr->getTitreOeuvre();
+             echo $nomOevure_Par_Arr.'<br/>';   
+        }
+    }    //FIN FUNCTION afficheOeuvre_Par_Arr
     
     /**
      * Affiche les oeuvres par catégories
      * @access public
      *
      */
-  
-
     public function afficheCategories($aCategories) 
     
     {   echo "<section class='contenu container'>";
