@@ -323,6 +323,28 @@ class MOeuvres {
 		}
 		return $oeuvres;
     }
+
+    /**
+	 *
+	 * @return Array Tableau contenant la liste de toutes les oueuvres par arrondissement
+     * @author Jorge Blanco
+     * @version 1.0
+     * 
+     */
+    /////////////////////////////// DEVELOPPEMENT ////////////////////////////////////
+	//public static function listerOueuvresParArr($id_arrondissement) {
+	public static function listerOeuvresParArr() {
+		self::$database->query('SELECT oeuvre.titreOeuvre FROM oeuvre JOIN arrondissement on arrondissement.idArrondissement=oeuvre.idArrondissement WHERE oeuvre.idArrondissement="1"');
+		//self::$database->query('SELECT oeuvre.titreOeuvre FROM oeuvre JOIN arrondissement on arrondissement.idArrondissement=oeuvre.idArrondissement WHERE oeuvre.idArrondissement=:id_arrondissement');
+
+		$lignes = self::$database->resultset();
+		foreach ($lignes as $ligne) {
+			$unOeuvreParArr = new MOeuvres('',$ligne['titreOeuvre'],'','','','','','','','','','','','','','','','','','','','','','','');
+			$OuvresParArr[] = $unOeuvreParArr;
+		}
+		return $OuvresParArr;
+
+}//FIN FUNCTION listerOeuvresParArr
     
     /**
 	 * @access public static

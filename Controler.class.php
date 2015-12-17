@@ -36,6 +36,10 @@ class Controler
                 case 'oeuvreDetails':
                     $this->oeuvreDetails();
                     break;
+                case 'oeuvresParArr';
+                 	$this->oeuvresParArr();
+                 	break;
+                 	    
                     default:
 				    $this->accueil();
 					break;
@@ -68,22 +72,44 @@ class Controler
     
 		}
     
-        private function arrondissements()
+		private function arrondissements()
 		{
+
+			$oArrondisement = new MArrondissement('', '');
+			//$aArrondissements = $oArrondisement::listeArrondissement($id_Arrondissement);
+			$aArrondissements = $oArrondisement::listeArrondissement();
+
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-			$oVue->afficheArrondissements();
+			$oVue->afficheArrondissements($aArrondissements);
             $oVue->afficheFooter();
     
 		}
     
-        private function categories()
+		private function categories()
 		{
+            $oCategories = new MCategories('', '', '' ,'', '','');
+            $aCategories = $oCategories::listeCategories();
+
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-			$oVue->afficheCategories();
+			$oVue->afficheCategories($aCategories);
             $oVue->afficheFooter();
     
+		}
+
+
+		private function oeuvresParArr()
+		{	
+			
+			$id_arr = $_GET['idArrondissement'];
+			$oOeuvreParArr = new MOeuvres('','','','','','','','','','','','','','','','','','','','','','','','','');
+			$aOeuvreParArr = $oOeuvreParArr::listerOeuvresParArr($id_arr);
+
+			$oVue = new VueDefaut();
+			$oVue->afficheHeader();
+			$oVue->afficheOeuvre_Par_Arr($aOeuvreParArr);
+            $oVue->afficheFooter();
 		}
     
 		/*private function oeuvreDetails()
@@ -99,18 +125,3 @@ class Controler
 		
 }
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

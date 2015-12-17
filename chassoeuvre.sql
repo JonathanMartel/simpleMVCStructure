@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.4
+-- version 3.4.3.1
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Lun 14 Décembre 2015 à 13:16
--- Version du serveur :  5.6.15-log
--- Version de PHP :  5.5.8
+-- Client: 127.0.0.1
+-- Généré le : Jeu 17 Décembre 2015 à 16:26
+-- Version du serveur: 5.5.13
+-- Version de PHP: 5.3.6
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `chassoeuvre`
+-- Base de données: `chassoeuvre`
 --
 
 -- --------------------------------------------------------
@@ -314,14 +314,23 @@ CREATE TABLE IF NOT EXISTS `oeuvre` (
   KEY `FK_Oeuvre_idAdresse` (`idAdresse`),
   KEY `FK_Oeuvre_idArtiste` (`idArtiste`),
   KEY `FK_Oeuvre_idCategorie` (`idCategorie`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `oeuvre`
 --
 
 INSERT INTO `oeuvre` (`idOeuvre`, `titreOeuvre`, `titreVariante`, `technique`, `NoInterne`, `description`, `validationOeuvre`, `idArrondissement`, `idAdresse`, `idArtiste`, `idCategorie`, `techniqueAng`) VALUES
-(1, 'Source', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 1, 2, 'Cast bronze; bolted');
+(1, 'Source', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 1, 2, 'Cast bronze; bolted'),
+(2, 'La Ville', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 2, 2, 'Cast bronze; bolted'),
+(3, 'La beauté ', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 3, 2, 'Cast bronze; bolted'),
+(4, 'Au parc', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 4, 2, 'Cast bronze; bolted'),
+(5, 'Parc Olympique', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 5, 2, 'Cast bronze; bolted'),
+(6, 'Source 2', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 1, 2, 'Cast bronze; bolted'),
+(7, 'La Ville 2', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 2, 2, 'Cast bronze; bolted'),
+(8, 'La beauté 2', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 3, 2, 'Cast bronze; bolted'),
+(9, 'Au parc 2', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 4, 2, 'Cast bronze; bolted'),
+(10, 'Parc Olympique 2', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 5, 2, 'Cast bronze; bolted');
 
 -- --------------------------------------------------------
 
