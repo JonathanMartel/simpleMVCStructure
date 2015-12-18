@@ -20,6 +20,7 @@ class MOeuvres {
     public $titreOeuvre;
 	public $titreVariante;
 	public $technique;
+    public $techniqueAng;
 	public $noInternetOeuvre;
 	public $description;
 	public $validationOeuvre;
@@ -47,7 +48,7 @@ class MOeuvres {
 	 */
 	static $database;
         
-	function __construct ($idOeuvre,$titreOeuvre,$titreVariante,$technique,$noInternetOeuvre,$description,$validationOeuvre,$nomArrondissement,$adresse,$batiment,$parc, $latitude, $longitude, $prenomArtiste, $nomArtiste, $collectif, $noInterneArtiste, $photoArtiste, $nomCategorie, $nomCategorieAng, $nomSousCat, $nomSousCatAng, $nomMateriaux, $nomMateriauxAng)
+	function __construct ($idOeuvre,$titreOeuvre,$titreVariante,$technique,$techniqueAng,$noInternetOeuvre,$description,$validationOeuvre,$nomArrondissement,$adresse,$batiment,$parc, $latitude, $longitude, $prenomArtiste, $nomArtiste, $collectif, $noInterneArtiste, $photoArtiste, $nomCategorie, $nomCategorieAng, $nomSousCat, $nomSousCatAng, $nomMateriaux, $nomMateriauxAng)
 	{
 		if (!isset(self::$database))
 			self::$database = new PdoBDD();
@@ -56,6 +57,7 @@ class MOeuvres {
    		$this-> titreOeuvre = $titreOeuvre;
 		$this-> titreVariante =  $titreVariante;
 		$this-> technique =  $technique;
+        $this-> techniqueAng =  $techniqueAng;
 		$this-> noInternetOeuvre =  $noInternetOeuvre;
 		$this-> description =  $description;
 		$this-> validationOeuvre =  $validationOeuvre;
@@ -102,6 +104,10 @@ class MOeuvres {
 		return $this->titreVariante;		
 	}
 	public function getTechnique() 
+	{
+		return $this->technique;		
+	}
+    public function getTechniqueAng() 
 	{
 		return $this->technique;		
 	}
@@ -205,6 +211,10 @@ class MOeuvres {
 	{
 		$this->technique = $valeur;	
 	}
+    public function setTechniqueAng($valeur) 
+	{
+		$this->techniqueAng = $valeur;	
+	}
 	public function setNoInternetOeuvre($valeur) 
 	{
 		$this->noInternetOeuvre = $valeur;	
@@ -302,7 +312,7 @@ class MOeuvres {
 		
         $lignes = self::$database->resultset();
 		foreach ($lignes as $ligne) {
-			$uneOeuvre = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','',$ligne['nomArrondissement'],'','','','','',$ligne['prenom'],$ligne['nom'],$ligne['collectif'],'','',$ligne['nomCategorie'],'','','','','');
+			$uneOeuvre = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','','',$ligne['nomArrondissement'],'','','','','',$ligne['prenom'],$ligne['nom'],$ligne['collectif'],'','',$ligne['nomCategorie'],'','','','','');
 			$oeuvres[] = $uneOeuvre;
 		}
 		return $oeuvres;
@@ -318,7 +328,7 @@ class MOeuvres {
         self::$database->bind(':idArtiste', $idArtiste);
 		$lignes = self::$database->resultset();
 		foreach ($lignes as $ligne) {
-			$uneOeuvre = new MOeuvres($ligne['idOeuvre'], $ligne['titreOeuvre'], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+			$uneOeuvre = new MOeuvres($ligne['idOeuvre'], $ligne['titreOeuvre'], '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 			$oeuvres[] = $uneOeuvre;
 		}
 		return $oeuvres;
@@ -363,7 +373,7 @@ class MOeuvres {
         self::$database->bind(':idOeuvre', $idOeuvre);
 		$lignes = self::$database->resultset();
 		foreach ($lignes as $ligne) {
-			$uneOeuvre = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','',$ligne['nomArrondissement'],'','','','','',$ligne['prenom'],$ligne['nom'],$ligne['collectif'],'',$ligne['photoArtiste'],$ligne['nomCategorie'],'','','','','');
+			$uneOeuvre = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','','',$ligne['nomArrondissement'],'','','','','',$ligne['prenom'],$ligne['nom'],$ligne['collectif'],'',$ligne['photoArtiste'],$ligne['nomCategorie'],'','','','','');
 			$oeuvres[] = $uneOeuvre;
 		}
 		return $oeuvres;
