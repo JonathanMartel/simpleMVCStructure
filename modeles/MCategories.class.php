@@ -18,26 +18,22 @@ class MCategories {
     
     public $idCategorie;
 	public $nomCategorie;
-    public $sousCategorie;
     public $nomCatAng;
-    public $nomSousCatAng;
     
     /**
 	 * @var database Objet base de données qui permet la connexion
 	 */
 	static $database;
     
-	function __construct ($idCategorie, $nomCategorie, $sousCategorie, $nomCatAng, $nomSousCatAng)
+	function __construct ($idCategorie, $nomCategorie, $nomCatAng)
 	{
 		if (!isset(self::$database))
 			self::$database = new PdoBDD();
 
         $this->idCategorie = $idCategorie;
         $this->nomCategorie = $nomCategorie;
-        $this->sousCategorie = $sousCategorie;
         $this->nomCatAng = $nomCatAng;
-        $this->nomSousCatAng = $nomSousCatAng;
-	}
+    }
 	
 	function __destruct ()
 	{
@@ -74,7 +70,7 @@ class MCategories {
 			$lignes = self::$database->resultset();
 			foreach ($lignes as $ligne) 
 			{
-				$uneCategorie = new MCategories('', $ligne['nomCategorie'], $ligne['nomCatAng'], $ligne['nomSousCat'],$ligne['nomSousCatAng']);
+				$uneCategorie = new MCategories('', $ligne['nomCategorie'], $ligne['nomCatAng']);
 				$categories[] = $uneCategorie;
 			}
 			return $categories;

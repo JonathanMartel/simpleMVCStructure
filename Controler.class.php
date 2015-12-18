@@ -49,7 +49,7 @@ class Controler
 		
         private function accueil()
 		{
-            $oOeuvres = new MOeuvres ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $oOeuvres = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
             $aOeuvres = $oOeuvres::listeOeuvres();
             $oVue = new VueDefaut();
 			$oVue->afficheHeader();
@@ -61,7 +61,7 @@ class Controler
           private function artistes()
 		{
             $oArtistes = new MArtistes('', '', '' ,'', '', '');
-            $oOeuvres = new MOeuvres ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $oOeuvres = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
               
             $aArtistes = $oArtistes::listeArtistes();
               
@@ -103,7 +103,7 @@ class Controler
 		{	
 			
 			$id_arr = $_GET['idArrondissement'];
-			$oOeuvreParArr = new MOeuvres('','','','','','','','','','','','','','','','','','','','','','','','','');
+			$oOeuvreParArr = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 			$aOeuvreParArr = $oOeuvreParArr::listerOeuvresParArr($id_arr);
 
 			$oVue = new VueDefaut();
@@ -115,7 +115,7 @@ class Controler
 		/*private function oeuvreDetails()
 		{
             $idOeuvre = $_GET["idOeuvre"];
-            $oOeuvre = new MOeuvres ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $oOeuvre = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
 			$oVue->afficheOeuvreDetails($idOeuvre, $oOeuvre);
