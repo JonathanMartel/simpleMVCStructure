@@ -22,10 +22,24 @@ class Controler
 		{
 			switch ($_GET['requete']) {
 				case 'accueil':
-					$this->accueil();
+                    if($_GET['idOeuvre'] != '')
+                    {
+                        $this->unOeuvre($_GET['idOeuvre']);    
+                    }
+                    else
+                    {
+                        $this->accueil();
+                    }
 					break;
                 case 'artistes':
-                    $this->artistes();
+                    if($_GET['idOeuvre'] != '')
+                    {
+                        $this->unOeuvre($_GET['idOeuvre']);    
+                    }
+                    else
+                    {
+                        $this->artistes();
+                    }
                     break;
                 case 'arrondissements':
                     $this->arrondissements();
@@ -56,7 +70,18 @@ class Controler
 			$oVue->afficheAccueil($aOeuvres);
 			$oVue->afficheFooter();
 			
+		} 
+        private function unOeuvre($idget)
+		{
+            $oOeuvre = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $oeuvre = $oOeuvre::listeUnOeuvre($idget);
+            $oVue = new VueDefaut();
+			$oVue->afficheHeader();
+			$oVue->afficheUnOeuvre($oeuvre);
+			$oVue->afficheFooter();
+			
 		}
+		
 		
           private function artistes()
 		{
@@ -112,7 +137,7 @@ class Controler
             $oVue->afficheFooter();
 		}
     
-		/*private function oeuvreDetails()
+        /*private function oeuvreDetails()
 		{
             $idOeuvre = $_GET["idOeuvre"];
             $oOeuvre = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');

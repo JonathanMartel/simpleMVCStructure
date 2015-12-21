@@ -318,6 +318,29 @@ class MOeuvres {
 		return $oeuvres;
 	}
     
+    
+     /**
+	 * @access public static
+     * @author German Mahecha
+	 * @return Array Tableau contenant la liste de tous 
+	 */
+	public static function listeUnOeuvre($idcon) {
+		self::$database->query('
+		SELECT oeuvre.idOeuvre, oeuvre.titreOeuvre, arrondissement.nomArrondissement, artiste.prenom,artiste.nom, artiste.collectif, categorie.nomCategorie 
+		FROM oeuvre JOIN artiste ON oeuvre.idArtiste = artiste.idArtiste 
+		JOIN arrondissement ON oeuvre.idArrondissement = arrondissement.idArrondissement 
+		JOIN categorie ON oeuvre.idCategorie = categorie.idCategorie 
+        WHERE oeuvre.idOeuvre = :idcon');
+		self::$database->bind(':idcon', $idcon);
+        $ligne = self::$database->uneLigne();
+		$oeuvre = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','','',$ligne['nomArrondissement'],'','','','','',$ligne['prenom'],$ligne['nom'],$ligne['collectif'],'','',$ligne['nomCategorie'],'','','','','');
+        return $oeuvre;
+	}
+    
+     
+    
+    
+    
     /**
 	 * @access public static
      * @author Gautier Piatek
