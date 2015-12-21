@@ -130,8 +130,8 @@ class VueDefaut {
                    $categorie = $oeuvre->getNomCategorie();
 
                    echo "<figure>";
-                   echo "<img src='images/img_2.jpg'>";
-                   echo "<figcaption>".$titre."</figcaption>";
+                   echo "<a href='index.php?requete=accueil&idOeuvre=".$idOeuvre."'><img src='images/img_2.jpg'></a>";
+                   echo "<figcaption>".$idOeuvre."</figcaption>";
                    echo "</figure>";
 
                    if($collectif =="") {
@@ -149,6 +149,32 @@ class VueDefaut {
         echo "</section>";
     }
 
+    
+    /**
+     * Affiche un Oeuvre
+     * @access public
+     *
+     */
+    public function afficheUnOeuvre($oeuvre) {
+        echo "</br>";
+         echo $idOeuvre= $oeuvre->getIdOeuvre();
+         echo "</br>";
+         echo $oeuvre->getTitreOeuvre();
+        echo "</br>";
+         echo $oeuvre ->getNomArrondissement();
+        echo "</br>";
+         echo $oeuvre->getPrenomArtiste();
+        echo "</br>";
+         echo $oeuvre->getPreNomArtiste();
+        echo "</br>";
+         echo $oeuvre->getNomCategorie();
+       
+    }
+
+    
+    
+    
+    
     /**
      * Affiche les oeuvres par artistes
      * @access public
@@ -221,14 +247,14 @@ class VueDefaut {
                     $titreOeuvre = $oeuvre->getTitreOeuvre();
                     $idOeuvre = $oeuvre->getIdOeuvre();
                     echo "<li>" . $titreOeuvre . "</li>";
-                    //echo "<li><a href='index.php?requete=oeuvreDetails&idOeuvre=" . $idOeuvre . "'>" . $titreOeuvre . "</a></li>";
+                    echo "<li><a href='index.php?requete=artistes&idOeuvre=" . $idOeuvre . "'>" . $titreOeuvre . "</a></li>";
                     $compteurContenu = $compteurContenu+1;
                 }
                 
                 $titreOeuvre = $oeuvre->getTitreOeuvre();
                 $idOeuvre = $oeuvre->getIdOeuvre();
                 echo "<li>" . $titreOeuvre . "</li>";
-                //echo "<li><a href='index.php?requete=oeuvreDetails&idOeuvre=" . $idOeuvre . "'>" . $titreOeuvre . "</a></li>";
+                echo "<li><a href='index.php?requete=artistes&idOeuvre=" . $idOeuvre . "'>" . $titreOeuvre . "</a></li>";
                 }
                 
                 $compteurContenu = $compteurContenu+1;

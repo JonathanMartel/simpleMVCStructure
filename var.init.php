@@ -8,7 +8,14 @@
 	{
 		$_GET['requete'] = '';
 	}
-    
+    if(empty($_GET['idOeuvre']))
+	{
+		$_GET['idOeuvre'] = '';
+	}
+    if(empty($_GET['idArrondissement']))
+    {
+		$_GET['idArrondissement'] = '';
+	}
 	
 	
    
