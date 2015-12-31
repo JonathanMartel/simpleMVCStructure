@@ -88,7 +88,8 @@ class MArtistes {
      * @author Gautier Piatek
 	 * @return Array Tableau contenant la liste de tous les artistes
 	 */
-	public static function listeArtistes() {
+	public static function listeArtistes() 
+	{
 		self::$database->query('SELECT * FROM artiste ORDER BY artiste.nom ASC');
 		$lignes = self::$database->resultset();
 		foreach ($lignes as $ligne) {
