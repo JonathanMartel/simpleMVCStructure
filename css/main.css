@@ -283,203 +283,42 @@ i:after {
     font-weight: bold;
 }
 
-/*MOTEUR DE RECHERCHE _Auteure: Thuy Tien Vo*/
-.moteurRecherche 
+/* CATÉGORIE */
+.bouton 
 {
-    width: 600px;
-    padding: 5px;
-    margin-top: 0px;
-    margin-bottom: 35px;
-    margin-left: 400px;
-    overflow: hidden;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #dedede #bababa #aaa #bababa;
-    box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
-    border-radius: 10px;    
-    background-color: #f6f6f6;
-   
-}
-
-.moteurRecherche #recherche 
-{
-    width: 460px;
-    height: 20px;
-    padding: 10px 5px;
-    float: left;    
-    font: bold 16px ;
-    border: 1px solid #ccc;
-    box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #fff;
-    border-radius: 3px;      
-}
-
-.moteurRecherche #recherche:focus 
-{
-    outline: 0; 
-    border-color: #aaa;
-    box-shadow: 0 1px 1px #bbb inset;  
-}
-
-.moteurRecherche #submit 
-{
-    float: right;    
-    border: 1px solid #f6c351;
-    height: 42px;
-    width: 120px;
-    padding: 0;
-    cursor: pointer;
-    font: bold 15px Arial;
-    color: #fafafa;
-    text-transform: uppercase;    
-    background-color: #f6c351;
-    box-shadow: 0 1px 3px 4px rgba(255, 255, 255, 0.3) inset, 0 1px 0 #fff;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 6px;      
-    text-shadow: 0 1px 0 rgba(0, 0 ,0, .3);
-    
-}
-  
-.moteurRecherche #submit:hover,
-.moteurRecherche #submit:focus 
-{       
-    background-color: #354a5d;
- 
-}   
-  
-.moteurRecherche #submit:active 
-{
-    outline: 0;    
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;    
-}
-  
-.moteurRecherche #submit::-moz-focus-inner 
-{
-    border: 0;
-}
-
-/*AFFICHER LA PAGE D'INSCRIPTION*/
-#titre
-{
-    margin:0px 595px 0px 650px;
-}
-.formulaire
-{
-    margin-left:auto;
-    margin-right:auto;
-    margin-top:40px;
-    max-width: 600px;
-    background: #FFF;
-    border-radius: 10px;
-    padding: 30px 30px 20px 30px;
-    box-shadow: rgba(187, 187, 187, 1) 0 0px 20px -1px;
-    color: #666;
-}
-
-.formulaire input[type="text"], input[type="date"]
-{  width:200px;
-
-}
-
-.formulaire #button 
-{
-    -moz-box-shadow:inset 0px 1px 0px 0px #fbafe3;
-    -webkit-box-shadow:inset 0px 1px 0px 0px #fbafe3;
-     box-shadow: 0 1px 3px 4px rgba(255, 255, 255, 0.3) inset, 0 1px 0 #fff;
-   
-    background-color:#f6c351;
-    border-radius:9px;
-    -webkit-border-radius:9px;
-    -moz-border-border-radius:9px;
-    border:1px solid #f6c351;
- 
-    cursor: pointer;
-    font: bold 18px Arial;
-    color: #fafafa;
-    height: 35px;
-    line-height: 30px;
-    width:120px;
+    -moz-box-shadow: 0px 10px 14px -7px #276873;
+    -webkit-box-shadow: 0px 10px 14px -7px #276873;
+    box-shadow: 0px 10px 14px -7px #276873;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #599bb3), color-stop(1, #408c99));
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#599bb3', endColorstr='#408c99',GradientType=0);
+    background-color:#599bb3;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border-radius:8px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:30px;
+    font-weight:bold;
+    padding:23px 110px;
     text-decoration:none;
-    text-align:center;
-    margin-top: 20px;
-   
-
+    text-shadow:0px 1px 0px #3d768a;
 }
-
-.formulaire #button:hover,
-.formulaire #button:focus 
-{       
-    background-color: #354a5d;
- 
-} 
-
-/*AFFICHER LA PAGE DE CONNEXION*/
-#titre1
+.bouton:hover 
 {
-    margin:20px 720px 0px 710px;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #408c99), color-stop(1, #599bb3));
+    background:-moz-linear-gradient(top, #408c99 5%, #599bb3 100%);
+    background:-webkit-linear-gradient(top, #408c99 5%, #599bb3 100%);
+
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#408c99', endColorstr='#599bb3',GradientType=0);
+    background-color:#408c99;
 }
-.formulaire1
+.bouton:active 
 {
-    margin-left:auto;
-    margin-right:auto;
-    margin-top:40px;
-    max-width: 200px;
-    background: #FFF;
-    border-radius: 10px;
-    padding: 30px 30px 20px 30px;
-    box-shadow: rgba(187, 187, 187, 1) 0 0px 20px -1px;
-    color: #666;
+    position:relative;
+    top:1px;
 }
-
-.formulaire1 input[type="text"], input[type="date"]
-{  width:200px;
-
-}
-
-.formulaire1 #button 
-{
-    -moz-box-shadow:inset 0px 1px 0px 0px #fbafe3;
-    -webkit-box-shadow:inset 0px 1px 0px 0px #fbafe3;
-     box-shadow: 0 1px 3px 4px rgba(255, 255, 255, 0.3) inset, 0 1px 0 #fff;
-   
-    background-color:#f6c351;
-    border-radius:9px;
-    -webkit-border-radius:9px;
-    -moz-border-border-radius:9px;
-    border:1px solid #f6c351;
- 
-    cursor: pointer;
-    font: bold 16px Arial;
-    color: #fafafa;
-    height: 32px;
-    line-height: 30px;
-    width:100px;
-    margin-left: 50px;
-    text-decoration:none;
-    text-align:center;
-   
-   
-
-}
-
-.formulaire1 #button:hover,
-.formulaire1 #button:focus 
-{       
-    background-color: #354a5d;
- 
-} 
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* FOOTER */
 

@@ -10,8 +10,7 @@
  * @license http://creativecommons.org/licenses/by-nc/3.0/deed.fr
  *
  */
-class VueDefaut 
-{
+class VueDefaut {
 
 
     /**
@@ -19,176 +18,69 @@ class VueDefaut
      * @access public
      *
      */
-    public function afficheHeader() 
-
-    {
+    public function afficheHeader() {
         ?>
-        <!DOCTYPE html>
-        <html lang="fr">
-            <head>
-                <title>Chass'Oeuvres</title>
-                <meta charset="utf-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-                <meta name="description" content="">
-                <meta name="viewport" content="width=device-width">
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Chass'Oeuvres</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
 
-                <link rel="stylesheet" href="./css/normalize.css" type="text/css" media="screen">
-                <link rel="stylesheet" href="./css/base_h5bp.css" type="text/css" media="screen">
-                <link rel="stylesheet" href="./css/main.css" type="text/css" media="screen">
-                <link rel="stylesheet" href="./css/_grid.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="./css/normalize.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="./css/base_h5bp.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="./css/main.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="./css/_grid.css" type="text/css" media="screen">
 
-                <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-                <script src="./js/plugins.js"></script>
-                <script src="./js/main.js"></script>
-            </head>
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="./js/plugins.js"></script>
+        <script src="./js/main.js"></script>
+    </head>
 
-            <body>
-                <div id="wrapper">
-                <header>
-                    <div class="conteneurNav">
+    <body>
+        <div id="wrapper">
+        <header>
+            <div class="conteneurNav">
 
-                        <img src="images/logo.png" alt="logo">
+                <img src="images/logo.png" alt="logo">
 
-                        <div class="conteneurMenu">
+                <div class="conteneurMenu">
 
-                            <div class="langue">
-
-                                <a href="index.php?requete=inscription" class="inscription">S'INSCRIRE</a>
-                                <a href="index.php?requete=connexion" class="connexion">SE CONNECTER</a>
-                                <a href="#">FR/EN</a>
-         
-                            </div>
-
-                            <div class="menu">
-                                <nav>
-                                    <a href="index.php?requete=accueil" class="accueil">ACCUEIL</a>
-                                    <a href="index.php?requete=artistes" class="artiste">ARTISTE</a>
-                                    <a href="index.php?requete=arrondissements" class="arrondisement">ARRONDISSEMENT</a>
-                                    <a href="index.php?requete=categories" class="categorie">CATEGORIE</a>
-                                </nav>
-                            </div><br><br>
-
-                         
-                            </form>
-                        </div>
-
+                    <div class="langue">
+    <!--
+                        <a href="#">SE CONNECTER</a>
+                        <a href="#">FR/EN</a>
+    -->
                     </div>
 
+                    <div class="menu">
+                        <nav>
+                            <a href="index.php?requete=accueil" class="accueil">ACCUEIL</a>
+                            <a href="index.php?requete=artistes" class="artiste">ARTISTE</a>
+                            <a href="index.php?requete=arrondissements" class="arrondisement">ARRONDISSEMENT</a>
+                            <a href="index.php?requete=categories" class="categorie">CATEGORIE</a>
+                        </nav>
+                    </div>
+                </div>
 
-                </header>
-
-        <?php
-
-    }
-    
-
-    /**
-     * Affiche le moteur de RECHERCHE
-     * Auteure: Thuy Tien VO
-     * @access public
-     *
-     */
-    public function afficheMoteurRecherche()
-
-    { 
-        ?>
-
-            <div class="moteurRecherche">
-                    <form method="post" action="">
-                    <input type="text" id="recherche" name="mot" size="40">
-                    <input type="submit" id="submit" value="Rechercher" alt="Lancer la recherche">
-                    </form>
             </div>
+        </header>
 
         <?php
 
     }
 
 
-
-    /**
-     * Affiche la page d'inscription
-     * @access public
-     * @auteure: Thuy Tien Vo
-     */
-    public function afficheInscription() 
-    {
-        ?>
-        <div>
-        <h2 id="titre">Formulaire d'inscription</h2>
-        <form class="formulaire"action="">
-            <fieldset>
-            Prénom:<br>
-            <input type="text" name="prenom" >
-            <br> <br>
-            Nom:<br>
-            <input type="text" name="nom" >
-            <br> <br>
-            Date de naissance:<br>
-            <input  type="date" name="dateDeNaissance" placeholder="jj/mm/aaaa">
-             <br> <br>
-            Sexe:<br><br>
-            <input type="radio" name="sex" value="male" checked> Male
-            <input type="radio" name="sex" value="female"> Female<br><br>
-            Courriel:<br>
-            <input type="text" name="courriel" placeholder="exemple@domaine.com" >
-            <br> <br>
-            Biographie:<br>
-            <textarea rows="8" cols="60" name="bio"placeholder="Entrer un text ici..."></textarea>
-            <br><br>
-             Nom d'utilisateur:<br> 
-            <input type="text" name="utilisateur" >
-            <br><br>
-            Mot de passe:<br>
-            <input type="text" name="motDePasse" >
-            <br><br>
-            Confirmer le mot de passe:<br>
-            <input type="text" name="motDePasse" value="">
-            <br><br>
-            <input type="submit" value="Envoyer" id="button">
-            <fieldset>
-        </form>  
-        </fieldset>
-        </fieldset>
-        </div>          
-        <?php
-
-    }
-
-    /**
-     * Affiche la page de connexion
-     * @access public
-     * @auteure: Thuy Tien Vo
-     */
-    public function afficheConnexion() 
-    {
-        ?>
-        <div>
-        <h2 id="titre1">Connexion</h2>
-        <form class="formulaire1" action="">
-            <fieldset>
-            Nom d'utilisateur:<br> 
-            <input type="text" name="utilisateur" >
-            <br>
-            Mot de passe:<br>
-            <input type="text" name="motDePasse" >
-            <br> <br>
-            <input type="submit" value="Connexion" id="button">
-            <fieldset>
-        </form>
-        </div>            
-        <?php
-
-    }
     /**
      * Affiche le pied de page
      * @access public
      *
      */
-    public function afficheFooter() 
-    {
+    public function afficheFooter() {
         ?>
-                        <footer >
+                        <footer>
 
                                 Chass'Oeuvres 2015-2016 - Certains droits réservés @ Jonathan Martel (2013)<br>
                                 Sous licence Creative Commons (BY-NC 3.0)
@@ -210,8 +102,7 @@ class VueDefaut
      * @access public
      *
      */
-    public function afficheAccueil($oeuvres) 
-    {
+    public function afficheAccueil($oeuvres) {
         ?>
             <section id="gallery">
                 <img src="images/img1.jpg">
@@ -264,8 +155,7 @@ class VueDefaut
      * @access public
      *
      */
-    public function afficheUnOeuvre($oeuvre) 
-    {
+    public function afficheUnOeuvre($oeuvre) {
         echo "</br>";
          echo $idOeuvre= $oeuvre->getIdOeuvre();
          echo "</br>";
@@ -290,8 +180,7 @@ class VueDefaut
      * @access public
      *
      */
-    public function afficheArtistes($aArtistes, $oOeuvres) 
-    {
+    public function afficheArtistes($aArtistes, $oOeuvres) {
         ?>
             <h2>Découvrez nos <span class="artistes">artistes</span> et <span class="collectif">collectifs</span></h2>
 
@@ -390,9 +279,7 @@ class VueDefaut
      * @version 1.0
      * 
      */
-    public function afficheArrondissements($aArrondissements)
-
-    {
+    public function afficheArrondissements($aArrondissements) {
         ?>
 
         <h2>Arrondisements</h2>
@@ -401,8 +288,7 @@ class VueDefaut
         
         echo "<section class='contenu container'>";
 
-        foreach($aArrondissements as $arrondissement)
-        {
+        foreach($aArrondissements as $arrondissement){
             $id_Arrondissement= $arrondissement->getidArrondissement();
             $nom = $arrondissement->getnomArrondissement();
 
@@ -442,9 +328,7 @@ class VueDefaut
      * @version 1.0
      * 
      */
-        public function afficheOeuvre_Par_Arr($aOevuresParArr) 
-
-    {
+        public function afficheOeuvre_Par_Arr($aOevuresParArr) {
         ?>
 
         <h2>OevuresParArr</h2>
@@ -453,120 +337,41 @@ class VueDefaut
         /////////////////////////////// DEVELOPPEMENT ////////////////////////////////////
         //$compteur = 1;
         //echo "<section class='contenu container'>";
-        foreach($aOevuresParArr as $OevuresParArr)
-        {
+        foreach($aOevuresParArr as $OevuresParArr){
              $nomOevure_Par_Arr = $OevuresParArr->getTitreOeuvre();
              echo $nomOevure_Par_Arr.'<br/>';   
         }
     }    //FIN FUNCTION afficheOeuvre_Par_Arr
     
-
     /**
-     * Affiche  catégories
+     * Affiche les oeuvres par catégories
      * @access public
-     * @author Thuy Tien VO
-     * @version 1.0
+     *
      */
     public function afficheCategories($aCategories) 
+    
+    {   echo "<section class='contenu container'>";
+        foreach ( $aCategories as $categorie )
+                {   echo "<div class='bouton'>";
+                    $categorie->afficher(); 
+                    echo "</div>"; 
+                }  
+         echo "</section>";
+    }  
 
-    {
-        ?>
-
-        <h2>Catégories</h2>
-        <?php
-        $compteur = 1;
-        
-        echo "<section class='contenu container'>";
-
-        foreach($aCategories as $categorie)
-        {
-            $id_Categorie= $categorie->getidCategorie();
-            //$categorie->afficher();
-            $nom = $categorie->getnomCategorie();
-
-            echo "<div class=' accordion sixcol ";
-
-             if($compteur%2 == 1){
-                echo "last'>";
-            } else {
-                 echo "first'>";
-            }
-        
-            echo "<figure class='categorie'>";   
-            echo "<a href = 'index.php?requete=oeuvresParCat&idCategorie=$id_Categorie' class='categorie'> " . $nom. "</a>";
-            echo "</figure>";
-            echo "</div>";
-            $compteur = $compteur + 1;
-        }
-        echo "</section>";
-        
-    } //FIN FUNCTION afficheCategorie
-
-        /**
-     * Affiche les oeuvres par catégorie
+     /**
+     * Affiche les oeuvres par catégories
      * @access public
-     * @author THuy Tien VO
-     * @version 1.0
-     * 
+     *
      */
-        public function afficheOeuvre_Par_Cat($aOeuvreParCat) 
-
-        {
-            ?>
-            <h2>Oeuvre Par Catégorie</h2>
-            <?php
-
-            foreach($aOeuvreParCat as $OeuvreParCat)
-            {
-                 $nomOeuvre_Par_Cat = $OeuvreParCat->getTitreOeuvre();
-                 echo $nomOeuvre_Par_Cat.'<br/>';   
-            }
-        }    //FIN FUNCTION afficheOeuvreParCat
+  
+    public function afficheOeuvresParCats($aOeuvres)
         
-
-
-
-        //private function rechercheOeuvreParCat()
-       // {
-            
-           // $erreur = '';
-            //$aOeuvre = Array();
-            
-            //if($_GET['action'] == 'rechercher')
-           // {
-               // $oOeuvre = new Oeuvre();
-                //try
-               // {
-                     
-                  //  $aOeuvre = $oOeuvre->rechercheOeuvreParCat($_POST['categorie']);
-               // }
-               // catch (Exception $e)
-                //{
-               //     $erreur = $e->getMessage();     
-                //}
-                //$oVue->AfficheChampRechercheCategorie($_POST['categorie'], $erreur); 
-               // $oVue->AfficheOeuvre($aOeuvre);
-            //}
-           // else
-           // {
-              //  $oVue->AfficheChampRechercheCategorie($_POST['categorie'], $erreur); 
-            //}
-              
-            
-        //}
-
-
-
-
-
-
-
-
-
-
-
-
-
+    {   $aOeuvres = Categorie::listeOeuvresParCat("Beaux-Arts");
+        foreach ( $aOeuvres as $aOeuvre )
+                {  $aOeuvre->afficher();
+                }
+    }
     
     /**
      * Affiche une oeuvre en détail

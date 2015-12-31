@@ -17,14 +17,7 @@
 		$_GET['idArrondissement'] = '';
 	}
 	
-	if(empty($_GET['idCategorie']))
-    {
-		$_GET['idCategorie'] = '';
-	}
 	
-    //if(empty($_POST['categorie']))
-	//{
-		//$_POST['categorie'] = '';
-	//}
+   
    
 ?>
