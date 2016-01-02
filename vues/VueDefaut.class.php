@@ -94,9 +94,9 @@ class VueDefaut
         ?>
 
             <div class="moteurRecherche">
-                    <form method="post" action="">
-                    <input type="text" id="recherche" name="mot" size="40">
-                    <input type="submit" id="submit" value="Rechercher" alt="Lancer la recherche">
+                    <form action="index.php?requete=recherche"  method="post" >
+                    <input type="text" id="recherche" name="mot" size="40" value=""> 
+                    <input type="submit" id="submit" name="submit" value="Rechercher" alt="Lancer la recherche">
                     </form>
             </div>
 
@@ -104,7 +104,33 @@ class VueDefaut
 
     }
 
+    /**
+     * Affiche le résultat de RECHERCHE
+     * Auteure: Thuy Tien VO
+     * @access public
+     *
+     */
 
+    public function rechercheOeuvre()
+    {   ?>
+       
+         <h2 >Test</h2>
+     
+        <?php
+
+        if(isset($_POST['submit']))
+            {
+                if($_POST['mot']=="")
+                    {
+                      echo "Veuillez saisir un mot clé avant d'effectuer la recherche";    
+                    }
+                else
+                    {
+                      $mot=$_POST['mot'];
+                    }    
+            }
+
+    }
 
     /**
      * Affiche la page d'inscription
