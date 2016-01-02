@@ -22,9 +22,9 @@
 		$_GET['idCategorie'] = '';
 	}
 	
-    //if(empty($_POST['categorie']))
-	//{
-		//$_POST['categorie'] = '';
-	//}
+    if(empty($_POST['categorie']))
+	{
+		$_POST['categorie'] = '';
+	}
    
 ?>
