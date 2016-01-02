@@ -9,7 +9,9 @@
  * @license http://creativecommons.org/licenses/by-nc/3.0/deed.fr
  * 
  */
-class MCategories {
+class MCategories 
+
+{
 	
     /**
 	 *
@@ -101,6 +103,17 @@ class MCategories {
 
        // return $aOeuvres;
     //}
+
+
+    
+ 
+
+
+
+
+
+
+
 
 
     
