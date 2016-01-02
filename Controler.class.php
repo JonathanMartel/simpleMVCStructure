@@ -47,6 +47,9 @@ class Controler
                 case 'connexion':
                     $this->connexion();
                     break;
+                case 'recherche':
+                    $this->rechercheOeuvre();
+                    break;
                 case 'arrondissements':
                     $this->arrondissements();
                     break;
@@ -203,15 +206,34 @@ class Controler
             
         } 
 
-          private function connexion()
+        private function connexion()
         {
-          
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
             $oVue->afficheConnexion();
             $oVue->afficheFooter();
             
         } 
+
+        private function  rechercheOeuvre()
+        {
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue-> rechercheOeuvre();
+            $oVue->afficheFooter();
+                
+        }
+      
+
+
+
+
+
+
+
+
+
+
         
 		
 }
