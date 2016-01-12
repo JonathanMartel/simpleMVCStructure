@@ -11,9 +11,17 @@
  */
 
 	require_once("./config.php");
-	
-	
-	// Mettre ici le code de gestion de la requête AJAX
-	
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>

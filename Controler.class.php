@@ -41,11 +41,23 @@ class Controler
                         $this->artistes();
                     }
                     break;
+                case 'inscription':
+                    $this->inscription();
+                    break;
+                case 'connexion':
+                    $this->connexion();
+                    break;
+                case 'recherche':
+                    $this->rechercheOeuvre();
+                    break;
                 case 'arrondissements':
                     $this->arrondissements();
                     break;
                 case 'categories':
                     $this->categories();
+                    break;
+                case 'oeuvresParCat':
+                    $this->oeuvresParCat();
                     break;
                 case 'oeuvreDetails':
                     $this->oeuvreDetails();
@@ -53,10 +65,13 @@ class Controler
                 case 'oeuvresParArr';
                  	$this->oeuvresParArr();
                  	break;
-                 	    
-                    default:
-				    $this->accueil();
-					break;
+                //case 'rechercheOeuvreParCat': 
+                //rechercheOeuvreParCat();
+               // break; 	 
+
+                default:
+			    $this->accueil();
+				break;
 			}
             
 		}
@@ -67,6 +82,7 @@ class Controler
             $aOeuvres = $oOeuvres::listeOeuvres();
             $oVue = new VueDefaut();
 			$oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
 			$oVue->afficheAccueil($aOeuvres);
 			$oVue->afficheFooter();
 			
@@ -92,6 +108,7 @@ class Controler
               
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
 			$oVue->afficheArtistes($aArtistes, $oOeuvres);
             $oVue->afficheFooter();
     
@@ -106,6 +123,7 @@ class Controler
 
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
 			$oVue->afficheArrondissements($aArrondissements);
             $oVue->afficheFooter();
     
@@ -115,13 +133,28 @@ class Controler
 		{
             $oCategories = new MCategories('', '', '' ,'', '','');
             $aCategories = $oCategories::listeCategories();
-
             $oVue = new VueDefaut();
+
             $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
 			$oVue->afficheCategories($aCategories);
             $oVue->afficheFooter();
     
 		}
+
+
+        private function oeuvresParCat()
+        {   
+            $id_cat = $_GET['idCategorie'];
+            $oOeuvreParCat = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $aOeuvreParCat = $oOeuvreParCat::listeOeuvresParCat($id_cat);
+
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheOeuvre_Par_Cat($aOeuvreParCat);
+            $oVue->afficheFooter();
+    
+        }
 
 
 		private function oeuvresParArr()
@@ -147,6 +180,61 @@ class Controler
             $oVue->afficheFooter();
     
 		}*/
+
+
+       // private function rechercheOeuvreParCat()
+        //{
+           // $oOeuvreParCat = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            //$aOeuvreParCat = $oOeuvreParCat->rechercheOeuvreParCat($_POST['categorie']);
+            
+           // $oVue = new VueDefaut();
+            //$oVue->afficheHeader();
+           // $oVue->afficheOeuvre_Par_Cat($aOeuvreParCat);
+            //$oVue->afficheFooter();
+        //}
+
+
+
+       
+        private function inscription()
+        {
+          
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheInscription();
+            $oVue->afficheFooter();
+            
+        } 
+
+        private function connexion()
+        {
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheConnexion();
+            $oVue->afficheFooter();
+            
+        } 
+
+        private function  rechercheOeuvre()
+        {
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue-> rechercheOeuvre();
+            $oVue->afficheFooter();
+                
+        }
+      
+
+
+
+
+
+
+
+
+
+
+        
 		
 }
 ?>
