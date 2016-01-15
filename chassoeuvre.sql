@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.3.1
+-- version 4.1.4
 -- http://www.phpmyadmin.net
 --
--- Client: 127.0.0.1
--- Généré le : Jeu 17 Décembre 2015 à 16:26
--- Version du serveur: 5.5.13
--- Version de PHP: 5.3.6
+-- Client :  127.0.0.1
+-- Généré le :  Mer 30 Décembre 2015 à 02:49
+-- Version du serveur :  5.6.15-log
+-- Version de PHP :  5.5.8
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `chassoeuvre`
+-- Base de données :  `chassoeuvre`
 --
 
 -- --------------------------------------------------------
@@ -27,9 +27,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `administrateur` (
-  `idAdministrateur` int(11) NOT NULL AUTO_INCREMENT,
-  `loginAdmin` varchar(10) DEFAULT NULL,
-  `passAdmin` varchar(10) DEFAULT NULL,
+  `idAdministrateur` int(3) NOT NULL AUTO_INCREMENT,
+  `loginAdmin` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `passAdmin` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idAdministrateur`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
@@ -49,9 +49,9 @@ INSERT INTO `administrateur` (`idAdministrateur`, `loginAdmin`, `passAdmin`) VAL
 
 CREATE TABLE IF NOT EXISTS `adresse` (
   `idAdresse` int(11) NOT NULL AUTO_INCREMENT,
-  `adresseCiv` varchar(50) DEFAULT NULL,
-  `batiment` varchar(50) DEFAULT NULL,
-  `parc` varchar(50) DEFAULT NULL,
+  `adresseCiv` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `batiment` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `parc` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `latitude` float DEFAULT NULL,
   `longitude` float DEFAULT NULL,
   PRIMARY KEY (`idAdresse`)
@@ -79,7 +79,7 @@ INSERT INTO `adresse` (`idAdresse`, `adresseCiv`, `batiment`, `parc`, `latitude`
 
 CREATE TABLE IF NOT EXISTS `arrondissement` (
   `idArrondissement` int(11) NOT NULL AUTO_INCREMENT,
-  `nomArrondissement` varchar(30) DEFAULT NULL,
+  `nomArrondissement` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idArrondissement`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
@@ -104,11 +104,11 @@ INSERT INTO `arrondissement` (`idArrondissement`, `nomArrondissement`) VALUES
 
 CREATE TABLE IF NOT EXISTS `artiste` (
   `idArtiste` int(11) NOT NULL AUTO_INCREMENT,
-  `prenom` varchar(30) DEFAULT NULL,
-  `nom` varchar(30) DEFAULT NULL,
-  `collectif` varchar(50) DEFAULT NULL,
+  `prenom` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nom` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `collectif` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `noInterne` int(11) DEFAULT NULL,
-  `photoArtiste` varchar(50) DEFAULT NULL,
+  `photoArtiste` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idArtiste`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
@@ -132,10 +132,8 @@ INSERT INTO `artiste` (`idArtiste`, `prenom`, `nom`, `collectif`, `noInterne`, `
 
 CREATE TABLE IF NOT EXISTS `categorie` (
   `idCategorie` int(11) NOT NULL AUTO_INCREMENT,
-  `nomCategorie` varchar(30) DEFAULT NULL,
-  `nomCatAng` varchar(30) DEFAULT NULL,
-  `nomSousCat` varchar(30) DEFAULT NULL,
-  `nomSousCatAng` varchar(30) DEFAULT NULL,
+  `nomCategorie` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nomCatAng` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idCategorie`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
@@ -143,11 +141,10 @@ CREATE TABLE IF NOT EXISTS `categorie` (
 -- Contenu de la table `categorie`
 --
 
-INSERT INTO `categorie` (`idCategorie`, `nomCategorie`, `nomCatAng`, `nomSousCat`, `nomSousCatAng`) VALUES
-(1, 'Art Mural', 'Street Art', 'Graffiti Tag', 'Graffiti Tag'),
-(2, 'Beaux-Arts', 'Fine Arts', 'Sculpture', 'Sculpture'),
-(3, 'Beaux-Arts', 'Fine Arts', 'Installation', 'Installation'),
-(4, 'Arts décoratifs', 'Decorative Arts', 'Vitrail', 'Stained Glass');
+INSERT INTO `categorie` (`idCategorie`, `nomCategorie`, `nomCatAng`) VALUES
+(1, 'Art Mural', 'Street Art'),
+(2, 'Beaux-Arts', 'Fine Arts'),
+(4, 'Arts décoratifs', 'Decorative Arts');
 
 -- --------------------------------------------------------
 
@@ -157,7 +154,7 @@ INSERT INTO `categorie` (`idCategorie`, `nomCategorie`, `nomCatAng`, `nomSousCat
 
 CREATE TABLE IF NOT EXISTS `commentaire` (
   `idCommentaire` int(11) NOT NULL AUTO_INCREMENT,
-  `commentaire` varchar(500) DEFAULT NULL,
+  `commentaire` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `validationCommentaire` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idCommentaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -192,19 +189,6 @@ CREATE TABLE IF NOT EXISTS `ecrit` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `est_fait_de`
---
-
-CREATE TABLE IF NOT EXISTS `est_fait_de` (
-  `idOeuvre` int(11) NOT NULL AUTO_INCREMENT,
-  `idMateriaux` int(11) NOT NULL,
-  PRIMARY KEY (`idOeuvre`,`idMateriaux`),
-  KEY `FK_est_fait_de_idMateriaux` (`idMateriaux`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `est_identifie_par`
 --
 
@@ -232,39 +216,13 @@ CREATE TABLE IF NOT EXISTS `gagne` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `materiaux`
---
-
-CREATE TABLE IF NOT EXISTS `materiaux` (
-  `idMateriaux` int(11) NOT NULL AUTO_INCREMENT,
-  `nomMateriaux` varchar(30) DEFAULT NULL,
-  `nomMateriauxAng` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`idMateriaux`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
-
---
--- Contenu de la table `materiaux`
---
-
-INSERT INTO `materiaux` (`idMateriaux`, `nomMateriaux`, `nomMateriauxAng`) VALUES
-(1, 'Bronze', 'Bronze'),
-(2, 'acier corten', 'Corten steel'),
-(3, 'Acier corten; granit', 'Corten steel; granite'),
-(4, 'Ciment; fer; peinture', 'Cement; iron; paint'),
-(5, 'Calcaire', 'Limestone'),
-(6, 'Acier Corten; acier inoxydable', 'Corten steel; stainless steel;'),
-(7, 'Acier inoxydable', 'Stainless steel');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `moderateur`
 --
 
 CREATE TABLE IF NOT EXISTS `moderateur` (
   `idMod` int(11) NOT NULL AUTO_INCREMENT,
-  `loginMod` varchar(10) DEFAULT NULL,
-  `passMod` varchar(10) DEFAULT NULL,
+  `loginMod` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `passMod` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idMod`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
@@ -298,39 +256,36 @@ CREATE TABLE IF NOT EXISTS `modere` (
 
 CREATE TABLE IF NOT EXISTS `oeuvre` (
   `idOeuvre` int(11) NOT NULL AUTO_INCREMENT,
-  `titreOeuvre` varchar(50) DEFAULT NULL,
-  `titreVariante` varchar(50) DEFAULT NULL,
-  `technique` varchar(30) DEFAULT NULL,
+  `titreOeuvre` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `titreVariante` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `technique` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `techniqueAng` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `NoInterne` int(11) DEFAULT NULL,
-  `description` varchar(500) DEFAULT NULL,
+  `description` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `validationOeuvre` tinyint(1) DEFAULT NULL,
   `idArrondissement` int(11) NOT NULL,
   `idAdresse` int(11) NOT NULL,
   `idArtiste` int(11) NOT NULL,
   `idCategorie` int(11) NOT NULL,
-  `techniqueAng` varchar(50) DEFAULT NULL,
+  `idSousCategorie` int(11) NOT NULL,
+  `nomMateriaux` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nomMateriauxAng` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idOeuvre`),
   KEY `FK_Oeuvre_idArrondissement` (`idArrondissement`),
   KEY `FK_Oeuvre_idAdresse` (`idAdresse`),
   KEY `FK_Oeuvre_idArtiste` (`idArtiste`),
-  KEY `FK_Oeuvre_idCategorie` (`idCategorie`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+  KEY `FK_Oeuvre_idCategorie` (`idCategorie`),
+  KEY `FK_Oeuvre_idSousCategorie` (`idSousCategorie`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `oeuvre`
 --
 
-INSERT INTO `oeuvre` (`idOeuvre`, `titreOeuvre`, `titreVariante`, `technique`, `NoInterne`, `description`, `validationOeuvre`, `idArrondissement`, `idAdresse`, `idArtiste`, `idCategorie`, `techniqueAng`) VALUES
-(1, 'Source', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 1, 2, 'Cast bronze; bolted'),
-(2, 'La Ville', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 2, 2, 'Cast bronze; bolted'),
-(3, 'La beauté ', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 3, 2, 'Cast bronze; bolted'),
-(4, 'Au parc', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 4, 2, 'Cast bronze; bolted'),
-(5, 'Parc Olympique', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 5, 2, 'Cast bronze; bolted'),
-(6, 'Source 2', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 1, 2, 'Cast bronze; bolted'),
-(7, 'La Ville 2', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 2, 2, 'Cast bronze; bolted'),
-(8, 'La beauté 2', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 3, 2, 'Cast bronze; bolted'),
-(9, 'Au parc 2', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 4, 2, 'Cast bronze; bolted'),
-(10, 'Parc Olympique 2', NULL, 'Bronze coulé; boulonné', NULL, NULL, 1, 1, 1, 5, 2, 'Cast bronze; bolted');
+INSERT INTO `oeuvre` (`idOeuvre`, `titreOeuvre`, `titreVariante`, `technique`, `techniqueAng`, `NoInterne`, `description`, `validationOeuvre`, `idArrondissement`, `idAdresse`, `idArtiste`, `idCategorie`, `idSousCategorie`, `nomMateriaux`, `nomMateriauxAng`) VALUES
+(1, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 1, 1, NULL, NULL),
+(2, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 1, 2, 2, 2, 2, NULL, NULL),
+(3, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 4, 4, 4, 4, 4, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -340,7 +295,8 @@ INSERT INTO `oeuvre` (`idOeuvre`, `titreOeuvre`, `titreVariante`, `technique`, `
 
 CREATE TABLE IF NOT EXISTS `photo` (
   `idPhoto` int(11) NOT NULL AUTO_INCREMENT,
-  `nomPhoto` varchar(50) DEFAULT NULL,
+  `nomPhoto` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nbPhoto` int(11) DEFAULT NULL,
   `validationPhoto` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idPhoto`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
@@ -349,8 +305,8 @@ CREATE TABLE IF NOT EXISTS `photo` (
 -- Contenu de la table `photo`
 --
 
-INSERT INTO `photo` (`idPhoto`, `nomPhoto`, `validationPhoto`) VALUES
-(1, 'img_2.jpg', 1);
+INSERT INTO `photo` (`idPhoto`, `nomPhoto`, `nbPhoto`, `validationPhoto`) VALUES
+(1, 'img_2.jpg', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -371,13 +327,38 @@ CREATE TABLE IF NOT EXISTS `propose` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `souscategorie`
+--
+
+CREATE TABLE IF NOT EXISTS `souscategorie` (
+  `idSousCategorie` int(11) NOT NULL AUTO_INCREMENT,
+  `nomSousCat` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `nomSousCatAng` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `idCategorie` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idSousCategorie`),
+  KEY `FK_souscategorie_idCategorie` (`idCategorie`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `souscategorie`
+--
+
+INSERT INTO `souscategorie` (`idSousCategorie`, `nomSousCat`, `nomSousCatAng`, `idCategorie`) VALUES
+(1, 'Graffiti Tag', 'Graffiti Tag', 1),
+(2, 'Sculpture', 'Sculpture', 2),
+(3, 'Installation', 'Installation', 2),
+(4, 'Vitrail', 'Stained Glass', 4);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `succes`
 --
 
 CREATE TABLE IF NOT EXISTS `succes` (
   `idSucces` int(11) NOT NULL AUTO_INCREMENT,
-  `nomSucces` varchar(50) DEFAULT NULL,
-  `image` varchar(50) DEFAULT NULL,
+  `nomSucces` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idSucces`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -389,11 +370,11 @@ CREATE TABLE IF NOT EXISTS `succes` (
 
 CREATE TABLE IF NOT EXISTS `utilisateur_enregistre` (
   `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,
-  `loginUtilisateur` varchar(10) DEFAULT NULL,
-  `passUtilisateur` varchar(10) DEFAULT NULL,
-  `bio` varchar(500) DEFAULT NULL,
+  `loginUtilisateur` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `passUtilisateur` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `bio` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `score` int(11) DEFAULT NULL,
-  `photoUtilisateur` varchar(50) DEFAULT NULL,
+  `photoUtilisateur` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idUtilisateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -429,13 +410,6 @@ ALTER TABLE `ecrit`
   ADD CONSTRAINT `FK_ecrit_idUtilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur_enregistre` (`idUtilisateur`);
 
 --
--- Contraintes pour la table `est_fait_de`
---
-ALTER TABLE `est_fait_de`
-  ADD CONSTRAINT `FK_est_fait_de_idMateriaux` FOREIGN KEY (`idMateriaux`) REFERENCES `materiaux` (`idMateriaux`),
-  ADD CONSTRAINT `FK_est_fait_de_idOeuvre` FOREIGN KEY (`idOeuvre`) REFERENCES `oeuvre` (`idOeuvre`);
-
---
 -- Contraintes pour la table `est_identifie_par`
 --
 ALTER TABLE `est_identifie_par`
@@ -464,7 +438,8 @@ ALTER TABLE `oeuvre`
   ADD CONSTRAINT `FK_Oeuvre_idAdresse` FOREIGN KEY (`idAdresse`) REFERENCES `adresse` (`idAdresse`),
   ADD CONSTRAINT `FK_Oeuvre_idArrondissement` FOREIGN KEY (`idArrondissement`) REFERENCES `arrondissement` (`idArrondissement`),
   ADD CONSTRAINT `FK_Oeuvre_idArtiste` FOREIGN KEY (`idArtiste`) REFERENCES `artiste` (`idArtiste`),
-  ADD CONSTRAINT `FK_Oeuvre_idCategorie` FOREIGN KEY (`idCategorie`) REFERENCES `categorie` (`idCategorie`);
+  ADD CONSTRAINT `FK_Oeuvre_idCategorie` FOREIGN KEY (`idCategorie`) REFERENCES `categorie` (`idCategorie`),
+  ADD CONSTRAINT `FK_Oeuvre_idSousCategorie` FOREIGN KEY (`idSousCategorie`) REFERENCES `souscategorie` (`idSousCategorie`);
 
 --
 -- Contraintes pour la table `propose`
@@ -473,6 +448,12 @@ ALTER TABLE `propose`
   ADD CONSTRAINT `FK_propose_idOeuvre` FOREIGN KEY (`idOeuvre`) REFERENCES `oeuvre` (`idOeuvre`),
   ADD CONSTRAINT `FK_propose_idPhoto` FOREIGN KEY (`idPhoto`) REFERENCES `photo` (`idPhoto`),
   ADD CONSTRAINT `FK_propose_idUtilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur_enregistre` (`idUtilisateur`);
+
+--
+-- Contraintes pour la table `souscategorie`
+--
+ALTER TABLE `souscategorie`
+  ADD CONSTRAINT `souscategorie_ibfk_1` FOREIGN KEY (`idCategorie`) REFERENCES `categorie` (`idCategorie`);
 
 --
 -- Contraintes pour la table `vote`

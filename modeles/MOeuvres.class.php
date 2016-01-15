@@ -20,6 +20,7 @@ class MOeuvres {
     public $titreOeuvre;
 	public $titreVariante;
 	public $technique;
+    public $techniqueAng;
 	public $noInternetOeuvre;
 	public $description;
 	public $validationOeuvre;
@@ -47,7 +48,7 @@ class MOeuvres {
 	 */
 	static $database;
         
-	function __construct ($idOeuvre,$titreOeuvre,$titreVariante,$technique,$noInternetOeuvre,$description,$validationOeuvre,$nomArrondissement,$adresse,$batiment,$parc, $latitude, $longitude, $prenomArtiste, $nomArtiste, $collectif, $noInterneArtiste, $photoArtiste, $nomCategorie, $nomCategorieAng, $nomSousCat, $nomSousCatAng, $nomMateriaux, $nomMateriauxAng)
+	function __construct ($idOeuvre,$titreOeuvre,$titreVariante,$technique,$techniqueAng,$noInternetOeuvre,$description,$validationOeuvre,$nomArrondissement,$adresse,$batiment,$parc, $latitude, $longitude, $prenomArtiste, $nomArtiste, $collectif, $noInterneArtiste, $photoArtiste, $nomCategorie, $nomCategorieAng, $nomSousCat, $nomSousCatAng, $nomMateriaux, $nomMateriauxAng)
 	{
 		if (!isset(self::$database))
 			self::$database = new PdoBDD();
@@ -56,6 +57,7 @@ class MOeuvres {
    		$this-> titreOeuvre = $titreOeuvre;
 		$this-> titreVariante =  $titreVariante;
 		$this-> technique =  $technique;
+        $this-> techniqueAng =  $techniqueAng;
 		$this-> noInternetOeuvre =  $noInternetOeuvre;
 		$this-> description =  $description;
 		$this-> validationOeuvre =  $validationOeuvre;
@@ -102,6 +104,10 @@ class MOeuvres {
 		return $this->titreVariante;		
 	}
 	public function getTechnique() 
+	{
+		return $this->technique;		
+	}
+    public function getTechniqueAng() 
 	{
 		return $this->technique;		
 	}
@@ -205,6 +211,10 @@ class MOeuvres {
 	{
 		$this->technique = $valeur;	
 	}
+    public function setTechniqueAng($valeur) 
+	{
+		$this->techniqueAng = $valeur;	
+	}
 	public function setNoInternetOeuvre($valeur) 
 	{
 		$this->noInternetOeuvre = $valeur;	
@@ -302,11 +312,34 @@ class MOeuvres {
 		
         $lignes = self::$database->resultset();
 		foreach ($lignes as $ligne) {
-			$uneOeuvre = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','',$ligne['nomArrondissement'],'','','','','',$ligne['prenom'],$ligne['nom'],$ligne['collectif'],'','',$ligne['nomCategorie'],'','','','','');
+			$uneOeuvre = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','','',$ligne['nomArrondissement'],'','','','','',$ligne['prenom'],$ligne['nom'],$ligne['collectif'],'','',$ligne['nomCategorie'],'','','','','');
 			$oeuvres[] = $uneOeuvre;
 		}
 		return $oeuvres;
 	}
+    
+    
+     /**
+	 * @access public static
+     * @author German Mahecha
+	 * @return Array Tableau contenant la liste de tous 
+	 */
+	public static function listeUnOeuvre($idcon) {
+		self::$database->query('
+		SELECT oeuvre.idOeuvre, oeuvre.titreOeuvre, arrondissement.nomArrondissement, artiste.prenom,artiste.nom, artiste.collectif, categorie.nomCategorie 
+		FROM oeuvre JOIN artiste ON oeuvre.idArtiste = artiste.idArtiste 
+		JOIN arrondissement ON oeuvre.idArrondissement = arrondissement.idArrondissement 
+		JOIN categorie ON oeuvre.idCategorie = categorie.idCategorie 
+        WHERE oeuvre.idOeuvre = :idcon');
+		self::$database->bind(':idcon', $idcon);
+        $ligne = self::$database->uneLigne();
+		$oeuvre = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','','',$ligne['nomArrondissement'],'','','','','',$ligne['prenom'],$ligne['nom'],$ligne['collectif'],'','',$ligne['nomCategorie'],'','','','','');
+        return $oeuvre;
+	}
+    
+     
+    
+    
     
     /**
 	 * @access public static
@@ -318,7 +351,7 @@ class MOeuvres {
         self::$database->bind(':idArtiste', $idArtiste);
 		$lignes = self::$database->resultset();
 		foreach ($lignes as $ligne) {
-			$uneOeuvre = new MOeuvres($ligne['idOeuvre'], $ligne['titreOeuvre'], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+			$uneOeuvre = new MOeuvres($ligne['idOeuvre'], $ligne['titreOeuvre'], '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 			$oeuvres[] = $uneOeuvre;
 		}
 		return $oeuvres;
@@ -328,21 +361,27 @@ class MOeuvres {
 	 *
 	 * @return Array Tableau contenant la liste de toutes les oueuvres par arrondissement
      * @author Jorge Blanco
-     * @version 1.0
+     * @version 1.1
      * 
      */
-    /////////////////////////////// DEVELOPPEMENT ////////////////////////////////////
-	//public static function listerOueuvresParArr($id_arrondissement) {
-	public static function listerOeuvresParArr() {
-		self::$database->query('SELECT oeuvre.titreOeuvre FROM oeuvre JOIN arrondissement on arrondissement.idArrondissement=oeuvre.idArrondissement WHERE oeuvre.idArrondissement="1"');
-		//self::$database->query('SELECT oeuvre.titreOeuvre FROM oeuvre JOIN arrondissement on arrondissement.idArrondissement=oeuvre.idArrondissement WHERE oeuvre.idArrondissement=:id_arrondissement');
+	public static function listerOeuvresParArr($idArrondissement) {
+		self::$database->query('SELECT oeuvre.idOeuvre, oeuvre.titreOeuvre FROM oeuvre JOIN arrondissement on arrondissement.idArrondissement=oeuvre.idArrondissement WHERE oeuvre.idArrondissement=:idArrondissement');
+		self::$database->bind(':idArrondissement', $idArrondissement);
 
 		$lignes = self::$database->resultset();
 		foreach ($lignes as $ligne) {
-			$unOeuvreParArr = new MOeuvres('',$ligne['titreOeuvre'],'','','','','','','','','','','','','','','','','','','','','','','');
+			$unOeuvreParArr = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','','','','','','','','','','','','','','','','','','','');
 			$OuvresParArr[] = $unOeuvreParArr;
 		}
-		return $OuvresParArr;
+		//var_dump($OuvresParArr);
+		if(isset($OuvresParArr))
+		{
+			return $OuvresParArr;
+		}
+		else
+		{
+			echo "il n'y a pas d'oeuvres dans cette arrondissement";
+		}
 
 }//FIN FUNCTION listerOeuvresParArr
     
@@ -363,7 +402,7 @@ class MOeuvres {
         self::$database->bind(':idOeuvre', $idOeuvre);
 		$lignes = self::$database->resultset();
 		foreach ($lignes as $ligne) {
-			$uneOeuvre = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','',$ligne['nomArrondissement'],'','','','','',$ligne['prenom'],$ligne['nom'],$ligne['collectif'],'',$ligne['photoArtiste'],$ligne['nomCategorie'],'','','','','');
+			$uneOeuvre = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','','',$ligne['nomArrondissement'],'','','','','',$ligne['prenom'],$ligne['nom'],$ligne['collectif'],'',$ligne['photoArtiste'],$ligne['nomCategorie'],'','','','','');
 			$oeuvres[] = $uneOeuvre;
 		}
 		return $oeuvres;

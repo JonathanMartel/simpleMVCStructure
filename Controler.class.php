@@ -22,16 +22,56 @@ class Controler
 		{
 			switch ($_GET['requete']) {
 				case 'accueil':
-					$this->accueil();
+                    if($_GET['idOeuvre'] != '')
+                    {
+                        $this->unOeuvre($_GET['idOeuvre']);    
+                    }
+                    else
+                    {
+                        $this->accueil();
+                    }
 					break;
                 case 'artistes':
-                    $this->artistes();
+                    if($_GET['idOeuvre'] != '')
+                    {
+                        $this->unOeuvre($_GET['idOeuvre']);    
+                    }
+                    else
+                    {
+                        $this->artistes();
+                    }
                     break;
+                case 'inscription':
+                    $this->inscription();
+                    break;
+                case 'connexion':
+                    $this->connexion();
+                    break;
+                case 'recherche':
+                    $this->rechercheOeuvre();
+                    break;
+
+                
                 case 'arrondissements':
-                    $this->arrondissements();
+                    if($_GET['idArrondissement'] !='')
+                    {
+                        $this->oeuvresParArr($_GET['idArrondissement']);
+                    }
+                    else
+                    {
+                        $this->arrondissements();
+                    } 
                     break;
+
+                case 'unOeuvre':
+                    $this->unOeuvre($_GET['idOeuvre']);
+                    break;
+
                 case 'categories':
                     $this->categories();
+                    break;
+                case 'oeuvresParCat':
+                    $this->oeuvresParCat();
                     break;
                 case 'oeuvreDetails':
                     $this->oeuvreDetails();
@@ -39,34 +79,50 @@ class Controler
                 case 'oeuvresParArr';
                  	$this->oeuvresParArr();
                  	break;
-                 	    
-                    default:
-				    $this->accueil();
-					break;
+                //case 'rechercheOeuvreParCat': 
+                //rechercheOeuvreParCat();
+               // break; 	 
+
+                default:
+			    $this->accueil();
+				break;
 			}
             
 		}
 		
         private function accueil()
 		{
-            $oOeuvres = new MOeuvres ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $oOeuvres = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
             $aOeuvres = $oOeuvres::listeOeuvres();
             $oVue = new VueDefaut();
 			$oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
 			$oVue->afficheAccueil($aOeuvres);
+			$oVue->afficheFooter();
+			
+		} 
+        private function unOeuvre($idget)
+		{
+            $oOeuvre = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $oeuvre = $oOeuvre::listeUnOeuvre($idget);
+            $oVue = new VueDefaut();
+			$oVue->afficheHeader();
+			$oVue->afficheUnOeuvre($oeuvre);
 			$oVue->afficheFooter();
 			
 		}
 		
+		
           private function artistes()
 		{
             $oArtistes = new MArtistes('', '', '' ,'', '', '');
-            $oOeuvres = new MOeuvres ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $oOeuvres = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
               
             $aArtistes = $oArtistes::listeArtistes();
               
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
 			$oVue->afficheArtistes($aArtistes, $oOeuvres);
             $oVue->afficheFooter();
     
@@ -81,6 +137,7 @@ class Controler
 
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
 			$oVue->afficheArrondissements($aArrondissements);
             $oVue->afficheFooter();
     
@@ -90,38 +147,106 @@ class Controler
 		{
             $oCategories = new MCategories('', '', '' ,'', '','');
             $aCategories = $oCategories::listeCategories();
-
             $oVue = new VueDefaut();
+
             $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
 			$oVue->afficheCategories($aCategories);
             $oVue->afficheFooter();
     
 		}
 
 
-		private function oeuvresParArr()
-		{	
-			
-			$id_arr = $_GET['idArrondissement'];
-			$oOeuvreParArr = new MOeuvres('','','','','','','','','','','','','','','','','','','','','','','','','');
-			$aOeuvreParArr = $oOeuvreParArr::listerOeuvresParArr($id_arr);
+        private function oeuvresParCat()
+        {   
+            $id_cat = $_GET['idCategorie'];
+            $oOeuvreParCat = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $aOeuvreParCat = $oOeuvreParCat::listeOeuvresParCat($id_cat);
 
-			$oVue = new VueDefaut();
-			$oVue->afficheHeader();
-			$oVue->afficheOeuvre_Par_Arr($aOeuvreParArr);
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheOeuvre_Par_Cat($aOeuvreParCat);
             $oVue->afficheFooter();
-		}
     
-		/*private function oeuvreDetails()
+        }
+
+
+		private function oeuvresParArr($getIdArr)
+        {   
+            $oOeuvreParArr = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $aOeuvreParArr = $oOeuvreParArr::listerOeuvresParArr($getIdArr);
+
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheOeuvre_Par_Arr($aOeuvreParArr);
+            $oVue->afficheFooter();
+        }
+    
+        /*private function oeuvreDetails()
 		{
             $idOeuvre = $_GET["idOeuvre"];
-            $oOeuvre = new MOeuvres ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $oOeuvre = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
 			$oVue->afficheOeuvreDetails($idOeuvre, $oOeuvre);
             $oVue->afficheFooter();
     
 		}*/
+
+
+       // private function rechercheOeuvreParCat()
+        //{
+           // $oOeuvreParCat = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            //$aOeuvreParCat = $oOeuvreParCat->rechercheOeuvreParCat($_POST['categorie']);
+            
+           // $oVue = new VueDefaut();
+            //$oVue->afficheHeader();
+           // $oVue->afficheOeuvre_Par_Cat($aOeuvreParCat);
+            //$oVue->afficheFooter();
+        //}
+
+
+
+       
+        private function inscription()
+        {
+          
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheInscription();
+            $oVue->afficheFooter();
+            
+        } 
+
+        private function connexion()
+        {
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheConnexion();
+            $oVue->afficheFooter();
+            
+        } 
+
+        private function  rechercheOeuvre()
+        {
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue-> rechercheOeuvre();
+            $oVue->afficheFooter();
+                
+        }
+      
+
+
+
+
+
+
+
+
+
+
+        
 		
 }
 ?>

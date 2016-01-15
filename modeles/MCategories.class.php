@@ -2,14 +2,16 @@
 /**
  * Class Modele Catégorie
  * 
- * @author Gautier Piatek
+ * @author Thuy Tien Vo
  * @version 1.0
  * @update 2015-12-11
  * @license Creative Commons BY-NC 3.0 (Licence Creative Commons Attribution - Pas d’utilisation commerciale 3.0 non transposé)
  * @license http://creativecommons.org/licenses/by-nc/3.0/deed.fr
  * 
  */
-class MCategories {
+class MCategories 
+
+{
 	
     /**
 	 *
@@ -18,26 +20,22 @@ class MCategories {
     
     public $idCategorie;
 	public $nomCategorie;
-    public $sousCategorie;
     public $nomCatAng;
-    public $nomSousCatAng;
     
     /**
 	 * @var database Objet base de données qui permet la connexion
 	 */
 	static $database;
     
-	function __construct ($idCategorie, $nomCategorie, $sousCategorie, $nomCatAng, $nomSousCatAng)
+	function __construct ($idCategorie, $nomCategorie, $nomCatAng)
 	{
 		if (!isset(self::$database))
 			self::$database = new PdoBDD();
 
         $this->idCategorie = $idCategorie;
         $this->nomCategorie = $nomCategorie;
-        $this->sousCategorie = $sousCategorie;
         $this->nomCatAng = $nomCatAng;
-        $this->nomSousCatAng = $nomSousCatAng;
-	}
+    }
 	
 	function __destruct ()
 	{
@@ -51,7 +49,7 @@ class MCategories {
 	 */
 	public function getidCategorie() 
 	{
-		$this->idCategorie;		
+		return $this->idCategorie;		
 			
 	}
     
@@ -59,9 +57,18 @@ class MCategories {
 	 * @brief méthode qui affiche un objet produit
 	 *
 	 */
-	public function afficher() {
-		echo $this->nomCategorie;
+	//public function afficher() 
+	//{
+		//echo $this->nomCategorie;
 
+	//}
+
+
+	public function getnomCategorie() 
+	{
+		return $this->nomCategorie;
+
+		//echo $this->nomCategorie;							
 	}
     
      /**
@@ -74,27 +81,42 @@ class MCategories {
 			$lignes = self::$database->resultset();
 			foreach ($lignes as $ligne) 
 			{
-				$uneCategorie = new MCategories('', $ligne['nomCategorie'], $ligne['nomCatAng'], $ligne['nomSousCat'],$ligne['nomSousCatAng']);
+				$uneCategorie = new MCategories('', $ligne['nomCategorie'], $ligne['nomCatAng']);
 				$categories[] = $uneCategorie;
 			}
 			return $categories;
 		}
 
-    public static function listeOeuvresParCat($uneCategorie) 
-    {
-        Oeuvre::$database->query('SELECT oeuvre.titreOeuvre, oeuvre.titreVariante, oeuvre.technique, oeuvre.description
-                                  FROM oeuvre INNER JOIN categorie ON oeuvre.idCategorie=categorie.idCategorie;
-        	                      AND categorie.nomCategorie = :categorie');
-        Oeuvre::$database->bind(':categorie', $uneCategorie);
-        Oeuvre::$database->execute();
-        $lignes = Oeuvre::$database->resultset();
-        foreach ($lignes as $ligne) 
-        {   $unOeuvre = new Oeuvre($ligne['titreOeuvre'], $ligne['titreVariante'], $ligne['technique'], $ligne['description']);
-            $aOeuvres[] = $unOeuvre;
-        }
+    //public static function listeOeuvresParCat($uneCategorie) 
+	//public static function listeOeuvresParCat($id_categorie) 
+    //{
+       // Oeuvre::$database->query('SELECT oeuvre.titreOeuvre, oeuvre.titreVariante, oeuvre.technique, oeuvre.description
+                                 // FROM oeuvre INNER JOIN categorie ON oeuvre.idCategorie=categorie.idCategorie;
+        	                     // AND categorie.nomCategorie = :categorie');
+        //Oeuvre::$database->bind(':categorie', $id_categorie);
+        //Oeuvre::$database->execute();
+       // $lignes = Oeuvre::$database->resultset();
+        //foreach ($lignes as $ligne) 
+       // {  // $unOeuvre = new Oeuvre($ligne['titreOeuvre'], $ligne['titreVariante'], $ligne['technique'], $ligne['description']);
+           // $aOeuvres[] = $unOeuvre;
+       // }
 
-        return $aOeuvres;
-    }
+       // return $aOeuvres;
+    //}
+
+
+    
+ 
+
+
+
+
+
+
+
+
+
+    
 }
 
 
