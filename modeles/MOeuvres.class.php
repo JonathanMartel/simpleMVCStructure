@@ -377,7 +377,38 @@ class MOeuvres {
 		}
 		return $OuvresParArr;
 
-}//FIN FUNCTION listerOeuvresParArr
+    }//FIN FUNCTION listerOeuvresParArr
+    
+    /**
+	 * Fonction d'ajout d'oeuvre
+	 * @return none
+     * @author Gautier Piatek
+     * @version 1.0
+     * 
+     */
+    public static function ajouterOeuvre() {
+        
+        self::$database->query("INSERT INTO oeuvre VALUES ('', :titre, :titreVariante, :technique, :techniqueAng, '', :description, :validationOeuvre, :idArrondissement, :idAdresse, :idArtiste, :idCategorie, :idSousCategorie, :nomMateriaux, :nomMateriauxAng)");
+        //On lie les paramètres auxvaleurs
+        self::$database->bind(':idArticle', $idArticle);
+        self::$database->bind(':titre', $titre);
+        self::$database->bind(':titreVariante', $titreVariante);
+        self::$database->bind(':technique', $technique);
+        self::$database->bind(':techniqueAng', $techniqueAng);
+        self::$database->bind(':description', $description);
+        self::$database->bind(':validationOeuvre', $validationOeuvre);
+        self::$database->bind(':idArrondissement', $idArrondissement);
+        self::$database->bind(':idAdresse', $idAdresse);
+        self::$database->bind(':idArtiste', $idArtiste);
+        self::$database->bind(':idCategorie', $idCategorie);
+        self::$database->bind(':idSousCategorie', $idSousCategorie);
+        self::$database->bind(':nomMateriaux', $nomMateriaux);
+        self::$database->bind(':nomMateriauxAng', $nomMateriauxAng);
+       
+        return(self::$database->execute());
+        
+    }
+    
     
     /**
 	 * @access public static

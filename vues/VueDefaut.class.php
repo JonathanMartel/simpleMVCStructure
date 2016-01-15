@@ -114,7 +114,7 @@ class VueDefaut
     public function rechercheOeuvre()
     {   ?>
        
-         <h2 >Test</h2>
+         <h2>Recherche</h2>
      
         <?php
 
@@ -383,7 +383,7 @@ class VueDefaut
                     echo "<ul>";
                     $titreOeuvre = $oeuvre->getTitreOeuvre();
                     $idOeuvre = $oeuvre->getIdOeuvre();
-                    echo "<li>" . $titreOeuvre . "</li>";
+                    //echo "<li>" . $titreOeuvre . "</li>";
                     echo "<li><a href='index.php?requete=artistes&idOeuvre=" . $idOeuvre . "'>" . $titreOeuvre . "</a></li>";
                     $compteurContenu = $compteurContenu+1;
                 }
@@ -421,7 +421,7 @@ class VueDefaut
     {
         ?>
 
-        <h2>Arrondisements</h2>
+        <h2>Arrondissements</h2>
         <?php
         $compteur = 1;
         
@@ -528,7 +528,7 @@ class VueDefaut
         
     } //FIN FUNCTION afficheCategorie
 
-        /**
+    /**
      * Affiche les oeuvres par catégorie
      * @access public
      * @author THuy Tien VO
@@ -549,9 +549,208 @@ class VueDefaut
             }
         }    //FIN FUNCTION afficheOeuvreParCat
         
+    /**
+     * Affiche le header de la partie Admin
+     * @access public
+     * @author Gautier Piatek
+     * @version 1.0
+     * 
+     */
+    public function afficheHeaderAdmin() 
+
+    {
+        ?>
+         <!DOCTYPE html>
+        <html lang="fr">
+            <head>
+                <title>Chass'Oeuvres - Administration</title>
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+                <meta name="description" content="">
+                <meta name="viewport" content="width=device-width">
+
+                <link rel="stylesheet" href="./css/normalize.css" type="text/css" media="screen">
+                <link rel="stylesheet" href="./css/base_h5bp.css" type="text/css" media="screen">
+                <link rel="stylesheet" href="./css/main.css" type="text/css" media="screen">
+                <link rel="stylesheet" href="./css/_grid.css" type="text/css" media="screen">
+
+                <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+                <script src="./js/plugins.js"></script>
+                <script src="./js/main.js"></script>
+            </head>
+
+            <body>
+                <div id="wrapper">
+                <header>
+                    <div class="conteneurNav">
+
+                        <img src="images/logo.png" alt="logo">
+
+                        <div class="conteneurMenu">
+
+                            <div class="langue">
+
+                                <a href="index.php?requete=inscription" class="inscription">S'INSCRIRE</a>
+                                <a href="index.php?requete=connexion" class="connexion">SE CONNECTER</a>
+                                <a href="#">FR/EN</a>
+                                <a href="index.php?requete=accueil" class="accueil">ACCUEIL</a>
+         
+                            </div>
+
+                        </div>
+
+                    </div>
 
 
+                </header>
+        <?php
 
+        
+    }
+    
+    /**
+     * Affiche le contenu de l'admin
+     * @access public
+     * @author Gautier Piatek
+     * @version 1.0
+     * 
+     */
+    public function afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories) 
+
+    {   
+       
+        ?>
+        <div class="admin">
+           <div class="menuAdmin">
+                <nav>
+                    <ul>
+                         
+                        <li>
+                            GESTION
+                            <ul>
+                                <li>
+                                    <a href="#">OEUVRES</a>
+                                       <ul>
+                                            <li><a href="#">Ajouter</a></li>
+                                            <li><a href="#">Modifier</a></li>
+                                            <li><a href="#">Supprimer</a></li>
+                                        </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#">ARTISTES</a>
+                                        <ul>
+                                            <li><a href="#">Ajouter</a></li>
+                                            <li><a href="#">Modifier</a></li>
+                                            <li><a href="#">Supprimer</a></li>
+                                        </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#">CATEGORIES</a>
+                                        <ul>
+                                            <li><a href="#">Ajouter</a></li>
+                                            <li><a href="#">Modifier</a></li>
+                                            <li><a href="#">Supprimer</a></li>
+                                        </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#">UTILISATEURS</a>
+                                        <ul>
+                                            <li><a href="#">Ajouter</a></li>
+                                            <li><a href="#">Modifier</a></li>
+                                            <li><a href="#">Supprimer</a></li>
+                                        </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            MODERATION
+                            <ul>
+                                <li><a href="#">Photos</a></li>
+                                <li><a href="#">Commentaires</a></li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="#">MISE A JOUR BDD</a>
+                        </li> 
+
+                    </ul>
+
+                </nav>
+            </div>
+            
+            <section class="contenu container">
+        
+                <h2>Administration</h2>
+
+                <div class="administration">
+                   <div class="twelvecol">
+                       <h3>Ajouter une oeuvre</h3>
+
+                       <form method="POST" action="<?php echo $_SERVER["PHP_SELF"];?>">
+                           <label>Titre : </label> <input type="text"><br>
+                           <label>Titre (Variante) : </label> <input type="text"><br>
+                           <label>Technique : </label> <input type="text"><br>
+                               <label>Technique (anglais) : </label> <input type="text"><br>
+                               <label>Description : </label> <input type="text"><br>
+                               <label>Validation : </label> <input type="radio"> Oui <input type="radio"> Non<br>
+                               <label>Arrondissement : </label> <select name="" id="">
+                                <option value="nonChoisi">Choisir un Arrondissement</option>
+                            <?php
+                                foreach ($aArrondissements as $arrondissement) {
+                                    echo "<option value='".$arrondissement->getidArrondissement()."'>".$arrondissement->getnomArrondissement()."</option>"; 
+                                }
+                            ?>
+                           </select><br>
+                               <label>Adresse : </label> <input type="text"><br>
+                               <label>Artiste : </label> <select name="" id="">
+                                <option value="nonChoisi">Choisir un Artiste</option>
+                            <?php
+                                foreach ($aArtistes as $artiste) {
+                                    echo "<option value='".$artiste->getIdArtiste()."'>".$artiste->getNom()."</option>"; 
+                                }
+                            ?>
+                           </select><br>
+                               <label>Catégorie : </label> <select name="" id="">
+                                <option value="nonChoisi">Choisir une Catégorie</option>
+                            <?php 
+                                foreach ($aCategories as $categorie) {
+                                    echo "<option value='".$categorie->getidCategorie()."'>".$categorie->getnomCategorie()."</option>"; 
+                                }
+                            ?>
+                           </select><br>
+                               <label>Sous-Catégorie : </label> <select name="" id="">
+                                <option value="nonChoisi">Choisir une Sous-Catégorie</option>
+                            <?php
+                                foreach ($aSousCategories as $sousCategorie) {
+                                    echo "<option value='".$sousCategorie->getidSousCategorie()."'>".$sousCategorie->getnomSousCategorie()."</option>"; 
+                                }
+                            ?>    
+                           </select><br>
+                               <label>Matériaux : </label> <input type="text"><br>
+                               <label>Matériaux (anglais) : </label> <input type="text"><br><br>
+                            
+                            
+                            <input type="hidden" name="action" value="<?php echo $action; ?>"/>
+                            <input type="submit" name="sauvegarder" value="Valider">
+                       </form>
+
+                   </div>
+
+                </div>
+            </section>
+        </div>
+        
+        
+        <?php
+
+        
+    }
+    
+    
         //private function rechercheOeuvreParCat()
        // {
             

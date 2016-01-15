@@ -27,4 +27,19 @@
 		$_POST['categorie'] = '';
 	}
    
+    if(empty($oeuvres))
+    {
+        $oeuvres = '';
+    }
+
+    if(isset($_GET["action"]) && $_GET["action"] == "ajouter")
+    {
+        //en ajout, pas d'initialisation puisque les champs sont vides
+        //déterminer la prochaine action
+        $action = "sauvegardeAjout";
+
+    }
+    
+    
+
 ?>

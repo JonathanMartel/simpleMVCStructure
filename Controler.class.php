@@ -31,6 +31,7 @@ class Controler
                         $this->accueil();
                     }
 					break;
+                
                 case 'artistes':
                     if($_GET['idOeuvre'] != '')
                     {
@@ -41,6 +42,7 @@ class Controler
                         $this->artistes();
                     }
                     break;
+                    
                 case 'inscription':
                     $this->inscription();
                     break;
@@ -65,9 +67,13 @@ class Controler
                 case 'oeuvresParArr';
                  	$this->oeuvresParArr();
                  	break;
+                case 'admin':
+                    $this->admin();
+                    break;
+                    
                 //case 'rechercheOeuvreParCat': 
                 //rechercheOeuvreParCat();
-               // break; 	 
+                // break; 	 
 
                 default:
 			    $this->accueil();
@@ -87,6 +93,7 @@ class Controler
 			$oVue->afficheFooter();
 			
 		} 
+        
         private function unOeuvre($idget)
 		{
             $oOeuvre = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
@@ -215,13 +222,34 @@ class Controler
             
         } 
 
-        private function  rechercheOeuvre()
+        private function rechercheOeuvre()
         {
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-            $oVue-> rechercheOeuvre();
+            $oVue->rechercheOeuvre();
             $oVue->afficheFooter();
                 
+        }
+    
+        private function admin()
+        {
+            $oArtistes = new MArtistes('', '', '' ,'', '', '');
+            $aArtistes = $oArtistes::listeArtistes();
+            
+            $oCategories = new MCategories('', '', '' ,'', '','');
+            $aCategories = $oCategories::listeCategories();
+            
+            $oSousCategories = new MSousCategories('', '', '');
+            $aSousCategories = $oSousCategories::listeSousCategories();
+            
+            $oArrondissements = new MArrondissement('', '');
+            $aArrondissements = $oArrondissements::listeArrondissement();
+
+            $oVue = new VueDefaut();
+            $oVue->afficheHeaderAdmin();
+            $oVue->afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories);
+            $oVue->afficheFooter();
+
         }
       
 

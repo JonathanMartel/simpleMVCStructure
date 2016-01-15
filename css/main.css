@@ -470,16 +470,45 @@ i:after {
 } 
 
 
+/*ADMIN*/
 
+.admin {
+    overflow: hidden;
+    position: relative;
+}
+/*MENU ADMIN*/
 
+.menuAdmin {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #354a5d;
+    width: 272px;
+    height: 100%;
+}
 
+.menuAdmin ul li ul {
+    display: none;
+}
 
+.menuAdmin ul li:hover ul {
+    display: block;
+}
 
+.administration {
+    float: right;
+    width: 77%;
+}
 
+.administration label {
+    display: block;
+    width: 150px;
+    float: left;
+}
 
-
-
-
+.administration input, .administration select {
+    margin-bottom: 1%;
+}
 
 /* FOOTER */
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Modele Catégorie
+ * Class Modele Arrondissement
  * 
  * @author Gautier Piatek
  * @version 1.0
