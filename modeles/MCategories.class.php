@@ -61,7 +61,7 @@ class MCategories
     public function getnomCatAng() 
 	{
 		return $this->nomCatAng;				
-	}
+    }
     
      /**
 	 * @author Gautier Piatek
@@ -95,7 +95,6 @@ class MCategories
 
        // return $aOeuvres;
     //}
-
   
 }
 

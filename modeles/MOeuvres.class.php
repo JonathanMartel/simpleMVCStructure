@@ -361,21 +361,27 @@ class MOeuvres {
 	 *
 	 * @return Array Tableau contenant la liste de toutes les oueuvres par arrondissement
      * @author Jorge Blanco
-     * @version 1.0
+     * @version 1.1
      * 
      */
-    /////////////////////////////// DEVELOPPEMENT ////////////////////////////////////
-	//public static function listerOueuvresParArr($id_arrondissement) {
-	public static function listerOeuvresParArr() {
-		self::$database->query('SELECT oeuvre.titreOeuvre FROM oeuvre JOIN arrondissement on arrondissement.idArrondissement=oeuvre.idArrondissement WHERE oeuvre.idArrondissement="1"');
-		//self::$database->query('SELECT oeuvre.titreOeuvre FROM oeuvre JOIN arrondissement on arrondissement.idArrondissement=oeuvre.idArrondissement WHERE oeuvre.idArrondissement=:id_arrondissement');
+	public static function listerOeuvresParArr($idArrondissement) {
+		self::$database->query('SELECT oeuvre.idOeuvre, oeuvre.titreOeuvre FROM oeuvre JOIN arrondissement on arrondissement.idArrondissement=oeuvre.idArrondissement WHERE oeuvre.idArrondissement=:idArrondissement');
+		self::$database->bind(':idArrondissement', $idArrondissement);
 
 		$lignes = self::$database->resultset();
 		foreach ($lignes as $ligne) {
-			$unOeuvreParArr = new MOeuvres('',$ligne['titreOeuvre'],'','','','','','','','','','','','','','','','','','','','','','','');
+			$unOeuvreParArr = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','','','','','','','','','','','','','','','','','','','');
 			$OuvresParArr[] = $unOeuvreParArr;
 		}
-		return $OuvresParArr;
+		//var_dump($OuvresParArr);
+		if(isset($OuvresParArr))
+		{
+			return $OuvresParArr;
+		}
+		else
+		{
+			echo "il n'y a pas d'oeuvres dans cette arrondissement";
+		}
 
     }//FIN FUNCTION listerOeuvresParArr
     

@@ -2,10 +2,10 @@
 -- version 4.1.4
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 18-12-2015 a las 04:21:22
--- Versión del servidor: 5.6.15-log
--- Versión de PHP: 5.5.8
+-- Client :  127.0.0.1
+-- Généré le :  Sam 16 Janvier 2016 à 15:34
+-- Version du serveur :  5.6.15-log
+-- Version de PHP :  5.5.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,34 +17,34 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `chassoeuvre`
+-- Base de données :  `chassoeuvre`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `administrateur`
+-- Structure de la table `adminmod`
 --
 
-CREATE TABLE IF NOT EXISTS `administrateur` (
-  `idAdministrateur` int(3) NOT NULL AUTO_INCREMENT,
-  `loginAdmin` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `passAdmin` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idAdministrateur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+CREATE TABLE IF NOT EXISTS `adminmod` (
+  `idAdMod` int(11) NOT NULL AUTO_INCREMENT,
+  `role` int(11) NOT NULL,
+  `login` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `pass` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`idAdMod`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Volcado de datos para la tabla `administrateur`
+-- Contenu de la table `adminmod`
 --
 
-INSERT INTO `administrateur` (`idAdministrateur`, `loginAdmin`, `passAdmin`) VALUES
-(1, 'admin', 'admin'),
-(2, 'admin', 'admin');
+INSERT INTO `adminmod` (`idAdMod`, `role`, `login`, `pass`) VALUES
+(1, 0, 'moderateur', 'modo');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `adresse`
+-- Structure de la table `adresse`
 --
 
 CREATE TABLE IF NOT EXISTS `adresse` (
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `adresse` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Volcado de datos para la tabla `adresse`
+-- Contenu de la table `adresse`
 --
 
 INSERT INTO `adresse` (`idAdresse`, `adresseCiv`, `batiment`, `parc`, `latitude`, `longitude`) VALUES
@@ -74,7 +74,7 @@ INSERT INTO `adresse` (`idAdresse`, `adresseCiv`, `batiment`, `parc`, `latitude`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `arrondissement`
+-- Structure de la table `arrondissement`
 --
 
 CREATE TABLE IF NOT EXISTS `arrondissement` (
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `arrondissement` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Volcado de datos para la tabla `arrondissement`
+-- Contenu de la table `arrondissement`
 --
 
 INSERT INTO `arrondissement` (`idArrondissement`, `nomArrondissement`) VALUES
@@ -99,7 +99,7 @@ INSERT INTO `arrondissement` (`idArrondissement`, `nomArrondissement`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `artiste`
+-- Structure de la table `artiste`
 --
 
 CREATE TABLE IF NOT EXISTS `artiste` (
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `artiste` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Volcado de datos para la tabla `artiste`
+-- Contenu de la table `artiste`
 --
 
 INSERT INTO `artiste` (`idArtiste`, `prenom`, `nom`, `collectif`, `noInterne`, `photoArtiste`) VALUES
@@ -127,7 +127,7 @@ INSERT INTO `artiste` (`idArtiste`, `prenom`, `nom`, `collectif`, `noInterne`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categorie`
+-- Structure de la table `categorie`
 --
 
 CREATE TABLE IF NOT EXISTS `categorie` (
@@ -138,19 +138,18 @@ CREATE TABLE IF NOT EXISTS `categorie` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Volcado de datos para la tabla `categorie`
+-- Contenu de la table `categorie`
 --
 
 INSERT INTO `categorie` (`idCategorie`, `nomCategorie`, `nomCatAng`) VALUES
-(1, 'Art Mural', 'Street Art'),
+(1, 'Art mural', 'Street Art'),
 (2, 'Beaux-Arts', 'Fine Arts'),
-(3, 'Beaux-Arts', 'Fine Arts'),
 (4, 'Arts décoratifs', 'Decorative Arts');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `commentaire`
+-- Structure de la table `commentaire`
 --
 
 CREATE TABLE IF NOT EXISTS `commentaire` (
@@ -163,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `contient`
+-- Structure de la table `contient`
 --
 
 CREATE TABLE IF NOT EXISTS `contient` (
@@ -176,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `contient` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ecrit`
+-- Structure de la table `ecrit`
 --
 
 CREATE TABLE IF NOT EXISTS `ecrit` (
@@ -190,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `ecrit` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `est_identifie_par`
+-- Structure de la table `est_identifie_par`
 --
 
 CREATE TABLE IF NOT EXISTS `est_identifie_par` (
@@ -203,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `est_identifie_par` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `gagne`
+-- Structure de la table `gagne`
 --
 
 CREATE TABLE IF NOT EXISTS `gagne` (
@@ -217,27 +216,7 @@ CREATE TABLE IF NOT EXISTS `gagne` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `moderateur`
---
-
-CREATE TABLE IF NOT EXISTS `moderateur` (
-  `idMod` int(11) NOT NULL AUTO_INCREMENT,
-  `loginMod` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `passMod` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idMod`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Volcado de datos para la tabla `moderateur`
---
-
-INSERT INTO `moderateur` (`idMod`, `loginMod`, `passMod`) VALUES
-(1, 'moderateur', 'modo');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `modere`
+-- Structure de la table `modere`
 --
 
 CREATE TABLE IF NOT EXISTS `modere` (
@@ -252,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `modere` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `oeuvre`
+-- Structure de la table `oeuvre`
 --
 
 CREATE TABLE IF NOT EXISTS `oeuvre` (
@@ -267,32 +246,32 @@ CREATE TABLE IF NOT EXISTS `oeuvre` (
   `idArrondissement` int(11) NOT NULL,
   `idAdresse` int(11) NOT NULL,
   `idArtiste` int(11) NOT NULL,
-  `idCategorie` int(11) NOT NULL,
-  `idSousCategorie` int(11) NOT NULL,
   `nomMateriaux` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `nomMateriauxAng` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `idCategorie` int(11) NOT NULL,
+  `idSousCategorie` int(11) NOT NULL,
   PRIMARY KEY (`idOeuvre`),
   KEY `FK_Oeuvre_idArrondissement` (`idArrondissement`),
   KEY `FK_Oeuvre_idAdresse` (`idAdresse`),
   KEY `FK_Oeuvre_idArtiste` (`idArtiste`),
-  KEY `FK_Oeuvre_idCategorie` (`idCategorie`),
-  KEY `FK_Oeuvre_idSousCategorie` (`idSousCategorie`)
+  KEY `idCategorie` (`idCategorie`),
+  KEY `fk_oeuvre_souscat` (`idSousCategorie`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Volcado de datos para la tabla `oeuvre`
+-- Contenu de la table `oeuvre`
 --
 
-INSERT INTO `oeuvre` (`idOeuvre`, `titreOeuvre`, `titreVariante`, `technique`, `techniqueAng`, `NoInterne`, `description`, `validationOeuvre`, `idArrondissement`, `idAdresse`, `idArtiste`, `idCategorie`, `idSousCategorie`, `nomMateriaux`, `nomMateriauxAng`) VALUES
-(2, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 1, 1, NULL, NULL),
-(3, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 1, 2, 2, 2, 2, NULL, NULL),
-(4, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 3, 3, 3, 3, 3, NULL, NULL),
-(5, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 4, 4, 4, 4, 4, NULL, NULL);
+INSERT INTO `oeuvre` (`idOeuvre`, `titreOeuvre`, `titreVariante`, `technique`, `techniqueAng`, `NoInterne`, `description`, `validationOeuvre`, `idArrondissement`, `idAdresse`, `idArtiste`, `nomMateriaux`, `nomMateriauxAng`, `idCategorie`, `idSousCategorie`) VALUES
+(2, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 1, 1, 1, NULL, NULL, 1, 1),
+(3, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 1, 2, 2, NULL, NULL, 2, 2),
+(4, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 3, 3, 3, NULL, NULL, 4, 3),
+(5, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 4, 4, 4, NULL, NULL, 2, 4);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `photo`
+-- Structure de la table `photo`
 --
 
 CREATE TABLE IF NOT EXISTS `photo` (
@@ -304,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `photo` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Volcado de datos para la tabla `photo`
+-- Contenu de la table `photo`
 --
 
 INSERT INTO `photo` (`idPhoto`, `nomPhoto`, `nbPhoto`, `validationPhoto`) VALUES
@@ -313,7 +292,7 @@ INSERT INTO `photo` (`idPhoto`, `nomPhoto`, `nbPhoto`, `validationPhoto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `propose`
+-- Structure de la table `propose`
 --
 
 CREATE TABLE IF NOT EXISTS `propose` (
@@ -329,30 +308,33 @@ CREATE TABLE IF NOT EXISTS `propose` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `souscategorie`
+-- Structure de la table `souscategorie`
 --
 
 CREATE TABLE IF NOT EXISTS `souscategorie` (
   `idSousCategorie` int(11) NOT NULL AUTO_INCREMENT,
   `nomSousCat` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `nomSousCatAng` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`idSousCategorie`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `idCategorie` int(11) NOT NULL,
+  PRIMARY KEY (`idSousCategorie`),
+  KEY `idCategorie` (`idCategorie`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Volcado de datos para la tabla `souscategorie`
+-- Contenu de la table `souscategorie`
 --
 
-INSERT INTO `souscategorie` (`idSousCategorie`, `nomSousCat`, `nomSousCatAng`) VALUES
-(1, 'Graffiti Tag', 'Graffiti Tag'),
-(2, 'Sculpture', 'Sculpture'),
-(3, 'Installation', 'Installation'),
-(4, 'Vitrail', 'Stained Glass');
+INSERT INTO `souscategorie` (`idSousCategorie`, `nomSousCat`, `nomSousCatAng`, `idCategorie`) VALUES
+(1, 'Graffiti', 'Graffiti', 1),
+(2, 'Sculpture', 'Sculpture', 2),
+(3, 'Installation', 'Installation', 4),
+(4, 'Vitrail', 'Stained Glass', 2),
+(5, 'Tag', 'Tag', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `succes`
+-- Structure de la table `succes`
 --
 
 CREATE TABLE IF NOT EXISTS `succes` (
@@ -365,7 +347,7 @@ CREATE TABLE IF NOT EXISTS `succes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `utilisateur_enregistre`
+-- Structure de la table `utilisateur_enregistre`
 --
 
 CREATE TABLE IF NOT EXISTS `utilisateur_enregistre` (
@@ -381,7 +363,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur_enregistre` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `vote`
+-- Structure de la table `vote`
 --
 
 CREATE TABLE IF NOT EXISTS `vote` (
@@ -392,57 +374,57 @@ CREATE TABLE IF NOT EXISTS `vote` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Restricciones para tablas volcadas
+-- Contraintes pour les tables exportées
 --
 
 --
--- Filtros para la tabla `contient`
+-- Contraintes pour la table `contient`
 --
 ALTER TABLE `contient`
   ADD CONSTRAINT `FK_contient_idCommentaire` FOREIGN KEY (`idCommentaire`) REFERENCES `commentaire` (`idCommentaire`),
   ADD CONSTRAINT `FK_contient_idPhoto` FOREIGN KEY (`idPhoto`) REFERENCES `photo` (`idPhoto`);
 
 --
--- Filtros para la tabla `ecrit`
+-- Contraintes pour la table `ecrit`
 --
 ALTER TABLE `ecrit`
   ADD CONSTRAINT `FK_ecrit_idCommentaire` FOREIGN KEY (`idCommentaire`) REFERENCES `commentaire` (`idCommentaire`),
   ADD CONSTRAINT `FK_ecrit_idUtilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur_enregistre` (`idUtilisateur`);
 
 --
--- Filtros para la tabla `est_identifie_par`
+-- Contraintes pour la table `est_identifie_par`
 --
 ALTER TABLE `est_identifie_par`
   ADD CONSTRAINT `FK_est_identifie_par_idOeuvre` FOREIGN KEY (`idOeuvre`) REFERENCES `oeuvre` (`idOeuvre`),
   ADD CONSTRAINT `FK_est_identifie_par_idPhoto` FOREIGN KEY (`idPhoto`) REFERENCES `photo` (`idPhoto`);
 
 --
--- Filtros para la tabla `gagne`
+-- Contraintes pour la table `gagne`
 --
 ALTER TABLE `gagne`
   ADD CONSTRAINT `FK_gagne_idSucces` FOREIGN KEY (`idSucces`) REFERENCES `succes` (`idSucces`),
   ADD CONSTRAINT `FK_gagne_idUtilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur_enregistre` (`idUtilisateur`);
 
 --
--- Filtros para la tabla `modere`
+-- Contraintes pour la table `modere`
 --
 ALTER TABLE `modere`
   ADD CONSTRAINT `FK_modere_idCommentaire` FOREIGN KEY (`idCommentaire`) REFERENCES `commentaire` (`idCommentaire`),
-  ADD CONSTRAINT `FK_modere_idMod` FOREIGN KEY (`idMod`) REFERENCES `moderateur` (`idMod`),
+  ADD CONSTRAINT `FK_modere_idMod` FOREIGN KEY (`idMod`) REFERENCES `adminmod` (`idAdMod`),
   ADD CONSTRAINT `FK_modere_idPhoto` FOREIGN KEY (`idPhoto`) REFERENCES `photo` (`idPhoto`);
 
 --
--- Filtros para la tabla `oeuvre`
+-- Contraintes pour la table `oeuvre`
 --
 ALTER TABLE `oeuvre`
   ADD CONSTRAINT `FK_Oeuvre_idAdresse` FOREIGN KEY (`idAdresse`) REFERENCES `adresse` (`idAdresse`),
   ADD CONSTRAINT `FK_Oeuvre_idArrondissement` FOREIGN KEY (`idArrondissement`) REFERENCES `arrondissement` (`idArrondissement`),
   ADD CONSTRAINT `FK_Oeuvre_idArtiste` FOREIGN KEY (`idArtiste`) REFERENCES `artiste` (`idArtiste`),
-  ADD CONSTRAINT `FK_Oeuvre_idCategorie` FOREIGN KEY (`idCategorie`) REFERENCES `categorie` (`idCategorie`),
-  ADD CONSTRAINT `FK_Oeuvre_idSousCategorie` FOREIGN KEY (`idSousCategorie`) REFERENCES `souscategorie` (`idSousCategorie`);
+  ADD CONSTRAINT `fk_oeuvre_souscat` FOREIGN KEY (`idSousCategorie`) REFERENCES `souscategorie` (`idSousCategorie`),
+  ADD CONSTRAINT `oeuvre_ibfk_1` FOREIGN KEY (`idCategorie`) REFERENCES `categorie` (`idCategorie`);
 
 --
--- Filtros para la tabla `propose`
+-- Contraintes pour la table `propose`
 --
 ALTER TABLE `propose`
   ADD CONSTRAINT `FK_propose_idOeuvre` FOREIGN KEY (`idOeuvre`) REFERENCES `oeuvre` (`idOeuvre`),
@@ -450,7 +432,13 @@ ALTER TABLE `propose`
   ADD CONSTRAINT `FK_propose_idUtilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur_enregistre` (`idUtilisateur`);
 
 --
--- Filtros para la tabla `vote`
+-- Contraintes pour la table `souscategorie`
+--
+ALTER TABLE `souscategorie`
+  ADD CONSTRAINT `souscategorie_ibfk_1` FOREIGN KEY (`idCategorie`) REFERENCES `categorie` (`idCategorie`);
+
+--
+-- Contraintes pour la table `vote`
 --
 ALTER TABLE `vote`
   ADD CONSTRAINT `FK_vote_idPhoto` FOREIGN KEY (`idPhoto`) REFERENCES `photo` (`idPhoto`),
