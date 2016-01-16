@@ -361,23 +361,59 @@ class MOeuvres {
 	 *
 	 * @return Array Tableau contenant la liste de toutes les oueuvres par arrondissement
      * @author Jorge Blanco
-     * @version 1.0
+     * @version 1.1
      * 
      */
-    /////////////////////////////// DEVELOPPEMENT ////////////////////////////////////
-	//public static function listerOueuvresParArr($id_arrondissement) {
-	public static function listerOeuvresParArr() {
-		self::$database->query('SELECT oeuvre.titreOeuvre FROM oeuvre JOIN arrondissement on arrondissement.idArrondissement=oeuvre.idArrondissement WHERE oeuvre.idArrondissement="1"');
-		//self::$database->query('SELECT oeuvre.titreOeuvre FROM oeuvre JOIN arrondissement on arrondissement.idArrondissement=oeuvre.idArrondissement WHERE oeuvre.idArrondissement=:id_arrondissement');
+	public static function listerOeuvresParArr($idArrondissement) {
+		self::$database->query('SELECT oeuvre.idOeuvre, oeuvre.titreOeuvre FROM oeuvre JOIN arrondissement on arrondissement.idArrondissement=oeuvre.idArrondissement WHERE oeuvre.idArrondissement=:idArrondissement');
+		self::$database->bind(':idArrondissement', $idArrondissement);
 
 		$lignes = self::$database->resultset();
 		foreach ($lignes as $ligne) {
-			$unOeuvreParArr = new MOeuvres('',$ligne['titreOeuvre'],'','','','','','','','','','','','','','','','','','','','','','','');
+			$unOeuvreParArr = new MOeuvres($ligne['idOeuvre'],$ligne['titreOeuvre'],'','','','','','','','','','','','','','','','','','','','','','','');
 			$OuvresParArr[] = $unOeuvreParArr;
 		}
-		return $OuvresParArr;
+		//var_dump($OuvresParArr);
+		if(isset($OuvresParArr))
+		{
+			return $OuvresParArr;
+		}
+		else
+		{
+			echo "il n'y a pas d'oeuvres dans cette arrondissement";
+		}
 
-}//FIN FUNCTION listerOeuvresParArr
+    }//FIN FUNCTION listerOeuvresParArr
+    
+    /**
+	 * Fonction d'ajout d'oeuvre
+	 * @return none
+     * @author Gautier Piatek
+     * @version 1.0
+     * 
+     */
+    public static function ajouterOeuvre($titre, $titreVariante, $technique, $techniqueAng, $description, $validationOeuvre, $idArrondissement, $idAdresse, $idArtiste, $idCategorie, $idSousCategorie, $nomMateriaux, $nomMateriauxAng) {
+        
+        self::$database->query("INSERT INTO oeuvre VALUES ('', :titre, :titreVariante, :technique, :techniqueAng, '', :description, :validationOeuvre, :idArrondissement, :idAdresse, :idArtiste, :idCategorie, :nomMateriaux, :nomMateriauxAng)");
+        //On lie les paramètres auxvaleurs
+        
+        self::$database->bind(':titre', $titre);
+        self::$database->bind(':titreVariante', $titreVariante);
+        self::$database->bind(':technique', $technique);
+        self::$database->bind(':techniqueAng', $techniqueAng);
+        self::$database->bind(':description', $description);
+        self::$database->bind(':validationOeuvre', $validationOeuvre);
+        self::$database->bind(':idArrondissement', $idArrondissement);
+        self::$database->bind(':idAdresse', $idAdresse);
+        self::$database->bind(':idArtiste', $idArtiste);
+        self::$database->bind(':idCategorie', $idCategorie);
+        self::$database->bind(':nomMateriaux', $nomMateriaux);
+        self::$database->bind(':nomMateriauxAng', $nomMateriauxAng);
+       
+        return(self::$database->execute());
+        
+    }
+    
     
     /**
 	 * @access public static

@@ -53,31 +53,23 @@ class MCategories
 			
 	}
     
-    /**
-	 * @brief méthode qui affiche un objet produit
-	 *
-	 */
-	//public function afficher() 
-	//{
-		//echo $this->nomCategorie;
-
-	//}
-
-
-	public function getnomCategorie() 
+    public function getnomCategorie() 
 	{
-		return $this->nomCategorie;
-
-		//echo $this->nomCategorie;							
+		return $this->nomCategorie;				
 	}
     
+    public function getnomCatAng() 
+	{
+		return $this->nomCatAng;				
+    }
+    
      /**
-	 *
+	 * @author Gautier Piatek
 	 * @return Array Tableau contenant la liste de toutes les categories
 	 */
 	public static function listeCategories() 
 		{
-			self::$database->query('SELECT * FROM categorie');
+			self::$database->query('SELECT * FROM categorie ORDER BY nomCategorie ASC');
 			$lignes = self::$database->resultset();
 			foreach ($lignes as $ligne) 
 			{
@@ -103,23 +95,86 @@ class MCategories
 
        // return $aOeuvres;
     //}
-
-
-    
- 
-
-
-
-
-
-
-
-
-
-    
+  
 }
 
+/**
+ * Class Modele Sous Catégorie
+ * 
+ * @author Gautier Piatek
+ * @version 1.0
+ * @update 2016-01-12
+ * 
+ */
+class MSousCategories extends MCategories {
+    
+    public $idSousCategorie;
+	public $nomSousCategorie;
+    public $nomSousCatAng;
+    public $idCat;
+    
+    /**
+	 * @var database Objet base de données qui permet la connexion
+	 */
+	static $database;
+    
+	function __construct ($idSousCategorie, $nomSousCategorie, $nomSousCatAng, $idCat)
+	{
+		if (!isset(self::$database))
+			self::$database = new PdoBDD();
 
-
+        $this->idSousCategorie = $idSousCategorie;
+        $this->nomSousCategorie = $nomSousCategorie;
+        $this->nomSousCatAng = $nomSousCatAng;
+        $this->idCat = $idCat;
+    }
+	
+	function __destruct ()
+	{
+		
+	}
+	
+	/**
+	 * @access public
+	 * @return Int
+	 */
+	public function getidSousCategorie() 
+	{
+		return $this->idSousCategorie;		
+			
+	}
+    
+    public function getnomSousCategorie() 
+	{
+		return $this->nomSousCategorie;				
+	}
+    
+    public function getnomSousCatAng() 
+	{
+		return $this->nomSousCatAng;				
+	}
+    
+    public function getidCat() 
+	{
+		return $this->idCat;		
+			
+	}
+    /**
+	 * @author Gautier Piatek
+	 * @return Array Tableau contenant la liste de toutes les sous categories
+	 */
+	public static function listeSousCategories() 
+		{
+			self::$database->query('SELECT * FROM souscategorie ORDER BY nomSousCat ASC');
+			$lignes = self::$database->resultset();
+			foreach ($lignes as $ligne) 
+			{
+				$uneSousCategorie = new MSousCategories('', $ligne['nomSousCat'], $ligne['nomSousCatAng'], $ligne['idCategorie']);
+				$SousCategories[] = $uneSousCategorie;
+			}
+			return $SousCategories;
+		}
+}
+ 
 
 ?>

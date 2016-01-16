@@ -377,8 +377,8 @@ i:after {
 }
 
 .formulaire input[type="text"], input[type="date"]
-{  width:200px;
-
+{  
+    width:200px;
 }
 
 .formulaire #button 
@@ -403,7 +403,6 @@ i:after {
     text-align:center;
     margin-top: 20px;
    
-
 }
 
 .formulaire #button:hover,
@@ -418,8 +417,23 @@ i:after {
 {
     margin:20px 720px 0px 710px;
 }
+
+.formulaire #button:hover,
+.formulaire #button:focus 
+{       
+    background-color: #354a5d;
+ 
+} 
+
+/*AFFICHER LA PAGE DE CONNEXION*/
+#titre1
+{
+    margin:20px 720px 0px 710px;
+}
+
 .formulaire1
 {
+
     margin-left:auto;
     margin-right:auto;
     margin-top:40px;
@@ -432,8 +446,8 @@ i:after {
 }
 
 .formulaire1 input[type="text"], input[type="date"]
-{  width:200px;
-
+{  
+    width:200px;
 }
 
 .formulaire1 #button 
@@ -457,8 +471,6 @@ i:after {
     margin-left: 50px;
     text-decoration:none;
     text-align:center;
-   
-   
 
 }
 
@@ -470,22 +482,51 @@ i:after {
 } 
 
 
+/*ADMIN*/
 
+.admin {
+    overflow: hidden;
+    position: relative;
+}
+/*MENU ADMIN*/
 
+.menuAdmin {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #354a5d;
+    width: 272px;
+    height: 100%;
+}
 
+.menuAdmin ul li ul {
+    display: none;
+}
 
+.menuAdmin ul li:hover ul {
+    display: block;
+}
 
+.administration {
+    float: right;
+    width: 77%;
+}
 
+.administration label {
+    display: block;
+    width: 150px;
+    float: left;
+}
 
-
-
-
+.administration input, .administration select {
+    margin-bottom: 1%;
+}
 
 /* FOOTER */
 
 footer
 {
-    margin-top: 50px;
+/*    margin-top: 50px;*/
     width: 100%;
     height: 81px;
 /*    position: absolute;*/
@@ -498,7 +539,6 @@ footer
 }
 
 
-
 /*
 @media only screen and (max-width: 708px){
 
@@ -506,9 +546,8 @@ footer
         {
             width : 960px;
         }
-*/
 
 }
-
+*/
 
 

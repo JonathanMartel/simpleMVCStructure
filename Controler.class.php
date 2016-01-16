@@ -31,6 +31,7 @@ class Controler
                         $this->accueil();
                     }
 					break;
+                
                 case 'artistes':
                     if($_GET['idOeuvre'] != '')
                     {
@@ -40,7 +41,9 @@ class Controler
                     {
                         $this->artistes();
                     }
+
                     break;
+                    
                 case 'inscription':
                     $this->inscription();
                     break;
@@ -49,25 +52,36 @@ class Controler
                     break;
                 case 'recherche':
                     $this->rechercheOeuvre();
-                    break;
+
+                
                 case 'arrondissements':
-                    $this->arrondissements();
+                    if($_GET['idArrondissement'] !='')
+                    {
+                        $this->oeuvresParArr($_GET['idArrondissement']);
+                    }
+                    else
+                    {
+                        $this->arrondissements();
+                    } 
                     break;
+
+                case 'unOeuvre':
+                    $this->unOeuvre($_GET['idOeuvre']);
+                    break;
+
                 case 'categories':
                     $this->categories();
                     break;
                 case 'oeuvresParCat':
                     $this->oeuvresParCat();
                     break;
-                case 'oeuvreDetails':
-                    $this->oeuvreDetails();
-                    break;
                 case 'oeuvresParArr';
                  	$this->oeuvresParArr();
                  	break;
-                //case 'rechercheOeuvreParCat': 
-                //rechercheOeuvreParCat();
-               // break; 	 
+
+                case 'admin':
+                    $this->admin();
+                    break;
 
                 default:
 			    $this->accueil();
@@ -87,6 +101,7 @@ class Controler
 			$oVue->afficheFooter();
 			
 		} 
+
         private function unOeuvre($idget)
 		{
             $oOeuvre = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
@@ -156,46 +171,17 @@ class Controler
     
         }
 
+		private function oeuvresParArr($getIdArr)
+        {   
+            $oOeuvreParArr = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $aOeuvreParArr = $oOeuvreParArr::listerOeuvresParArr($getIdArr);
 
-		private function oeuvresParArr()
-		{	
-			
-			$id_arr = $_GET['idArrondissement'];
-			$oOeuvreParArr = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
-			$aOeuvreParArr = $oOeuvreParArr::listerOeuvresParArr($id_arr);
-
-			$oVue = new VueDefaut();
-			$oVue->afficheHeader();
-			$oVue->afficheOeuvre_Par_Arr($aOeuvreParArr);
-            $oVue->afficheFooter();
-		}
-    
-        /*private function oeuvreDetails()
-		{
-            $idOeuvre = $_GET["idOeuvre"];
-            $oOeuvre = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-			$oVue->afficheOeuvreDetails($idOeuvre, $oOeuvre);
+            $oVue->afficheOeuvre_Par_Arr($aOeuvreParArr);
             $oVue->afficheFooter();
+        }
     
-		}*/
-
-
-       // private function rechercheOeuvreParCat()
-        //{
-           // $oOeuvreParCat = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
-            //$aOeuvreParCat = $oOeuvreParCat->rechercheOeuvreParCat($_POST['categorie']);
-            
-           // $oVue = new VueDefaut();
-            //$oVue->afficheHeader();
-           // $oVue->afficheOeuvre_Par_Cat($aOeuvreParCat);
-            //$oVue->afficheFooter();
-        //}
-
-
-
-       
         private function inscription()
         {
           
@@ -215,26 +201,54 @@ class Controler
             
         } 
 
-        private function  rechercheOeuvre()
+        private function rechercheOeuvre()
         {
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-            $oVue-> rechercheOeuvre();
+            $oVue->rechercheOeuvre();
             $oVue->afficheFooter();
                 
         }
-      
+    
+        private function admin()
+        {
+            $erreurTitre ='';
+            
+            $oArtistes = new MArtistes('', '', '' ,'', '', '');
+            $aArtistes = $oArtistes::listeArtistes();
+            
+            $oCategories = new MCategories('', '', '' ,'', '','');
+            $aCategories = $oCategories::listeCategories();
+            
+            $oSousCategories = new MSousCategories('', '', '', '');
+            $aSousCategories = $oSousCategories::listeSousCategories();
+            
+            $oArrondissements = new MArrondissement('', '');
+            $aArrondissements = $oArrondissements::listeArrondissement();
+            
+            $oVue = new VueDefaut();
+            $oVue->afficheHeaderAdmin();
+            
+            if($_GET['action'] == 'ajoutOeuvre') {
+                $oOeuvre = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+                
+                var_dump($_POST['titre'], $_POST['titreVariante'],  $_POST['technique'], $_POST['techniqueAng'], $_POST['description'], $_POST['validation'], $_POST['arrondissement'], $_POST['adresse'], $_POST['artiste'], $_POST['categorie'], $_POST['sousCategorie'], $_POST['materiaux'], $_POST['materiauxAng']);
+                
+                try
+                {
+                    $oOeuvre->ajouterOeuvre($_POST['titre'], $_POST['titreVariante'],  $_POST['technique'], $_POST['techniqueAng'], $_POST['description'], $_POST['validation'], $_POST['arrondissement'], $_POST['adresse'], $_POST['artiste'], $_POST['categorie'], $_POST['sousCategorie'], $_POST['materiaux'], $_POST['materiauxAng']);
+                }
+                catch (Exception $e)
+                {
+                    $erreur = $e->getMessage();     
+                }
+                
+            }
+            
+            $oVue->afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre);
+            $oVue->afficheFooter();
 
+        }
 
-
-
-
-
-
-
-
-
-        
-		
 }
 ?>

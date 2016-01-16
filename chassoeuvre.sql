@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 30 Décembre 2015 à 02:49
+-- Généré le :  Sam 16 Janvier 2016 à 15:34
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.5.8
 
@@ -23,23 +23,23 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `administrateur`
+-- Structure de la table `adminmod`
 --
 
-CREATE TABLE IF NOT EXISTS `administrateur` (
-  `idAdministrateur` int(3) NOT NULL AUTO_INCREMENT,
-  `loginAdmin` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `passAdmin` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idAdministrateur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+CREATE TABLE IF NOT EXISTS `adminmod` (
+  `idAdMod` int(11) NOT NULL AUTO_INCREMENT,
+  `role` int(11) NOT NULL,
+  `login` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `pass` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`idAdMod`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `administrateur`
+-- Contenu de la table `adminmod`
 --
 
-INSERT INTO `administrateur` (`idAdministrateur`, `loginAdmin`, `passAdmin`) VALUES
-(1, 'admin', 'admin'),
-(2, 'admin', 'admin');
+INSERT INTO `adminmod` (`idAdMod`, `role`, `login`, `pass`) VALUES
+(1, 0, 'moderateur', 'modo');
 
 -- --------------------------------------------------------
 
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `categorie` (
 --
 
 INSERT INTO `categorie` (`idCategorie`, `nomCategorie`, `nomCatAng`) VALUES
-(1, 'Art Mural', 'Street Art'),
+(1, 'Art mural', 'Street Art'),
 (2, 'Beaux-Arts', 'Fine Arts'),
 (4, 'Arts décoratifs', 'Decorative Arts');
 
@@ -216,26 +216,6 @@ CREATE TABLE IF NOT EXISTS `gagne` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `moderateur`
---
-
-CREATE TABLE IF NOT EXISTS `moderateur` (
-  `idMod` int(11) NOT NULL AUTO_INCREMENT,
-  `loginMod` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `passMod` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idMod`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Contenu de la table `moderateur`
---
-
-INSERT INTO `moderateur` (`idMod`, `loginMod`, `passMod`) VALUES
-(1, 'moderateur', 'modo');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `modere`
 --
 
@@ -266,26 +246,27 @@ CREATE TABLE IF NOT EXISTS `oeuvre` (
   `idArrondissement` int(11) NOT NULL,
   `idAdresse` int(11) NOT NULL,
   `idArtiste` int(11) NOT NULL,
-  `idCategorie` int(11) NOT NULL,
-  `idSousCategorie` int(11) NOT NULL,
   `nomMateriaux` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `nomMateriauxAng` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `idCategorie` int(11) NOT NULL,
+  `idSousCategorie` int(11) NOT NULL,
   PRIMARY KEY (`idOeuvre`),
   KEY `FK_Oeuvre_idArrondissement` (`idArrondissement`),
   KEY `FK_Oeuvre_idAdresse` (`idAdresse`),
   KEY `FK_Oeuvre_idArtiste` (`idArtiste`),
-  KEY `FK_Oeuvre_idCategorie` (`idCategorie`),
-  KEY `FK_Oeuvre_idSousCategorie` (`idSousCategorie`)
+  KEY `idCategorie` (`idCategorie`),
+  KEY `fk_oeuvre_souscat` (`idSousCategorie`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `oeuvre`
 --
 
-INSERT INTO `oeuvre` (`idOeuvre`, `titreOeuvre`, `titreVariante`, `technique`, `techniqueAng`, `NoInterne`, `description`, `validationOeuvre`, `idArrondissement`, `idAdresse`, `idArtiste`, `idCategorie`, `idSousCategorie`, `nomMateriaux`, `nomMateriauxAng`) VALUES
-(1, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 1, 1, NULL, NULL),
-(2, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 1, 2, 2, 2, 2, NULL, NULL),
-(3, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 4, 4, 4, 4, 4, NULL, NULL);
+INSERT INTO `oeuvre` (`idOeuvre`, `titreOeuvre`, `titreVariante`, `technique`, `techniqueAng`, `NoInterne`, `description`, `validationOeuvre`, `idArrondissement`, `idAdresse`, `idArtiste`, `nomMateriaux`, `nomMateriauxAng`, `idCategorie`, `idSousCategorie`) VALUES
+(2, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 1, 1, 1, NULL, NULL, 1, 1),
+(3, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 1, 2, 2, NULL, NULL, 2, 2),
+(4, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 3, 3, 3, NULL, NULL, 4, 3),
+(5, 'aaa', 'aaa', NULL, NULL, NULL, NULL, NULL, 4, 4, 4, NULL, NULL, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -334,20 +315,21 @@ CREATE TABLE IF NOT EXISTS `souscategorie` (
   `idSousCategorie` int(11) NOT NULL AUTO_INCREMENT,
   `nomSousCat` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `nomSousCatAng` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `idCategorie` int(11) DEFAULT NULL,
+  `idCategorie` int(11) NOT NULL,
   PRIMARY KEY (`idSousCategorie`),
-  KEY `FK_souscategorie_idCategorie` (`idCategorie`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  KEY `idCategorie` (`idCategorie`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `souscategorie`
 --
 
 INSERT INTO `souscategorie` (`idSousCategorie`, `nomSousCat`, `nomSousCatAng`, `idCategorie`) VALUES
-(1, 'Graffiti Tag', 'Graffiti Tag', 1),
+(1, 'Graffiti', 'Graffiti', 1),
 (2, 'Sculpture', 'Sculpture', 2),
-(3, 'Installation', 'Installation', 2),
-(4, 'Vitrail', 'Stained Glass', 4);
+(3, 'Installation', 'Installation', 4),
+(4, 'Vitrail', 'Stained Glass', 2),
+(5, 'Tag', 'Tag', 1);
 
 -- --------------------------------------------------------
 
@@ -428,7 +410,7 @@ ALTER TABLE `gagne`
 --
 ALTER TABLE `modere`
   ADD CONSTRAINT `FK_modere_idCommentaire` FOREIGN KEY (`idCommentaire`) REFERENCES `commentaire` (`idCommentaire`),
-  ADD CONSTRAINT `FK_modere_idMod` FOREIGN KEY (`idMod`) REFERENCES `moderateur` (`idMod`),
+  ADD CONSTRAINT `FK_modere_idMod` FOREIGN KEY (`idMod`) REFERENCES `adminmod` (`idAdMod`),
   ADD CONSTRAINT `FK_modere_idPhoto` FOREIGN KEY (`idPhoto`) REFERENCES `photo` (`idPhoto`);
 
 --
@@ -438,8 +420,8 @@ ALTER TABLE `oeuvre`
   ADD CONSTRAINT `FK_Oeuvre_idAdresse` FOREIGN KEY (`idAdresse`) REFERENCES `adresse` (`idAdresse`),
   ADD CONSTRAINT `FK_Oeuvre_idArrondissement` FOREIGN KEY (`idArrondissement`) REFERENCES `arrondissement` (`idArrondissement`),
   ADD CONSTRAINT `FK_Oeuvre_idArtiste` FOREIGN KEY (`idArtiste`) REFERENCES `artiste` (`idArtiste`),
-  ADD CONSTRAINT `FK_Oeuvre_idCategorie` FOREIGN KEY (`idCategorie`) REFERENCES `categorie` (`idCategorie`),
-  ADD CONSTRAINT `FK_Oeuvre_idSousCategorie` FOREIGN KEY (`idSousCategorie`) REFERENCES `souscategorie` (`idSousCategorie`);
+  ADD CONSTRAINT `fk_oeuvre_souscat` FOREIGN KEY (`idSousCategorie`) REFERENCES `souscategorie` (`idSousCategorie`),
+  ADD CONSTRAINT `oeuvre_ibfk_1` FOREIGN KEY (`idCategorie`) REFERENCES `categorie` (`idCategorie`);
 
 --
 -- Contraintes pour la table `propose`

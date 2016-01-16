@@ -114,7 +114,8 @@ class VueDefaut
     public function rechercheOeuvre()
     {   ?>
        
-         <h2 >Test</h2>
+        <h2>Recherche</h2>
+
      
         <?php
 
@@ -206,6 +207,7 @@ class VueDefaut
         <?php
 
     }
+    
     /**
      * Affiche le pied de page
      * @access public
@@ -421,7 +423,7 @@ class VueDefaut
     {
         ?>
 
-        <h2>Arrondisements</h2>
+        <h2>Arrondissements</h2>
         <?php
         $compteur = 1;
         
@@ -450,7 +452,7 @@ class VueDefaut
             //<a href="index.php?requete=categories" class="categorie">CATEGORIE</a>
             //echo "<a href = 'index.php?requete=oeuvresParArr' class='arrondisement'> " . $nom . "</a>";
             echo "<figure class='arrondisement'>";   
-            echo "<a href = 'index.php?requete=oeuvresParArr&idArrondissement=$id_Arrondissement' class='arrondisement'> " . $nom . "</a>";
+            echo "<a href = 'index.php?requete=arrondissements&idArrondissement=$id_Arrondissement' class='arrondisement'> " . $nom . "</a>";
             echo "</figure>";
             echo "</div>";
             $compteur = $compteur + 1;
@@ -461,34 +463,33 @@ class VueDefaut
 
 
 
-        /**
+    /**
      * Affiche les oeuvres par arrondissement
      * @access public
      * @author Jorge Blanco
      * @version 1.0
      * 
      */
-        public function afficheOeuvre_Par_Arr($aOevuresParArr) 
+    public function afficheOeuvre_Par_Arr($aOevuresParArr) 
 
     {
         ?>
 
-        <h2>OevuresParArr</h2>
+        <h2>Oeuvres par Arrondissements</h2>
         <?php
-
-        /////////////////////////////// DEVELOPPEMENT ////////////////////////////////////
-        //$compteur = 1;
-        //echo "<section class='contenu container'>";
         foreach($aOevuresParArr as $OevuresParArr)
         {
-             $nomOevure_Par_Arr = $OevuresParArr->getTitreOeuvre();
-             echo $nomOevure_Par_Arr.'<br/>';   
+            $idOeuvre= $OevuresParArr->getIdOeuvre();
+            $titre = $OevuresParArr->getTitreOeuvre();
+
+            echo "<a href = 'index.php?requete=unOeuvre&idOeuvre=$idOeuvre' class='arrondisement'>" . $titre . "</a>" . '</br>';
+   
         }
     }    //FIN FUNCTION afficheOeuvre_Par_Arr
     
 
     /**
-     * Affiche  catégories
+     * Affiche catégories
      * @access public
      * @author Thuy Tien VO
      * @version 1.0
@@ -528,7 +529,8 @@ class VueDefaut
         
     } //FIN FUNCTION afficheCategorie
 
-        /**
+
+    /**
      * Affiche les oeuvres par catégorie
      * @access public
      * @author THuy Tien VO
@@ -549,8 +551,213 @@ class VueDefaut
             }
         }    //FIN FUNCTION afficheOeuvreParCat
         
+    /**
+     * Affiche le header de la partie Admin
+     * @access public
+     * @author Gautier Piatek
+     * @version 1.0
+     * 
+     */
+    public function afficheHeaderAdmin() 
+
+    {
+        ?>
+         <!DOCTYPE html>
+        <html lang="fr">
+            <head>
+                <title>Chass'Oeuvres - Administration</title>
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+                <meta name="description" content="">
+                <meta name="viewport" content="width=device-width">
+
+                <link rel="stylesheet" href="./css/normalize.css" type="text/css" media="screen">
+                <link rel="stylesheet" href="./css/base_h5bp.css" type="text/css" media="screen">
+                <link rel="stylesheet" href="./css/main.css" type="text/css" media="screen">
+                <link rel="stylesheet" href="./css/_grid.css" type="text/css" media="screen">
+
+                <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+                <script src="./js/plugins.js"></script>
+                <script src="./js/main.js"></script>
+            </head>
+
+            <body>
+                <div id="wrapper">
+                <header>
+                    <div class="conteneurNav">
+
+                        <img src="images/logo.png" alt="logo">
+
+                        <div class="conteneurMenu">
+
+                            <div class="langue">
+
+                                <a href="index.php?requete=inscription" class="inscription">S'INSCRIRE</a>
+                                <a href="index.php?requete=connexion" class="connexion">SE CONNECTER</a>
+                                <a href="#">FR/EN</a>
+                                <a href="index.php?requete=accueil" class="accueil">ACCUEIL</a>
+         
+                            </div>
+
+                        </div>
+
+                    </div>
 
 
+                </header>
+        <?php
+
+        
+    }
+    
+    /**
+     * Affiche le contenu de l'admin
+     * @access public
+     * @author Gautier Piatek
+     * @version 1.0
+     * 
+     */
+    public function afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre) 
+
+    {   
+        
+        ?>
+        <div class="admin">
+           <div class="menuAdmin">
+                <nav>
+                    <ul>
+                         
+                        <li>
+                            GESTION
+                            <ul>
+                                <li>
+                                    <a href="#">OEUVRES</a>
+                                       <ul>
+                                            <li><a href="#">Ajouter</a></li>
+                                            <li><a href="#">Modifier</a></li>
+                                            <li><a href="#">Supprimer</a></li>
+                                        </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#">ARTISTES</a>
+                                        <ul>
+                                            <li><a href="#">Ajouter</a></li>
+                                            <li><a href="#">Modifier</a></li>
+                                            <li><a href="#">Supprimer</a></li>
+                                        </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#">CATEGORIES</a>
+                                        <ul>
+                                            <li><a href="#">Ajouter</a></li>
+                                            <li><a href="#">Modifier</a></li>
+                                            <li><a href="#">Supprimer</a></li>
+                                        </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#">UTILISATEURS</a>
+                                        <ul>
+                                            <li><a href="#">Ajouter</a></li>
+                                            <li><a href="#">Modifier</a></li>
+                                            <li><a href="#">Supprimer</a></li>
+                                        </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            MODERATION
+                            <ul>
+                                <li><a href="#">Photos</a></li>
+                                <li><a href="#">Commentaires</a></li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="#">MISE A JOUR BDD</a>
+                        </li> 
+
+                    </ul>
+
+                </nav>
+            </div>
+            
+            <section class="contenu container">
+        
+                <h2>Administration</h2>
+
+                <div class="administration">
+                   <div class="twelvecol">
+                       <h3>Ajouter une oeuvre</h3>
+
+                       <form method="POST" action="index.php?requete=admin&action=ajoutOeuvre">
+                           
+                            <label>Titre : </label> <input type="text" name="titre"><span><?php echo $erreurTitre;?><br>
+                            <label>Titre (Variante) : </label> <input type="text" name="titreVariante"><br>
+                            <label>Technique : </label> <input type="text" name="technique"><br>
+                            <label>Technique (anglais) : </label> <input type="text" name="techniqueAng"><br>
+                            <label>Description : </label> <input type="text" name="description"><br>
+                            <label>Validation : </label> <input type="radio" checked name="validation" value="1"> Oui <input type="radio" name="validation" value="0"> Non<br>
+                            <label>Arrondissement : </label> <select name="arrondissement">
+                                <option value="nonChoisi">Choisir un Arrondissement</option>
+                            <?php
+                                foreach ($aArrondissements as $arrondissement) {
+                                    echo "<option value='".$arrondissement->getidArrondissement()."'>".$arrondissement->getnomArrondissement()."</option>"; 
+                                }
+                            ?>
+                           </select><br>
+                               <label>Adresse : </label> <input type="text" name="adresse"><br>
+                               <label>Artiste/Collectif : </label> <select name="artiste">
+                                <option value="nonChoisi">Choisir un Artiste/Collectif</option>
+                            <?php
+                                foreach ($aArtistes as $artiste) {
+                                    
+                                    if($artiste->getNom() == "") {
+                                        
+                                         echo "<option value='".$artiste->getIdArtiste()."'>".$artiste->getCollectif()."</option>"; 
+                                    } else {                                    
+                                       
+                                        echo "<option value='".$artiste->getIdArtiste()."'>". $artiste->getPrenom() . " " . $artiste->getNom()."</option>";
+                                    }
+                                }
+                            ?>
+                           </select><br>
+                               <label>Catégorie : </label> <select name="categorie">
+                                <option value="nonChoisi">Choisir une Catégorie</option>
+                            <?php 
+                                foreach ($aCategories as $categorie) {
+                                    echo "<option value='".$categorie->getidCategorie()."'>".$categorie->getnomCategorie()."</option>"; 
+                                }
+                            ?>
+                           </select><br>
+                               <label>Sous-Catégorie : </label> <select name="sousCategorie">
+                                <option value="nonChoisi">Choisir une Sous-Catégorie</option>
+                            <?php
+                                foreach ($aSousCategories as $sousCategorie) {
+                                    echo "<option value='".$sousCategorie->getidSousCategorie()."'>".$sousCategorie->getnomSousCategorie()."</option>"; 
+                                }
+                            ?>    
+                           </select><br>
+                               <label>Matériaux : </label> <input type="text" name="materiaux"><br>
+                               <label>Matériaux (anglais) : </label> <input type="text" name="materiauxAng"><br><br>
+                            
+                            <input type="hidden" name="validationAjout" value="<?php echo $validationAjout; ?>"/>
+                            <input type="submit" name="sauvegarder" value="Valider">
+                       </form>
+
+                   </div>
+
+                </div>
+            </section>
+        </div>
+        
+        
+        <?php
+
+        
+    }
 
         //private function rechercheOeuvreParCat()
        // {
@@ -581,53 +788,5 @@ class VueDefaut
             
         //}
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    /**
-     * Affiche une oeuvre en détail
-     * @access public
-     *
-     */
-    /*public function afficheOeuvreDetails($idOeuvre, $oOeuvre) {
-       
-        $aOeuvre = $oOeuvre::detailsOeuvreParId($idOeuvre);
-         var_dump($aOeuvre);
-        ?>
-            <div class="contenu container">
-                <div class="sixcol last">
-                   <ul>
-                    
-        <?php
-        foreach($aOeuvre as $oeuvre) {
-            $titre = $oeuvre->getTitreOeuvre();
-            $arrondissement = $oeuvre->getNomArrondissement();
-            $anomArt = $oeuvre->getNomArt();
-            $prenomArt = $oeuvre->getPrenomArt();
-            $collectif = $oeuvre->getCollectif();
-            $categorie = $oeuvre->getNomCategorie();       
-        }
-        echo "<li>Titre : " . $titre . "</li>";    
-        echo "<li>Arrondissement : " . $arrondissement . "</li>";    
-        echo "<li>Prénom : " . $prenom . "</li>";    
-        echo "<li>Nom : " . $nom . "</li>";    
-        echo "<li>Collectif : " . $collectif . "</li>";    
-        echo "<li>Catégorie : " . $categorie . "</li>";    
-        ?>
-                    </ul>
-                </div>
-            </div>
-        <?php
-    }*/
 }
 ?>
