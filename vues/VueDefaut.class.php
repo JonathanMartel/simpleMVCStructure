@@ -385,11 +385,7 @@ class VueDefaut
                     echo "<ul>";
                     $titreOeuvre = $oeuvre->getTitreOeuvre();
                     $idOeuvre = $oeuvre->getIdOeuvre();
-<<<<<<< HEAD
-                    //echo "<li>" . $titreOeuvre . "</li>";
-=======
                     echo "<li>" . $titreOeuvre . "</li>";
->>>>>>> 62a30db459e28aede378c979168b520687465f70
                     echo "<li><a href='index.php?requete=artistes&idOeuvre=" . $idOeuvre . "'>" . $titreOeuvre . "</a></li>";
                     $compteurContenu = $compteurContenu+1;
                 }
@@ -762,30 +758,6 @@ class VueDefaut
 
         
     }
-
-        /**
-     * Affiche les oeuvres par catégorie
-     * @access public
-     * @author THuy Tien VO
-     * @version 1.0
-     * 
-     */
-        public function afficheOeuvre_Par_Cat($aOeuvreParCat) 
-
-        {
-            ?>
-            <h2>Oeuvre Par Catégorie</h2>
-            <?php
-
-            foreach($aOeuvreParCat as $OeuvreParCat)
-            {
-                 $nomOeuvre_Par_Cat = $OeuvreParCat->getTitreOeuvre();
-                 echo $nomOeuvre_Par_Cat.'<br/>';   
-            }
-        }    //FIN FUNCTION afficheOeuvreParCat
-        
-
-
 
         //private function rechercheOeuvreParCat()
        // {
