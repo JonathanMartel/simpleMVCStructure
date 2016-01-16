@@ -615,10 +615,10 @@ class VueDefaut
      * @version 1.0
      * 
      */
-    public function afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories) 
+    public function afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre) 
 
     {   
-       
+        
         ?>
         <div class="admin">
            <div class="menuAdmin">
@@ -690,14 +690,15 @@ class VueDefaut
                    <div class="twelvecol">
                        <h3>Ajouter une oeuvre</h3>
 
-                       <form method="POST" action="<?php echo $_SERVER["PHP_SELF"];?>">
-                           <label>Titre : </label> <input type="text"><br>
-                           <label>Titre (Variante) : </label> <input type="text"><br>
-                           <label>Technique : </label> <input type="text"><br>
-                               <label>Technique (anglais) : </label> <input type="text"><br>
-                               <label>Description : </label> <input type="text"><br>
-                               <label>Validation : </label> <input type="radio"> Oui <input type="radio"> Non<br>
-                               <label>Arrondissement : </label> <select name="" id="">
+                       <form method="POST" action="index.php?requete=admin&action=ajoutOeuvre">
+                           
+                            <label>Titre : </label> <input type="text" name="titre"><span><?php echo $erreurTitre;?><br>
+                            <label>Titre (Variante) : </label> <input type="text" name="titreVariante"><br>
+                            <label>Technique : </label> <input type="text" name="technique"><br>
+                            <label>Technique (anglais) : </label> <input type="text" name="techniqueAng"><br>
+                            <label>Description : </label> <input type="text" name="description"><br>
+                            <label>Validation : </label> <input type="radio" checked name="validation" value="1"> Oui <input type="radio" name="validation" value="0"> Non<br>
+                            <label>Arrondissement : </label> <select name="arrondissement">
                                 <option value="nonChoisi">Choisir un Arrondissement</option>
                             <?php
                                 foreach ($aArrondissements as $arrondissement) {
@@ -705,16 +706,23 @@ class VueDefaut
                                 }
                             ?>
                            </select><br>
-                               <label>Adresse : </label> <input type="text"><br>
-                               <label>Artiste : </label> <select name="" id="">
-                                <option value="nonChoisi">Choisir un Artiste</option>
+                               <label>Adresse : </label> <input type="text" name="adresse"><br>
+                               <label>Artiste/Collectif : </label> <select name="artiste">
+                                <option value="nonChoisi">Choisir un Artiste/Collectif</option>
                             <?php
                                 foreach ($aArtistes as $artiste) {
-                                    echo "<option value='".$artiste->getIdArtiste()."'>".$artiste->getNom()."</option>"; 
+                                    
+                                    if($artiste->getNom() == "") {
+                                        
+                                         echo "<option value='".$artiste->getIdArtiste()."'>".$artiste->getCollectif()."</option>"; 
+                                    } else {                                    
+                                       
+                                        echo "<option value='".$artiste->getIdArtiste()."'>". $artiste->getPrenom() . " " . $artiste->getNom()."</option>";
+                                    }
                                 }
                             ?>
                            </select><br>
-                               <label>Catégorie : </label> <select name="" id="">
+                               <label>Catégorie : </label> <select name="categorie">
                                 <option value="nonChoisi">Choisir une Catégorie</option>
                             <?php 
                                 foreach ($aCategories as $categorie) {
@@ -722,7 +730,7 @@ class VueDefaut
                                 }
                             ?>
                            </select><br>
-                               <label>Sous-Catégorie : </label> <select name="" id="">
+                               <label>Sous-Catégorie : </label> <select name="sousCategorie">
                                 <option value="nonChoisi">Choisir une Sous-Catégorie</option>
                             <?php
                                 foreach ($aSousCategories as $sousCategorie) {
@@ -730,11 +738,10 @@ class VueDefaut
                                 }
                             ?>    
                            </select><br>
-                               <label>Matériaux : </label> <input type="text"><br>
-                               <label>Matériaux (anglais) : </label> <input type="text"><br><br>
+                               <label>Matériaux : </label> <input type="text" name="materiaux"><br>
+                               <label>Matériaux (anglais) : </label> <input type="text" name="materiauxAng"><br><br>
                             
-                            
-                            <input type="hidden" name="action" value="<?php echo $action; ?>"/>
+                            <input type="hidden" name="validationAjout" value="<?php echo $validationAjout; ?>"/>
                             <input type="submit" name="sauvegarder" value="Valider">
                        </form>
 

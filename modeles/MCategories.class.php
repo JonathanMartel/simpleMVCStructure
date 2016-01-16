@@ -69,7 +69,7 @@ class MCategories
 	 */
 	public static function listeCategories() 
 		{
-			self::$database->query('SELECT * FROM categorie');
+			self::$database->query('SELECT * FROM categorie ORDER BY nomCategorie ASC');
 			$lignes = self::$database->resultset();
 			foreach ($lignes as $ligne) 
 			{
@@ -112,13 +112,14 @@ class MSousCategories extends MCategories {
     public $idSousCategorie;
 	public $nomSousCategorie;
     public $nomSousCatAng;
+    public $idCat;
     
     /**
 	 * @var database Objet base de données qui permet la connexion
 	 */
 	static $database;
     
-	function __construct ($idSousCategorie, $nomSousCategorie, $nomSousCatAng)
+	function __construct ($idSousCategorie, $nomSousCategorie, $nomSousCatAng, $idCat)
 	{
 		if (!isset(self::$database))
 			self::$database = new PdoBDD();
@@ -126,6 +127,7 @@ class MSousCategories extends MCategories {
         $this->idSousCategorie = $idSousCategorie;
         $this->nomSousCategorie = $nomSousCategorie;
         $this->nomSousCatAng = $nomSousCatAng;
+        $this->idCat = $idCat;
     }
 	
 	function __destruct ()
@@ -153,17 +155,22 @@ class MSousCategories extends MCategories {
 		return $this->nomSousCatAng;				
 	}
     
-     /**
+    public function getidCat() 
+	{
+		return $this->idCat;		
+			
+	}
+    /**
 	 * @author Gautier Piatek
 	 * @return Array Tableau contenant la liste de toutes les sous categories
 	 */
 	public static function listeSousCategories() 
 		{
-			self::$database->query('SELECT * FROM souscategorie');
+			self::$database->query('SELECT * FROM souscategorie ORDER BY nomSousCat ASC');
 			$lignes = self::$database->resultset();
 			foreach ($lignes as $ligne) 
 			{
-				$uneSousCategorie = new MSousCategories('', $ligne['nomSousCat'], $ligne['nomSousCatAng']);
+				$uneSousCategorie = new MSousCategories('', $ligne['nomSousCat'], $ligne['nomSousCatAng'], $ligne['idCategorie']);
 				$SousCategories[] = $uneSousCategorie;
 			}
 			return $SousCategories;

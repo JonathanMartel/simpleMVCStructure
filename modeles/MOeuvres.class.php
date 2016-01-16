@@ -386,11 +386,11 @@ class MOeuvres {
      * @version 1.0
      * 
      */
-    public static function ajouterOeuvre() {
+    public static function ajouterOeuvre($titre, $titreVariante, $technique, $techniqueAng, $description, $validationOeuvre, $idArrondissement, $idAdresse, $idArtiste, $idCategorie, $idSousCategorie, $nomMateriaux, $nomMateriauxAng) {
         
-        self::$database->query("INSERT INTO oeuvre VALUES ('', :titre, :titreVariante, :technique, :techniqueAng, '', :description, :validationOeuvre, :idArrondissement, :idAdresse, :idArtiste, :idCategorie, :idSousCategorie, :nomMateriaux, :nomMateriauxAng)");
+        self::$database->query("INSERT INTO oeuvre VALUES ('', :titre, :titreVariante, :technique, :techniqueAng, '', :description, :validationOeuvre, :idArrondissement, :idAdresse, :idArtiste, :idCategorie, :nomMateriaux, :nomMateriauxAng)");
         //On lie les paramètres auxvaleurs
-        self::$database->bind(':idArticle', $idArticle);
+        
         self::$database->bind(':titre', $titre);
         self::$database->bind(':titreVariante', $titreVariante);
         self::$database->bind(':technique', $technique);
@@ -401,7 +401,6 @@ class MOeuvres {
         self::$database->bind(':idAdresse', $idAdresse);
         self::$database->bind(':idArtiste', $idArtiste);
         self::$database->bind(':idCategorie', $idCategorie);
-        self::$database->bind(':idSousCategorie', $idSousCategorie);
         self::$database->bind(':nomMateriaux', $nomMateriaux);
         self::$database->bind(':nomMateriauxAng', $nomMateriauxAng);
        
