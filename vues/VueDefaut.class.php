@@ -36,6 +36,7 @@ class VueDefaut
                 <link rel="stylesheet" href="./css/base_h5bp.css" type="text/css" media="screen">
                 <link rel="stylesheet" href="./css/main.css" type="text/css" media="screen">
                 <link rel="stylesheet" href="./css/_grid.css" type="text/css" media="screen">
+                <link rel="stylesheet" href="fonts/style.css" type="text/css">
 
                 <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
                 <script src="./js/plugins.js"></script>
@@ -53,18 +54,18 @@ class VueDefaut
 
                             <div class="langue">
 
-                                <a href="index.php?requete=inscription" class="inscription">S'INSCRIRE</a>
-                                <a href="index.php?requete=connexion" class="connexion">SE CONNECTER</a>
-                                <a href="#">FR/EN</a>
+                                <a href="index.php?requete=inscription" class="inscription"><span class='icon-add-user'></span> S'INSCRIRE</a>
+                                <a href="index.php?requete=connexion" class="connexion"><span class='icon-login'></span> SE CONNECTER</a>
+                                <a href="#"><span class='icon-language'></span> FR/EN</a>
          
                             </div>
 
                             <div class="menu">
                                 <nav>
-                                    <a href="index.php?requete=accueil" class="accueil">ACCUEIL</a>
-                                    <a href="index.php?requete=artistes" class="artiste">ARTISTE</a>
-                                    <a href="index.php?requete=arrondissements" class="arrondisement">ARRONDISSEMENT</a>
-                                    <a href="index.php?requete=categories" class="categorie">CATEGORIE</a>
+                                    <a href="index.php?requete=accueil" class="accueil"><span class='icon-home'></span></a>
+                                    <a href="index.php?requete=artistes" class="artiste"><span class='icon-man'></span> ARTISTE</a>
+                                    <a href="index.php?requete=arrondissements" class="arrondisement"><span class='icon-map'></span> ARRONDISSEMENT</a>
+                                    <a href="index.php?requete=categories" class="categorie"><span class='icon-list'></span> CATEGORIE</a>
                                 </nav>
                             </div><br><br>
 
@@ -216,34 +217,59 @@ class VueDefaut
     public function afficheFooter() 
     {
         ?>
-                        <footer >
-
-                                Chass'Oeuvres 2015-2016 - Certains droits réservés @ Jonathan Martel (2013)<br>
-                                Sous licence Creative Commons (BY-NC 3.0)
-
-
-                        </footer>
-
+                   <footer >
+                        Chass'Oeuvres 2015-2016 - Certains droits réservés @ Jonathan Martel (2013)<br>
+                        Sous licence Creative Commons (BY-NC 3.0)
+                    </footer>
 
                     </div>
+                    <script src='js/jquery.js'></script>
+                    <script src='js/jquery.slides.js'></script>
+                    
+                    <script >
+                        $(function(){
+                            $('.slides').slidesjs({
+                               play: {
+                                      active: true,
+                                        // [boolean] Generate the play and stop buttons.
+                                        // You cannot use your own buttons. Sorry.
+                                      effect: "slide",
+                                        // [string] Can be either "slide" or "fade".
+                                      interval: 3000,
+                                        // [number] Time spent on each slide in milliseconds.
+                                      auto: true,
+                                        // [boolean] Start playing the slideshow on load.
+                                      swap: true,
+                                        // [boolean] show/hide stop and play buttons
+                                      pauseOnHover: false,
+                                        // [boolean] pause a playing slideshow on hover
+                                      restartDelay: 2500
+                                        // [number] restart delay on inactive slideshow
+                                    } 
+                            });
+                        });
+
+                   </script>
                 </body>
             </html>
         <?php
-
     }
 
 
     /**
      * Affiche la page d'accueil
      * @access public
-     *
+     * @auteur: German Mahecha
      */
     public function afficheAccueil($oeuvres) 
     {
+        
         ?>
-            <section id="gallery">
-                <img src="images/img1.jpg">
-            </section>
+            <div class="slides">
+                <img src="images/img1.jpg" alt=''>
+                <img src="images/img2.jpg" alt=''>
+                <img src="images/img3.jpg" alt=''>
+            </div>
             
         <?php
            $compteur = 1;
@@ -267,7 +293,7 @@ class VueDefaut
                    $categorie = $oeuvre->getNomCategorie();
 
                    echo "<figure>";
-                   echo "<a href='index.php?requete=accueil&idOeuvre=".$idOeuvre."'><img src='images/img_2.jpg'></a>";
+                   echo "<a href='index.php?requete=accueil&idOeuvre=".$idOeuvre."'><img src='images/img_2.jpg' alt=''></a>";
                    echo "<figcaption>".$idOeuvre."</figcaption>";
                    echo "</figure>";
 
@@ -290,22 +316,33 @@ class VueDefaut
     /**
      * Affiche un Oeuvre
      * @access public
-     *
+     * @auteur: German Mahecha
      */
     public function afficheUnOeuvre($oeuvre) 
     {
-        echo "</br>";
-         echo $idOeuvre= $oeuvre->getIdOeuvre();
-         echo "</br>";
-         echo $oeuvre->getTitreOeuvre();
-        echo "</br>";
-         echo $oeuvre ->getNomArrondissement();
-        echo "</br>";
-         echo $oeuvre->getPrenomArtiste();
-        echo "</br>";
-         echo $oeuvre->getPreNomArtiste();
-        echo "</br>";
-         echo $oeuvre->getNomCategorie();
+         ?>
+        <section class='contenu container'>
+            <div class= 'fourcol '>
+                <img src='images/img_2.jpg' alt="">
+            </div>
+            <div class= 'sixcol'>
+                <p>Artiste: <?php echo $oeuvre->getPrenomArtiste()." ".$oeuvre->getNomArtiste(); ?></p>
+                <p>Nom de l'oeuvre: <?php echo $oeuvre->getTitreOeuvre(); ?></p>
+                <p>Categorie: <?php echo $oeuvre->getNomCategorie(); ?></p>
+                <p>Souscategorie: <?php echo $oeuvre->getNomSousCat(); ?></p>
+                <p>Technique: <?php echo $oeuvre->getTechnique(); ?></p>
+                <p>Materiaux: <?php echo $oeuvre->getNomMateriaux(); ?></p>
+                <p>Arrondissement: <?php echo $oeuvre ->getNomArrondissement(); ?></p>
+                <p>Parc: <?php echo $oeuvre ->getParc(); ?></p>
+                <p>Batiment: <?php echo $oeuvre ->getBatiment(); ?></p>
+                <p>adresse: <?php echo $oeuvre ->getAdresse(); ?></p>
+                <p>Description:<?php echo  $oeuvre->getDescription(); ?></p>
+                <a href='index.php?requete=accueil'><span class='icon-reply'></span> Retourner</a>
+            </div>
+        
+        </section>
+    
+    <?php
        
     }
 
@@ -411,6 +448,9 @@ class VueDefaut
         echo "</section> ";
     }
     
+    
+    
+   
 /**
      * Affiche les arrondissements 
      * @access public
@@ -643,8 +683,8 @@ class VueDefaut
                                     <a href="#">ARTISTES</a>
                                         <ul>
                                             <li><a href="#">Ajouter</a></li>
-                                            <li><a href="#">Modifier</a></li>
-                                            <li><a href="#">Supprimer</a></li>
+                                            <li><a href="index.php?requete=listeModifierArtistes">Modifier</a></li>
+                                            <li><a href="index.php?requete=listeEliminerArtistes">Supprimer</a></li>
                                         </ul>
                                 </li>
 
@@ -763,6 +803,83 @@ class VueDefaut
 
         
     }
+    
+    
+    
+        /**
+     * Affiche catégories
+     * @access public
+     * @author German Mahecha
+     * @version 1.0
+     */
+    
+    public function afficheListeModifierArtistes($aArtistes){
+        ?>
+            <h2>Modifier nos <span class="artistes">artistes</span> et <span class="collectif">collectifs</span></h2>
+            <section class='contenu container'>
+                <div class='tableArtistes'>
+        <?php
+                echo "<table>";
+                echo "<tr>";
+                echo "<th></th>";
+                echo "<th>Nom Artiste</th>";
+                echo "<th>Modifier</th>	";
+                echo "</tr>";
+                    foreach($aArtistes as $artiste) {
+                        echo "<tr>";
+                        $idArtiste = $artiste->getIdArtiste();
+                        if($artiste->getNom()==NULL) {
+                            echo "<td><span class='icon-users'></span>";
+                            echo "<td>" .$artiste->getCollectif()."</td>" ;
+
+                        }else{
+                            echo "<td><span class='icon-user'></span>";
+                            echo "<td>".$artiste->getPrenom()." ". $artiste->getNom()."</td>" ;
+                        }
+                        echo "<td><a href='index.php?requete=modifierArtiste&idArtiste=$idArtiste'><span class='icon-edit'></span></a></td>";
+                        
+                        //$idArtiste = $artiste->getIdArtiste();
+                         echo "</tr>";
+                    }
+                echo "</table>";
+                echo "</div>";
+            echo "</section> ";
+       echo "</div>";
+    }
+    
+    public function afficheListeEliminerArtistes($aArtistes){
+        ?>
+            <h2>Eliminer nos <span class="artistes">artistes</span> et <span class="collectif">collectifs</span></h2>
+            <section class='contenu container'>
+                <div class='tableArtistes'>
+        <?php
+                echo "<table>";
+                echo "<tr>";
+                echo "<th></th>";
+                echo "<th>Nom Artiste</th>";
+                echo "<th>Eliminer</th>";
+                echo "</tr>";
+                    foreach($aArtistes as $artiste) {
+                        echo "<tr>";
+                        $idArtiste = $artiste->getIdArtiste();
+                        if($artiste->getNom()==NULL) {
+                            echo "<td><span class='icon-users'></span>";
+                            echo "<td>" .$artiste->getCollectif()."</td>" ;
+
+                        }else{
+                            echo "<td><span class='icon-user'></span>";
+                            echo "<td>".$artiste->getPrenom()." ". $artiste->getNom()."</td>" ;
+                        }
+                        echo "<td><a href='index.php?requete=eliminerArtiste&idArtiste=$idArtiste'><span class='icon-remove-user'></span></a></td>";
+                       
+                         echo "</tr>";
+                    }
+                echo "</table>";
+                echo "</div>";
+            echo "</section> ";
+       echo "</div>";
+    }
+    
 
         //private function rechercheOeuvreParCat()
        // {

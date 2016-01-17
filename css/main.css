@@ -1,6 +1,51 @@
 /********
 * Votre CSS
 ********/
+.slides{
+   width: 100%;
+}
+.slides img{
+    width: 100%;
+}
+.slidesjs-pagination {
+	background:#424242;
+	list-style:none;
+	overflow:hidden;
+}
+ 
+.slidesjs-pagination li {
+	float:left;
+}
+ 
+.slidesjs-pagination li a {
+	display:block;
+	padding:10px 20px;
+	color:#fff;
+	text-decoration:none;
+}
+ 
+.slidesjs-pagination li a:hover {
+	background:#000;
+}
+ 
+.slides .active {
+	background:#000;
+}
+ 
+.slidesjs-navigation{
+	background:#424242;
+	color:#fff;
+	text-decoration:none;
+	display:inline-block;
+	padding:13.5px;
+	float:right;
+    margin-top: 15px;
+}
+
+
+
+
+
 
 h2 {
     text-align: center;
@@ -12,8 +57,10 @@ header .conteneurNav
     height: 95%;
     background-color: #354a5d;
     position: static;
+}
 
-
+header .conteneurNav img{
+     width: 17em;
 }
 
 .container:after
@@ -21,22 +68,16 @@ header .conteneurNav
       content:"";
       display:table;
       clear:both;
-
 }
 
 .contenu
 {
-    width : 95%;
-    margin: 60px auto 0 auto;
+    width : 100%;
+   /* margin: 60px auto 0 auto;*/
     text-align: justify;
     line-height: 1.5em;
 }
 
-img
-{
-/*    border: solid 1px black;*/
-    width: 17em;
-}
 
 .conteneurMenu
 {
@@ -44,9 +85,9 @@ img
 }
 
 figure{
-padding:3px;
-margin:3px;
-background-color: #aaaaaa;
+padding:5px;
+margin:20px;
+background-color: #354a5d;
 
 
 }
@@ -58,6 +99,7 @@ figure img{
 }
 figure figcaption
 {
+    color: white;
     text-align:center;
 }
 
@@ -73,14 +115,15 @@ figure figcaption
 
 }
 
-a
-{
+a{
     text-decoration: none;
     color: white;
     margin-left: 20px;
     padding: 5px;
 }
-
+section a{
+    color:black;
+}
 
 .accueil
 {
@@ -103,6 +146,23 @@ a
     color:white;
 
 }
+.tableArtistes{
+    
+    margin: auto ;  
+    width: 350px;  
+    margin-bottom: 30px;
+        
+}
+
+table a{
+    padding: 5px  25px  5px  15px;
+}
+table,tr, th, td {
+    text-align: center;
+    border: 1px solid black;
+    padding: 5px  15px  5px  15px;
+}
+
 
 .arrondisement
 {
