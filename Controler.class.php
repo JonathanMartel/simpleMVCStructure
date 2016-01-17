@@ -44,6 +44,19 @@ class Controler
 
                     break;
                     
+                case 'listeModifierArtistes':
+                        $this->listeModifierArtistes();
+                    break;
+                case 'listeEliminerArtistes':
+                        $this->listeEliminerArtistes();
+                    break;
+                case 'modifierArtistes':
+                        $this->modifierArtistes($_GET['idArtiste']);
+                    break;
+                case 'eliminerArtistes':
+                        $this->eliminerArtistes($_GET['idArtiste']);
+                    break;
+                                    
                 case 'inscription':
                     $this->inscription();
                     break;
@@ -52,7 +65,7 @@ class Controler
                     break;
                 case 'recherche':
                     $this->rechercheOeuvre();
-
+                    break;
                 
                 case 'arrondissements':
                     if($_GET['idArrondissement'] !='')
@@ -114,7 +127,7 @@ class Controler
 		}
 		
 		
-          private function artistes()
+         private function artistes()
 		{
             $oArtistes = new MArtistes('', '', '' ,'', '', '');
             $oOeuvres = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
@@ -128,6 +141,46 @@ class Controler
             $oVue->afficheFooter();
     
 		}
+    
+        private function listeModifierArtistes()
+		{
+            $oArtistes = new MArtistes('', '', '' ,'', '', '');
+            $aArtistes = $oArtistes::listeArtistes();
+              
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
+			$oVue->afficheListeModifierArtistes($aArtistes);
+            $oVue->afficheFooter();
+    
+		}
+        private function listeEliminerArtistes()
+		{
+            $oArtistes = new MArtistes('', '', '' ,'', '', '');
+            $aArtistes = $oArtistes::listeArtistes();
+              
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
+			$oVue->afficheListeEliminerArtistes($aArtistes);
+            $oVue->afficheFooter();
+    
+		}
+    
+        private function modifierArtiste($idArt)
+        {
+            
+            
+            
+            
+        }
+    
+        private function eliminerArtiste($idArt)
+        {
+            
+            
+            
+        }
     
 		private function arrondissements()
 		{

@@ -13,7 +13,7 @@
 	{
 		$_GET['idOeuvre'] = '';
 	}
-
+    
     if(empty($_GET['idArrondissement']))
     {
 		$_GET['idArrondissement'] = '';
@@ -38,5 +38,10 @@
 	{
 		$_GET['action'] = '';
 	}
+    if(empty($_GET['idArtiste']))
+    {
+		$_GET['idArtiste'] = '';
+	}
+    
 
 ?>
