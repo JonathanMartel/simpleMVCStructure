@@ -414,6 +414,44 @@ class MOeuvres {
         
     }
     
+    /**
+     * Fonction d'ajout d'adresse
+	 * @access public static
+     * @author Gautier Piatek
+	 * @return none
+	 */
+    public static function ajouterAdresse($adresse, $batiment, $parc, $latitude, $longitude) {
+        self::$database->query("INSERT INTO adresse VALUES ('', :adresse, :batiment, :parc, :latitude, :longitude)");
+        //On lie les paramètres auxvaleurs
+        
+        self::$database->bind(':adresse', $adresse);
+        self::$database->bind(':batiment', $batiment);
+        self::$database->bind(':parc', $parc);
+        self::$database->bind(':latitude', $latitude);
+        self::$database->bind(':longitude', $longitude);
+       
+        return(self::$database->execute());
+    }
+    
+    /**
+     * Fonction d'ajout d'adresse
+	 * @access public static
+     * @author Gautier Piatek
+	 * @return none
+	 */
+    public static function recupererIdAdresse($adresse) {
+        
+        self::$database->query("SELECT adresse.idAdresse WHERE adresse.adresseCiv = ':adresse'");
+        //On lie les paramètres auxvaleurs
+        
+        self::$database->bind(':adresse', $adresse);
+        self::$database->bind(':batiment', $batiment);
+        self::$database->bind(':parc', $parc);
+        self::$database->bind(':latitude', $latitude);
+        self::$database->bind(':longitude', $longitude);
+       
+        return(self::$database->execute());
+    }
     
     /**
 	 * @access public static

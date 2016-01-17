@@ -700,6 +700,12 @@ class VueDefaut
                             <label>Technique (anglais) : </label> <input type="text" name="techniqueAng"><br>
                             <label>Description : </label> <input type="text" name="description"><br>
                             <label>Validation : </label> <input type="radio" checked name="validation" value="1"> Oui <input type="radio" name="validation" value="0"> Non<br>
+                            
+                            <label>Adresse Civique : </label> <input type="text" name="adresse"><br>
+                            <label>Batiment : </label> <input type="text" name="batiment"><br>
+                            <label>Parc : </label> <input type="text" name="parc"><br>
+                            <label>Latitude : </label> <input type="text" name="latitude"><br>
+                            <label>Longitude : </label> <input type="text" name="longitude"><br>
                             <label>Arrondissement : </label> <select name="arrondissement">
                                 <option value="nonChoisi">Choisir un Arrondissement</option>
                             <?php
@@ -708,7 +714,6 @@ class VueDefaut
                                 }
                             ?>
                            </select><br>
-                               <label>Adresse : </label> <input type="text" name="adresse"><br>
                                <label>Artiste/Collectif : </label> <select name="artiste">
                                 <option value="nonChoisi">Choisir un Artiste/Collectif</option>
                             <?php

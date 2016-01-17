@@ -73,7 +73,7 @@ class MCategories
 			$lignes = self::$database->resultset();
 			foreach ($lignes as $ligne) 
 			{
-				$uneCategorie = new MCategories('', $ligne['nomCategorie'], $ligne['nomCatAng']);
+				$uneCategorie = new MCategories($ligne['idCategorie'], $ligne['nomCategorie'], $ligne['nomCatAng']);
 				$categories[] = $uneCategorie;
 			}
 			return $categories;
@@ -169,7 +169,7 @@ class MSousCategories extends MCategories {
 			$lignes = self::$database->resultset();
 			foreach ($lignes as $ligne) 
 			{
-				$uneSousCategorie = new MSousCategories('', $ligne['nomSousCat'], $ligne['nomSousCatAng'], $ligne['idCategorie']);
+				$uneSousCategorie = new MSousCategories($ligne['idSousCategorie'], $ligne['nomSousCat'], $ligne['nomSousCatAng'], $ligne['idCategorie']);
 				$SousCategories[] = $uneSousCategorie;
 			}
 			return $SousCategories;
