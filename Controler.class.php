@@ -92,7 +92,9 @@ class Controler
                 case 'supprimerCategories':
                         $this->supprimerCategories($_GET['idCategorie']);
                     break;
-                 
+                case 'supprimerOeuvres':
+                        $this->supprimerOeuvres($_GET['idOeuvre']);
+                    break; 
                     
                     
                     
@@ -295,10 +297,20 @@ class Controler
     
         private function modifierArtiste($idArt)
         {   
+            $oArtiste = new MArtistes('', '', '', '', '');
+            
+            
         }
     
-        private function supprimerArtiste($idArt)
+        private function supprimerArtistes($idArtiste)
         {   
+            $oArtiste = new MArtistes('', '', '', '', '', '');
+            $oArtiste->supprimerArtiste($idArtiste);
+            
+            $oVue = new VueDefaut();
+            $oVue->afficheHeaderAdmin();
+            $oVue->afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message);
+            $oVue->afficheFooter();
         }
         
         private function modifierUtilisateur($idUtil)
@@ -313,8 +325,15 @@ class Controler
         {   
         }
     
-        private function supprimerOeuvre($idOeuvre)
+        private function supprimerOeuvres($idOeuvre)
         {   
+            $oOeuvre = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $oOeuvre->supprimerOeuvre($idOeuvre);
+            
+            $oVue = new VueDefaut();
+            $oVue->afficheHeaderAdmin();
+            $oVue->afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message);
+            $oVue->afficheFooter();
         }
     
         
