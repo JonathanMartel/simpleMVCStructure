@@ -139,8 +139,8 @@ class Controler
                  	$this->oeuvresParArr();
                  	break;
 
-                case 'admin':
-                    $this->admin();
+                case 'ajoutOeuvre':
+                    $this->ajoutOeuvre();
                     break;
 
                 case 'ajouterUnArtiste':
@@ -434,7 +434,7 @@ class Controler
                 
         }
     
-        private function admin()
+        private function ajoutOeuvre()
         {
             $erreurTitre ='';
             $message ='';

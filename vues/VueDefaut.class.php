@@ -681,7 +681,7 @@ class VueDefaut
                                 <li>
                                     <a href="#">OEUVRES</a>
                                        <ul>
-                                            <li><a href="#">Ajouter</a></li>
+                                            <li><a href="index.php?requete=ajoutOeuvre">Ajouter</a></li>
                                             <li><a href="index.php?requete=listeModifierOeuvres">Modifier</a></li>
                                             <li><a href="index.php?requete=listeSupprimerOeuvres">Supprimer</a></li>
                                         </ul>
@@ -740,7 +740,7 @@ class VueDefaut
                    <div class="twelvecol">
                        <h3>Ajouter une oeuvre</h3>
 
-                       <form method="POST" action="index.php?requete=admin&action=ajoutOeuvre">
+                       <form method="POST" action="index.php?requete=ajoutOeuvre&action=ajoutOeuvre">
                            
                             <label>Titre : </label> <input type="text" name="titre"><span><?php echo $erreurTitre;?><br>
                             <label>Titre (Variante) : </label> <input type="text" name="titreVariante"><br>
