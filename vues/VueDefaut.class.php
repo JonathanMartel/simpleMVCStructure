@@ -422,14 +422,14 @@ class VueDefaut
                     echo "<ul>";
                     $titreOeuvre = $oeuvre->getTitreOeuvre();
                     $idOeuvre = $oeuvre->getIdOeuvre();
-                    echo "<li>" . $titreOeuvre . "</li>";
+                   // echo "<li>" . $titreOeuvre . "</li>";
                     echo "<li><a href='index.php?requete=artistes&idOeuvre=" . $idOeuvre . "'>" . $titreOeuvre . "</a></li>";
                     $compteurContenu = $compteurContenu+1;
                 }
                 
                 $titreOeuvre = $oeuvre->getTitreOeuvre();
                 $idOeuvre = $oeuvre->getIdOeuvre();
-                echo "<li>" . $titreOeuvre . "</li>";
+                //echo "<li>" . $titreOeuvre . "</li>";
                 echo "<li><a href='index.php?requete=artistes&idOeuvre=" . $idOeuvre . "'>" . $titreOeuvre . "</a></li>";
                 }
                 
@@ -547,9 +547,9 @@ class VueDefaut
 
         foreach($aCategories as $categorie)
         {
-            $id_Categorie= $categorie->getidCategorie();
+            $id_Categorie= $categorie->getIdCategorie();
             //$categorie->afficher();
-            $nom = $categorie->getnomCategorie();
+            $nom = $categorie->getNomCategorie();
 
             echo "<div class=' accordion sixcol ";
 
@@ -674,8 +674,8 @@ class VueDefaut
                                     <a href="#">OEUVRES</a>
                                        <ul>
                                             <li><a href="#">Ajouter</a></li>
-                                            <li><a href="#">Modifier</a></li>
-                                            <li><a href="#">Supprimer</a></li>
+                                            <li><a href="index.php?requete=listeModifierOeuvres">Modifier</a></li>
+                                            <li><a href="index.php?requete=listeSupprimerOeuvres">Supprimer</a></li>
                                         </ul>
                                 </li>
 
@@ -684,7 +684,7 @@ class VueDefaut
                                         <ul>
                                             <li><a href="#">Ajouter</a></li>
                                             <li><a href="index.php?requete=listeModifierArtistes">Modifier</a></li>
-                                            <li><a href="index.php?requete=listeEliminerArtistes">Supprimer</a></li>
+                                            <li><a href="index.php?requete=listeSupprimerArtistes">Supprimer</a></li>
                                         </ul>
                                 </li>
 
@@ -692,8 +692,8 @@ class VueDefaut
                                     <a href="#">CATEGORIES</a>
                                         <ul>
                                             <li><a href="#">Ajouter</a></li>
-                                            <li><a href="#">Modifier</a></li>
-                                            <li><a href="#">Supprimer</a></li>
+                                            <li><a href="index.php?requete=listeModifierCategories">Modifier</a></li>
+                                            <li><a href="index.php?requete=listeSupprimerCategories">Supprimer</a></li>
                                         </ul>
                                 </li>
 
@@ -701,8 +701,8 @@ class VueDefaut
                                     <a href="#">UTILISATEURS</a>
                                         <ul>
                                             <li><a href="#">Ajouter</a></li>
-                                            <li><a href="#">Modifier</a></li>
-                                            <li><a href="#">Supprimer</a></li>
+                                            <li><a href="index.php?requete=listeModifierUtilisateurs">Modifier</a></li>
+                                            <li><a href="index.php?requete=listeSupprimerUtilisateurs">Supprimer</a></li>
                                         </ul>
                                 </li>
                             </ul>
@@ -801,8 +801,8 @@ class VueDefaut
     
     
     
-        /**
-     * Affiche catégories
+     /**
+     * Affiche Liste Artistes
      * @access public
      * @author German Mahecha
      * @version 1.0
@@ -817,7 +817,7 @@ class VueDefaut
                 echo "<table>";
                 echo "<tr>";
                 echo "<th></th>";
-                echo "<th>Nom Artiste</th>";
+                echo "<th>Artiste</th>";
                 echo "<th>Modifier</th>	";
                 echo "</tr>";
                     foreach($aArtistes as $artiste) {
@@ -842,7 +842,15 @@ class VueDefaut
        echo "</div>";
     }
     
-    public function afficheListeEliminerArtistes($aArtistes){
+    
+        /**
+     * Affiche Liste Artistes
+     * @access public
+     * @author German Mahecha
+     * @version 1.0
+     */
+    
+    public function afficheListeSupprimerArtistes($aArtistes){
         ?>
             <h2>Eliminer nos <span class="artistes">artistes</span> et <span class="collectif">collectifs</span></h2>
             <section class='contenu container'>
@@ -851,8 +859,8 @@ class VueDefaut
                 echo "<table>";
                 echo "<tr>";
                 echo "<th></th>";
-                echo "<th>Nom Artiste</th>";
-                echo "<th>Eliminer</th>";
+                echo "<th>Artiste</th>";
+                echo "<th>Supprimer</th>";
                 echo "</tr>";
                     foreach($aArtistes as $artiste) {
                         echo "<tr>";
@@ -875,7 +883,226 @@ class VueDefaut
        echo "</div>";
     }
     
+     /**
+     * Affiche Liste des utilisateurs
+     * @access public
+     * @author German Mahecha
+     * @version 1.0
+     */
+    
+    public function afficheListeModifierUtilisateurs($aUtilisateurs){
+        ?>
+            <h2>Modifier nos utilisateurs</h2>
+            <section class='contenu container'>
+                <div class='tableArtistes'>
+        <?php
+                echo "<table>";
+                echo "<tr>";
+                echo "<th></th>";
+                echo "<th>Utilisateur</th>";
+                echo "<th>Modifier</th>	";
+                echo "</tr>";
+                foreach($aUtilisateurs as $utilisateur) {
+                        echo "<tr>";
+                        $idUtilisateur = $utilisateur->getIdUtilisateur();
+                        echo "<td><span class='icon-user'></span>";
+                        echo "<td>" .$utilisateur->getLoginUtilisateur()."</td>" ;
+                        echo "<td><a href='index.php?requete=modifierUtilisateur&idUtilisateur=$idUtilisateur'><span class='icon-edit'></span></a></td>";
+                        echo "</tr>";
+                }
+                echo "</table>";
+                echo "</div>";
+            echo "</section> ";
+       echo "</div>";
+    }
+    
+    /**
+     * Affiche Liste des utilisateurs
+     * @access public
+     * @author German Mahecha
+     * @version 1.0
+     */
+    
+    public function afficheListeSupprimerUtilisateurs($aUtilisateurs){
+        ?>
+            <h2>Eliminer nos utilisateurs</h2>
+            <section class='contenu container'>
+                <div class='tableArtistes'>
+        <?php
+                echo "<table>";
+                echo "<tr>";
+                echo "<th></th>";
+                echo "<th>Utilisateur</th>";
+                echo "<th>Supprimer</th>	";
+                echo "</tr>";
+                
+                foreach($aUtilisateurs as $utilisateur) {
+                        echo "<tr>";
+                        $idUtilisateur = $utilisateur->getIdUtilisateur();
+                        echo "<td><span class='icon-user'></span>";
+                        echo "<td>" .$utilisateur->getLoginUtilisateur()."</td>" ;
+                        echo "<td><a href='index.php?requete=eliminerUtilisateur&idUtilisateur=$idUtilisateur'><span class='icon-remove-user'></span></a></td>";
+                        echo "</tr>";
+                }
+                echo "</table>";
+                echo "</div>";
+            echo "</section> ";
+       echo "</div>";
+    }
+    
 
+    
+    /**
+     * Affiche Liste des categories
+     * @access public
+     * @author German Mahecha
+     * @version 1.0
+     */
+    
+    
+    public function afficheListeModifierCategories($aCategories){
+        ?>
+            <h2>Modifier nos categories</h2>
+            <section class='contenu container'>
+                <div class='tableArtistes'>
+        <?php
+                echo "<table>";
+                echo "<tr>";
+                echo "<th></th>";
+                echo "<th>Categorie</th>";
+                echo "<th>Modifier</th>	";
+                echo "</tr>";
+                    foreach($aCategories as $categorie) {
+                        echo "<tr>";
+                        $idCategorie = $categorie->getIdCategorie();
+                        echo "<td><span class='icon-list'></span>";
+                        echo "<td>".$categorie->getNomCategorie()."</td>" ;
+                        echo "<td><a href='index.php?requete=modifierCategorie&idCategorie=$idCategorie'><span class='icon-edit'></span></a></td>";
+                        echo "</tr>";
+                    }
+                echo "</table>";
+                echo "</div>";
+            echo "</section> ";
+       echo "</div>";
+    }
+    
+    /**
+     * Affiche Liste des categories
+     * @access public
+     * @author German Mahecha
+     * @version 1.0
+     */
+    
+     public function afficheListeSupprimerCategories($aCategories){
+        ?>
+            <h2>Eliminer nos categories</h2>
+            <section class='contenu container'>
+                <div class='tableArtistes'>
+        <?php
+                echo "<table>";
+                echo "<tr>";
+                echo "<th></th>";
+                echo "<th>Categorie</th>";
+                echo "<th>Supprimer</th>	";
+                echo "</tr>";
+                    foreach($aCategories as $categorie) {
+                        echo "<tr>";
+                        $idCategorie = $categorie->getIdCategorie();
+                        echo "<td><span class='icon-list'></span>";
+                        echo "<td>".$categorie->getNomCategorie()."</td>" ;
+                        echo "<td><a href='index.php?requete=eliminerCategorie&idCategorie=$idCategorie'><span class='icon-erase'></span></a></td>";
+                        echo "</tr>";
+                    }
+                echo "</table>";
+                echo "</div>";
+            echo "</section> ";
+       echo "</div>";
+    }
+    
+    
+    
+    public function afficheListeModifierOeuvres($aOeuvres){
+        ?>
+            <h2>Modifier nos Oeuvres</h2>
+            <section class='contenu container'>
+                <div class='tableArtistes'>
+        <?php
+                echo "<table>";
+                echo "<tr>";
+                echo "<th></th>";
+                echo "<th>Titre</th>";
+                echo "<th>Artiste</th>";
+                echo "<th>Arrondissement</th>";
+                echo "<th>Modifier</th>	";
+                echo "</tr>";
+                    foreach($aOeuvres as $oeuvre) {
+                        echo "<tr>";
+                        $idOeuvre = $oeuvre->getIdOeuvre();
+                        echo "<td><span class='icon-blackboard'></span>";
+                        echo "<td>".$oeuvre->getTitreOeuvre()."</td>" ;
+                                               
+                       if($oeuvre->getCollectif() =="") {
+                          echo "<td>".$oeuvre->getNomArtiste()." ".$oeuvre->getPrenomArtiste()."</td>" ;
+                       } else {
+                           echo "<td>".$oeuvre->getCollectif()."</td>" ;
+                       }
+                       
+                        echo "<td>".$oeuvre->getNomArrondissement()."</td>" ;
+                        echo "<td><a href='index.php?requete=modifierOeuvre&idOeuvre=$idOeuvre'><span class='icon-edit'></span></a></td>";
+                        echo "</tr>";
+                    }
+                echo "</table>";
+                echo "</div>";
+            echo "</section> ";
+       echo "</div>";
+    }
+    
+    /**
+     * Affiche Liste des categories
+     * @access public
+     * @author German Mahecha
+     * @version 1.0
+     */
+    
+     public function afficheListeSupprimerOeuvres($aOeuvres){
+        ?>
+            <h2>Eliminer nos categories</h2>
+            <section class='contenu container'>
+                <div class='tableArtistes'>
+        <?php
+                echo "<table>";
+                echo "<tr>";
+                echo "<th></th>";
+                echo "<th>Titre</th>";
+                echo "<th>Artiste</th>";
+                echo "<th>Arrondissement</th>";
+                echo "<th>Supprimer</th>	";
+                echo "</tr>";
+                    foreach($aOeuvres as $oeuvre) {
+                        echo "<tr>";
+                        $idOeuvre = $oeuvre->getIdOeuvre();
+                        echo "<td><span class='icon-blackboard'></span>";
+                        echo "<td>".$oeuvre->getTitreOeuvre()."</td>" ;
+                                               
+                       if($oeuvre->getCollectif() =="") {
+                          echo "<td>".$oeuvre->getNomArtiste()." ".$oeuvre->getPrenomArtiste()."</td>" ;
+                       } else {
+                           echo "<td>".$oeuvre->getCollectif()."</td>" ;
+                       }
+                       echo "<td>".$oeuvre->getNomArrondissement()."</td>" ;
+                       echo "<td><a href='index.php?requete=supprimerOeuvre&idOeuvre=$idOeuvre'><span class='icon-erase'></span></a></td>";
+                       echo "</tr>";
+                    }
+                echo "</table>";
+                echo "</div>";
+            echo "</section> ";
+       echo "</div>";
+    }
+    
+    
+    
+    
+    
         //private function rechercheOeuvreParCat()
        // {
             
