@@ -47,18 +47,18 @@ class MCategories
 	 * @access public
 	 * @return Int
 	 */
-	public function getidCategorie() 
+	public function getIdCategorie() 
 	{
 		return $this->idCategorie;		
 			
 	}
     
-    public function getnomCategorie() 
+    public function getNomCategorie() 
 	{
 		return $this->nomCategorie;				
 	}
     
-    public function getnomCatAng() 
+    public function getNomCatAng() 
 	{
 		return $this->nomCatAng;				
     }
@@ -73,7 +73,7 @@ class MCategories
 			$lignes = self::$database->resultset();
 			foreach ($lignes as $ligne) 
 			{
-				$uneCategorie = new MCategories('', $ligne['nomCategorie'], $ligne['nomCatAng']);
+				$uneCategorie = new MCategories($ligne['idCategorie'], $ligne['nomCategorie'], $ligne['nomCatAng']);
 				$categories[] = $uneCategorie;
 			}
 			return $categories;

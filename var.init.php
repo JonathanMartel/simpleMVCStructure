@@ -33,7 +33,7 @@
     {
         $oeuvres = '';
     }
-
+    
     if(empty($_GET['action']))
 	{
 		$_GET['action'] = '';
@@ -41,6 +41,10 @@
     if(empty($_GET['idArtiste']))
     {
 		$_GET['idArtiste'] = '';
+	}
+    if(empty($_GET['idUtilisateur']))
+    {
+		$_GET['idUtilisateur'] = '';
 	}
     
 

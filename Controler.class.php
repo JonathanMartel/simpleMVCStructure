@@ -47,16 +47,55 @@ class Controler
                 case 'listeModifierArtistes':
                         $this->listeModifierArtistes();
                     break;
-                case 'listeEliminerArtistes':
-                        $this->listeEliminerArtistes();
+                case 'listeSupprimerArtistes':
+                        $this->listeSupprimerArtistes();
                     break;
+                
+                case 'listeModifierUtilisateurs':
+                        $this->listeModifierUtilisateurs();
+                    break;
+                case 'listeSupprimerUtilisateurs':
+                        $this->listeSupprimerUtilisateurs();
+                    break;
+                case 'listeModifierCategories':
+                        $this->listeModifierCategories();
+                    break;
+                case 'listeSupprimerCategories':
+                        $this->listeSupprimerCategories();
+                    break;  
+                case 'listeModifierOeuvres':
+                        $this->listeModifierOeuvres();
+                    break;
+                case 'listeSupprimerOeuvres':
+                        $this->listeSupprimerOeuvres();
+                    break;   
+                    
+                    
+                    
+                    
+                    
                 case 'modifierArtistes':
                         $this->modifierArtistes($_GET['idArtiste']);
                     break;
-                case 'eliminerArtistes':
-                        $this->eliminerArtistes($_GET['idArtiste']);
+                case 'supprimerArtistes':
+                        $this->supprimerArtistes($_GET['idArtiste']);
                     break;
-                                    
+                case 'modifierUtilisateurs':
+                        $this->modifierUtilisateurs($_GET['idUtilisateur']);
+                    break;
+                case 'supprimerUtilisateurs':
+                        $this->supprimerUtilisateurs($_GET['idUtilisateur']);
+                    break;
+                case 'modifierCategories':
+                        $this->modifierCategories($_GET['idCategorie']);
+                    break;
+                case 'supprimerCategories':
+                        $this->supprimerCategories($_GET['idCategorie']);
+                    break;
+                 
+                    
+                    
+                    
                 case 'inscription':
                     $this->inscription();
                     break;
@@ -154,7 +193,7 @@ class Controler
             $oVue->afficheFooter();
     
 		}
-        private function listeEliminerArtistes()
+        private function listeSupprimerArtistes()
 		{
             $oArtistes = new MArtistes('', '', '' ,'', '', '');
             $aArtistes = $oArtistes::listeArtistes();
@@ -162,26 +201,113 @@ class Controler
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
             $oVue->afficheMoteurRecherche();
-			$oVue->afficheListeEliminerArtistes($aArtistes);
+			$oVue->afficheListeSupprimerArtistes($aArtistes);
             $oVue->afficheFooter();
     
 		}
     
+        private function listeModifierUtilisateurs()
+		{
+            $oUtilisateurs = new MUtilisateurs('','','','','','');
+            $aUtilisateurs = $oUtilisateurs::listeUtilisateurs();
+              
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
+			$oVue->afficheListeModifierUtilisateurs($aUtilisateurs);
+            $oVue->afficheFooter();
+    
+		}
+        private function listeSupprimerUtilisateurs()
+		{
+            $oUtilisateurs = new MUtilisateurs('', '', '' ,'', '', '');
+            $aUtilisateurs = $oUtilisateurs::listeUtilisateurs();
+              
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
+			$oVue->afficheListeSupprimerUtilisateurs($aUtilisateurs);
+            $oVue->afficheFooter();
+    
+		}
+    
+        private function listeModifierCategories()
+		{
+            $oCategories = new MCategories('','','');
+            $aCategories = $oCategories::listeCategories();
+              
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
+			$oVue->afficheListeModifierCategories($aCategories);
+            $oVue->afficheFooter();
+    
+		}
+        private function listeSupprimerCategories()
+		{
+            $oCategories = new MCategories('','','');
+            $aCategories = $oCategories::listeCategories();
+              
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
+			$oVue->afficheListeSupprimerCategories($aCategories);
+            $oVue->afficheFooter();
+    
+		}
+    
+        private function listeModifierOeuvres()
+		{
+            $oOeuvres = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $aOeuvres = $oOeuvres::listeOeuvres();
+              
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
+			$oVue->afficheListeModifierOeuvres($aOeuvres);
+            $oVue->afficheFooter();
+    
+		}
+        private function listeSupprimerOeuvres()
+		{
+            $oOeuvres = new MOeuvres ('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $aOeuvres = $oOeuvres::listeOeuvres();
+              
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
+			$oVue->afficheListeSupprimerOeuvres($aOeuvres);
+            $oVue->afficheFooter();
+    
+		}
+    
+    
+    
         private function modifierArtiste($idArt)
-        {
-            
-            
-            
-            
+        {   
         }
     
-        private function eliminerArtiste($idArt)
-        {
-            
-            
-            
+        private function supprimerArtiste($idArt)
+        {   
+        }
+        
+        private function modifierUtilisateur($idUtil)
+        {   
         }
     
+        private function supprimerUtilisateur($idUtil)
+        {   
+        }
+    
+        private function modifierOeuvre($idOeuvre)
+        {   
+        }
+    
+        private function supprimerOeuvre($idOeuvre)
+        {   
+        }
+    
+        
 		private function arrondissements()
 		{
 
