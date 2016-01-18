@@ -699,7 +699,7 @@ class VueDefaut
                                 <li>
                                     <a href="#">UTILISATEURS</a>
                                         <ul>
-                                            <li><a href="#">Ajouter</a></li>
+                                            <li><a href="index.php?requete=ajouterUnArtiste">Ajouter</a></li>
                                             <li><a href="index.php?requete=listeModifierUtilisateurs">Modifier</a></li>
                                             <li><a href="index.php?requete=listeSupprimerUtilisateurs">Supprimer</a></li>
                                         </ul>
@@ -1100,6 +1100,42 @@ class VueDefaut
                 echo "</div>";
             echo "</section> ";
        echo "</div>";
+    }
+
+
+        /**
+     * Affiche la page pour ajouter un artiste
+     * @access public
+     * @auteure: Jorge Blanco
+     */
+    public function ajouterUnArtiste() 
+    {
+        ?>
+        <div>
+        <h2 id="titre">Ajouter un artiste</h2>
+        <form class="formulaire"action="">
+            <fieldset>
+            Prénom:<br>
+            <input type="text" name="prenom" >
+            <br> <br>
+            Nom:<br>
+            <input type="text" name="nom" >
+            <br> <br>
+            Collectif:<br>
+            <input  type="text" name="Collectif" >
+             <br> <br>
+            Prendre une photo:<br><br>
+            <input type="button" name="courriel" value = "prendre une photo" >
+            <br> <br>
+            
+            <input type="submit" value="Envoyer" id="button">
+            <fieldset>
+        </form>  
+        </fieldset>
+        </fieldset>
+        </div>          
+        <?php
+
     }
     
     
