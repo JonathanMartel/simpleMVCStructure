@@ -444,6 +444,10 @@ class MOeuvres {
 
         return(self::$database->dernierId());
     }
+
+
+
+
     
     /**
 	 * @access public static
