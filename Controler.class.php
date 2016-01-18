@@ -317,8 +317,15 @@ class Controler
         {   
         }
     
-        private function supprimerUtilisateur($idUtil)
+        private function supprimerUtilisateurs($idUtil)
         {   
+            $oUtilisateur = new MUtilisateurs('', '', '','', '', '');
+            $oUtilisateur->supprimerUtilisateurs($idUtil);
+
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheInscription();
+            $oVue->afficheFooter();
         }
     
         private function modifierOeuvre($idOeuvre)

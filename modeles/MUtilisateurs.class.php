@@ -126,6 +126,15 @@ class MUtilisateurs {
 
     	return(self::$database->execute());
     }
+
+
+    public static function supprimerUtilisateurs($idUtilisateur)
+    {
+    	self::$database->query("DELETE FROM utilisateur_enregistre WHERE idUtilisateur=:idUtilisateur");
+    	self::$database->bind(':idUtilisateur', $idUtilisateur);
+
+    	return(self::$database->execute());
+    }
     
 }
 
