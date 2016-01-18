@@ -138,15 +138,18 @@ class VueDefaut
      * Affiche la page d'inscription
      * @access public
      * @auteure: Thuy Tien Vo
+     * @modifie: Jorge Blanco
      */
     public function afficheInscription() 
     {
         ?>
         <div>
         <h2 id="titre">Formulaire d'inscription</h2>
-        <form class="formulaire"action="">
+        <form method="POST" class="formulaire" action="index.php?requete=inscription&action=ajoutUtilisateur">
+        
             <fieldset>
-            Prénom:<br>
+                <!-- MODIFICATION TEMPORAIRE DU FORMULAIRE Jorge -->
+            <!-- Prénom:<br>
             <input type="text" name="prenom" >
             <br> <br>
             Nom:<br>
@@ -160,7 +163,7 @@ class VueDefaut
             <input type="radio" name="sex" value="female"> Female<br><br>
             Courriel:<br>
             <input type="text" name="courriel" placeholder="exemple@domaine.com" >
-            <br> <br>
+            <br> <br> -->
             Biographie:<br>
             <textarea rows="8" cols="60" name="bio"placeholder="Entrer un text ici..."></textarea>
             <br><br>
@@ -168,10 +171,16 @@ class VueDefaut
             <input type="text" name="utilisateur" >
             <br><br>
             Mot de passe:<br>
-            <input type="text" name="motDePasse" >
+            <input type="password" name="motDePasse" >
             <br><br>
             Confirmer le mot de passe:<br>
-            <input type="text" name="motDePasse" value="">
+            <input type="password" name="motDePasse" value="">
+            <br><br>
+            score:<br>
+            <input type="text" name="score" value="">
+            <br><br>
+            photo:<br>
+            <input type="text" name="photoUtilisateur" value="">
             <br><br>
             <input type="submit" value="Envoyer" id="button">
             <fieldset>
@@ -681,7 +690,7 @@ class VueDefaut
                                 <li>
                                     <a href="#">ARTISTES</a>
                                         <ul>
-                                            <li><a href="#">Ajouter</a></li>
+                                            <li><a href="index.php?requete=ajouterUnArtiste">Ajouter</a></li>
                                             <li><a href="index.php?requete=listeModifierArtistes">Modifier</a></li>
                                             <li><a href="index.php?requete=listeSupprimerArtistes">Supprimer</a></li>
                                         </ul>
@@ -699,7 +708,7 @@ class VueDefaut
                                 <li>
                                     <a href="#">UTILISATEURS</a>
                                         <ul>
-                                            <li><a href="index.php?requete=ajouterUnArtiste">Ajouter</a></li>
+                                            <li><a href="index.php?requete=afficheInscriptionAdmin">Ajouter</a></li>
                                             <li><a href="index.php?requete=listeModifierUtilisateurs">Modifier</a></li>
                                             <li><a href="index.php?requete=listeSupprimerUtilisateurs">Supprimer</a></li>
                                         </ul>
@@ -1128,6 +1137,58 @@ class VueDefaut
             <input type="button" name="courriel" value = "prendre une photo" >
             <br> <br>
             
+            <input type="submit" value="Envoyer" id="button">
+            <fieldset>
+        </form>  
+        </fieldset>
+        </fieldset>
+        </div>          
+        <?php
+
+    }
+
+
+
+    /**
+     * Affiche la page d'inscription - admin
+     * @access public
+     * @auteure: Thuy Tien Vo
+     * @modifie: Jorge Blanco
+     */
+    public function afficheInscriptionAdmin() 
+    {
+        ?>
+        <div>
+        <h2 id="titre">Formulaire d'inscription</h2>
+        <form class="formulaire"action="">
+            <fieldset>
+            Prénom:<br>
+            <input type="text" name="prenom" >
+            <br> <br>
+            Nom:<br>
+            <input type="text" name="nom" >
+            <br> <br>
+            Date de naissance:<br>
+            <input  type="date" name="dateDeNaissance" placeholder="jj/mm/aaaa">
+             <br> <br>
+            Sexe:<br><br>
+            <input type="radio" name="sex" value="male" checked> Male
+            <input type="radio" name="sex" value="female"> Female<br><br>
+            Courriel:<br>
+            <input type="text" name="courriel" placeholder="exemple@domaine.com" >
+            <br> <br>
+            Biographie:<br>
+            <textarea rows="8" cols="60" name="bio"placeholder="Entrer un text ici..."></textarea>
+            <br><br>
+             Nom d'utilisateur:<br> 
+            <input type="text" name="utilisateur" >
+            <br><br>
+            Mot de passe:<br>
+            <input type="text" name="motDePasse" >
+            <br><br>
+            Confirmer le mot de passe:<br>
+            <input type="text" name="motDePasse" value="">
+            <br><br>
             <input type="submit" value="Envoyer" id="button">
             <fieldset>
         </form>  

@@ -105,6 +105,27 @@ class MUtilisateurs {
 		}
 		return $utilisateurs;
 	}
+
+    /**
+	 * Fonction d'ajout d'un utilisateur enregistre
+	 * @return none
+     * @author Jorge Blanco
+     * @version 1.0
+     * 
+     */
+
+	    public static function ajoutUtilisateur($loginUtilisateur, $passUtilisateur, $bio, $score, $photoUtilisateur)
+    {
+    	self::$database->query("INSERT INTO utilisateur_enregistre VALUES ('', :loginUtilisateur, :passUtilisateur, :bio, :score, :photoUtilisateur)");
+
+    	self:: $database->bind(':loginUtilisateur', $loginUtilisateur);
+    	self:: $database->bind(':passUtilisateur', $passUtilisateur);
+    	self:: $database->bind(':bio', $bio);
+    	self:: $database->bind(':score', $score);
+    	self:: $database->bind(':photoUtilisateur', $photoUtilisateur);
+
+    	return(self::$database->execute());
+    }
     
 }
 

@@ -99,6 +99,12 @@ class Controler
                 case 'inscription':
                     $this->inscription();
                     break;
+
+                case 'afficheInscriptionAdmin':
+                    $this->afficheInscriptionAdmin();
+                    break;
+
+            
                 case 'connexion':
                     $this->connexion();
                     break;
@@ -134,6 +140,7 @@ class Controler
                 case 'admin':
                     $this->admin();
                     break;
+
                 case 'ajouterUnArtiste':
                     $this->ajouterUnArtiste();
                     break;
@@ -366,13 +373,29 @@ class Controler
     
         private function inscription()
         {
+            $erreurTitre ='';
+            $message ='';
           
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
+
+            if($_GET['action'] == 'ajoutUtilisateur') 
+            {
+                
+                $oUtilisateur = new MUtilisateurs('', '', '','', '', '');
+                $oUtilisateur->ajoutUtilisateur($_POST['utilisateur'], $mdp=MD5($_POST['motDePasse']),  $_POST['bio'], $_POST['score'], $_POST['photoUtilisateur']);
+                $message = "Utilisateur ajoutée.";
+            }
+
             $oVue->afficheInscription();
             $oVue->afficheFooter();
+
+            
             
         } 
+
+
+
 
         private function connexion()
         {
@@ -436,6 +459,18 @@ class Controler
             $oVue->afficheFooter();
 
         }
+
+        private function afficheInscriptionAdmin()
+        {
+          
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheInscriptionAdmin();
+            $oVue->afficheFooter();
+            
+        } 
+
+        
 
                 private function ajouterUnArtiste()
         {
