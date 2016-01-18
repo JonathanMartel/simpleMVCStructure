@@ -84,12 +84,13 @@ header .conteneurNav img{
 .conteneurMenu
 {
     float: right;
+    width: 75%;
 }
 
 figure{
-padding:5px;
-margin:20px;
-background-color: #ccc;
+    padding:5px;
+    margin:20px;
+    background-color: #ccc;
 
 
 }
@@ -109,11 +110,13 @@ figure figcaption
 .menu
 {
     margin: 44px 50px 0 0;
+    float: left;
 }
 
 .langue
 {
-    margin-left: 382px;
+    /*margin-left: 382px;*/
+    float: right;
 
 }
 

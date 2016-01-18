@@ -62,7 +62,7 @@ class VueDefaut
 
                             <div class="menu">
                                 <nav>
-                                    <a href="index.php?requete=accueil" class="accueil"><span class='icon-home'></span></a>
+                                    <a href="index.php?requete=accueil" class="accueil"><span class='icon-home'></span> ACCUEIL</a>
                                     <a href="index.php?requete=artistes" class="artiste"><span class='icon-man'></span> ARTISTE</a>
                                     <a href="index.php?requete=arrondissements" class="arrondisement"><span class='icon-map'></span> ARRONDISSEMENT</a>
                                     <a href="index.php?requete=categories" class="categorie"><span class='icon-list'></span> CATEGORIE</a>
@@ -885,7 +885,7 @@ class VueDefaut
                             echo "<td><span class='icon-user'></span>";
                             echo "<td>".$artiste->getPrenom()." ". $artiste->getNom()."</td>" ;
                         }
-                        echo "<td><a href='index.php?requete=eliminerArtiste&idArtiste=$idArtiste'><span class='icon-remove-user'></span></a></td>";
+                        echo "<td><a href='index.php?requete=supprimerArtistes&idArtiste=$idArtiste'><span class='icon-remove-user'></span></a></td>";
                        
                          echo "</tr>";
                     }
@@ -1102,7 +1102,7 @@ class VueDefaut
                            echo "<td>".$oeuvre->getCollectif()."</td>" ;
                        }
                        echo "<td>".$oeuvre->getNomArrondissement()."</td>" ;
-                       echo "<td><a href='index.php?requete=supprimerOeuvre&idOeuvre=$idOeuvre'><span class='icon-erase'></span></a></td>";
+                       echo "<td><a href='index.php?requete=supprimerOeuvres&idOeuvre=$idOeuvre'><span class='icon-erase'></span></a></td>";
                        echo "</tr>";
                     }
                 echo "</table>";
