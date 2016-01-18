@@ -632,10 +632,9 @@ class VueDefaut
 
                             <div class="langue">
 
-                                <a href="index.php?requete=inscription" class="inscription">S'INSCRIRE</a>
                                 <a href="index.php?requete=connexion" class="connexion">SE CONNECTER</a>
                                 <a href="#">FR/EN</a>
-                                <a href="index.php?requete=accueil" class="accueil">ACCUEIL</a>
+                                <a href="index.php?requete=accueil" class="accueil"><span class="icon-home"></span>ACCUEIL</a>
          
                             </div>
 
@@ -657,7 +656,7 @@ class VueDefaut
      * @version 1.0
      * 
      */
-    public function afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre) 
+    public function afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message) 
 
     {   
         
@@ -788,8 +787,7 @@ class VueDefaut
                                <label>Matériaux : </label> <input type="text" name="materiaux"><br>
                                <label>Matériaux (anglais) : </label> <input type="text" name="materiauxAng"><br><br>
                             
-                            <input type="hidden" name="validationAjout" value="<?php echo $validationAjout; ?>"/>
-                            <input type="submit" name="sauvegarder" value="Valider">
+                            <input type="submit" name="sauvegarder" value="Valider"> <span><?php echo $message; ?></span>
                        </form>
 
                    </div>
