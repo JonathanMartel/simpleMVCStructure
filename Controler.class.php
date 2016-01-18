@@ -134,6 +134,9 @@ class Controler
                 case 'admin':
                     $this->admin();
                     break;
+                case 'ajouterUnArtiste':
+                    $this->ajouterUnArtiste();
+                    break;
 
                 default:
 			    $this->accueil();
@@ -432,6 +435,14 @@ class Controler
             $oVue->afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message);
             $oVue->afficheFooter();
 
+        }
+
+                private function ajouterUnArtiste()
+        {
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->ajouterUnArtiste();
+            $oVue->afficheFooter();
         }
 
 }
