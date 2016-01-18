@@ -8,4 +8,44 @@
  *
  */
 
- // Placer votre JavaScript ici
+(function(){
+
+    window.addEventListener('load', function(){
+        var xhr;
+        var lienAjoutOeuvre = document.querySelector("#ajoutOeuvre");
+        
+        if(btnSoumettre)
+        {
+            console.log('clic');
+            lienAjoutOeuvre.addEventListener('click', function(){
+                xhr = new XMLHttpRequest();
+                xhr.open("POST", "ajaxControler.php?requete=ajoutOeuvre");
+                xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); 
+                
+                xhr.send("arrond="+ champ.value);	
+                xhr.onreadystatechange = function(e){
+                    console.log(e);
+                    if(e.target.readyState == 4 && e.target.status == 200)
+                    {
+                        console.log(e.target.responseText);
+                        var affichageAjoutOeuvre = document.querySelector(".administration");
+                        if(affichageAjoutOeuvre)
+                        {
+                            affichageAjoutOeuvre.innerHTML = e.target.responseText;
+                        }
+                    }
+                }
+            
+            
+            });
+        }
+    
+    
+    });
+
+
+
+
+
+
+})();

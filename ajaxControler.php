@@ -12,9 +12,35 @@
 
 	require_once("./config.php");
 
+/*    switch($_GET['requete'])
+    {
+        case 'ajoutOeuvre': 
+            ajoutOeuvre();
+            break;
+        
+    }
 
+    function ajoutOeuvre()
+    {
+        
+        $erreurTitre ='';
+        $message ='';
 
+        $oArtistes = new MArtistes('', '', '' ,'', '', '');
+        $aArtistes = $oArtistes::listeArtistes();
 
+        $oCategories = new MCategories('', '', '' ,'', '','');
+        $aCategories = $oCategories::listeCategories();
+
+        $oSousCategories = new MSousCategories('', '', '', '');
+        $aSousCategories = $oSousCategories::listeSousCategories();
+
+        $oArrondissements = new MArrondissement('', '');
+        $aArrondissements = $oArrondissements::listeArrondissement();
+        
+        $oVue = new VueDefaut();
+        $oVue->;
+    }*/
 
 
 

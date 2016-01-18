@@ -446,6 +446,21 @@ class MOeuvres {
     }
     
     /**
+     * Fonction qui supprime une oeuvre de la BDD
+	 * @access public static
+     * @author Gautier Piatek
+	 * @return none
+	 */
+    public static function supprimerOeuvre($idOeuvre) {
+
+        self::$database->query("DELETE FROM oeuvre WHERE idOeuvre=:idOeuvre");
+        //On lie les paramètres auxvaleurs
+        self::$database->bind(':idOeuvre', $idOeuvre);
+
+        return(self::$database->execute());
+    }
+    
+    /**
 	 * @access public static
      * @author Gautier Piatek
 	 * @return Array Tableau contenant les détails d'une oeuvre
