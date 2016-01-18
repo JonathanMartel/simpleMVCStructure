@@ -394,7 +394,7 @@ class MOeuvres {
      */
     public static function ajouterOeuvre($titre, $titreVariante, $technique, $techniqueAng, $description, $validationOeuvre, $idArrondissement, $idAdresse, $idArtiste, $idCategorie, $idSousCategorie, $nomMateriaux, $nomMateriauxAng) {
         
-        self::$database->query("INSERT INTO oeuvre VALUES ('', :titre, :titreVariante, :technique, :techniqueAng, '', :description, :validationOeuvre, :idArrondissement, :idAdresse, :idArtiste, :idCategorie, :nomMateriaux, :nomMateriauxAng)");
+        self::$database->query("INSERT INTO oeuvre VALUES ('', :titre, :titreVariante, :technique, :techniqueAng, '', :description, :validationOeuvre, :idArrondissement, :idAdresse, :idArtiste, :nomMateriaux, :nomMateriauxAng, :idCategorie, :idSousCategorie)");
         //On lie les paramètres auxvaleurs
         
         self::$database->bind(':titre', $titre);
@@ -407,6 +407,7 @@ class MOeuvres {
         self::$database->bind(':idAdresse', $idAdresse);
         self::$database->bind(':idArtiste', $idArtiste);
         self::$database->bind(':idCategorie', $idCategorie);
+        self::$database->bind(':idSousCategorie', $idSousCategorie);
         self::$database->bind(':nomMateriaux', $nomMateriaux);
         self::$database->bind(':nomMateriauxAng', $nomMateriauxAng);
        
@@ -414,6 +415,35 @@ class MOeuvres {
         
     }
     
+    /**
+     * Fonction d'ajout d'adresse
+	 * @access public static
+     * @author Gautier Piatek
+	 * @return none
+	 */
+    public static function ajouterAdresse($adresse, $batiment, $parc, $latitude, $longitude) {
+        self::$database->query("INSERT INTO adresse VALUES ('', :adresse, :batiment, :parc, :latitude, :longitude)");
+        //On lie les paramètres auxvaleurs
+        
+        self::$database->bind(':adresse', $adresse);
+        self::$database->bind(':batiment', $batiment);
+        self::$database->bind(':parc', $parc);
+        self::$database->bind(':latitude', $latitude);
+        self::$database->bind(':longitude', $longitude);
+       
+        return(self::$database->execute());
+    }
+    
+    /**
+     * Fonction qui récupère le dernier Id inséré dans la BDD
+	 * @access public static
+     * @author Gautier Piatek
+	 * @return int
+	 */
+    public static function recupererDernierId() {
+
+        return(self::$database->dernierId());
+    }
     
     /**
 	 * @access public static

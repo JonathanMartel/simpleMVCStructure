@@ -166,10 +166,13 @@ class MSousCategories extends MCategories {
 	public static function listeSousCategories() 
 		{
 			self::$database->query('SELECT * FROM souscategorie ORDER BY nomSousCat ASC');
+        
+            //self::$database->bind(':idCategorie', $idCategorie);    
+        
 			$lignes = self::$database->resultset();
 			foreach ($lignes as $ligne) 
 			{
-				$uneSousCategorie = new MSousCategories('', $ligne['nomSousCat'], $ligne['nomSousCatAng'], $ligne['idCategorie']);
+				$uneSousCategorie = new MSousCategories($ligne['idSousCategorie'], $ligne['nomSousCat'], $ligne['nomSousCatAng'], $ligne['idCategorie']);
 				$SousCategories[] = $uneSousCategorie;
 			}
 			return $SousCategories;

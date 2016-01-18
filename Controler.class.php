@@ -392,6 +392,7 @@ class Controler
         private function admin()
         {
             $erreurTitre ='';
+            $message ='';
             
             $oArtistes = new MArtistes('', '', '' ,'', '', '');
             $aArtistes = $oArtistes::listeArtistes();
@@ -411,20 +412,24 @@ class Controler
             if($_GET['action'] == 'ajoutOeuvre') {
                 $oOeuvre = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
                 
-                var_dump($_POST['titre'], $_POST['titreVariante'],  $_POST['technique'], $_POST['techniqueAng'], $_POST['description'], $_POST['validation'], $_POST['arrondissement'], $_POST['adresse'], $_POST['artiste'], $_POST['categorie'], $_POST['sousCategorie'], $_POST['materiaux'], $_POST['materiauxAng']);
-                
+                $oOeuvre->ajouterAdresse($_POST['adresse'], $_POST['batiment'], $_POST['parc'], $_POST['latitude'], $_POST['longitude']);
+                $idAdresse = $oOeuvre->recupererDernierId();
+                                         
                 try
                 {
-                    $oOeuvre->ajouterOeuvre($_POST['titre'], $_POST['titreVariante'],  $_POST['technique'], $_POST['techniqueAng'], $_POST['description'], $_POST['validation'], $_POST['arrondissement'], $_POST['adresse'], $_POST['artiste'], $_POST['categorie'], $_POST['sousCategorie'], $_POST['materiaux'], $_POST['materiauxAng']);
+                    $oOeuvre->ajouterOeuvre($_POST['titre'], $_POST['titreVariante'],  $_POST['technique'], $_POST['techniqueAng'], $_POST['description'], $_POST['validation'], $_POST['arrondissement'], $idAdresse, $_POST['artiste'], $_POST['categorie'], $_POST['sousCategorie'], $_POST['materiaux'], $_POST['materiauxAng']);
+                
+                $message = "Oeuvre ajoutée.";
+                    
                 }
                 catch (Exception $e)
                 {
-                    $erreur = $e->getMessage();     
+                    $message = $e->getMessage();     
                 }
                 
             }
             
-            $oVue->afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre);
+            $oVue->afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message);
             $oVue->afficheFooter();
 
         }

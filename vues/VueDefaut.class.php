@@ -632,10 +632,9 @@ class VueDefaut
 
                             <div class="langue">
 
-                                <a href="index.php?requete=inscription" class="inscription">S'INSCRIRE</a>
                                 <a href="index.php?requete=connexion" class="connexion">SE CONNECTER</a>
                                 <a href="#">FR/EN</a>
-                                <a href="index.php?requete=accueil" class="accueil">ACCUEIL</a>
+                                <a href="index.php?requete=accueil" class="accueil"><span class="icon-home"></span>ACCUEIL</a>
          
                             </div>
 
@@ -657,7 +656,7 @@ class VueDefaut
      * @version 1.0
      * 
      */
-    public function afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre) 
+    public function afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message) 
 
     {   
         
@@ -740,6 +739,12 @@ class VueDefaut
                             <label>Technique (anglais) : </label> <input type="text" name="techniqueAng"><br>
                             <label>Description : </label> <input type="text" name="description"><br>
                             <label>Validation : </label> <input type="radio" checked name="validation" value="1"> Oui <input type="radio" name="validation" value="0"> Non<br>
+                            
+                            <label>Adresse Civique : </label> <input type="text" name="adresse"><br>
+                            <label>Batiment : </label> <input type="text" name="batiment"><br>
+                            <label>Parc : </label> <input type="text" name="parc"><br>
+                            <label>Latitude : </label> <input type="text" name="latitude"><br>
+                            <label>Longitude : </label> <input type="text" name="longitude"><br>
                             <label>Arrondissement : </label> <select name="arrondissement">
                                 <option value="nonChoisi">Choisir un Arrondissement</option>
                             <?php
@@ -748,7 +753,6 @@ class VueDefaut
                                 }
                             ?>
                            </select><br>
-                               <label>Adresse : </label> <input type="text" name="adresse"><br>
                                <label>Artiste/Collectif : </label> <select name="artiste">
                                 <option value="nonChoisi">Choisir un Artiste/Collectif</option>
                             <?php
@@ -783,8 +787,7 @@ class VueDefaut
                                <label>Matériaux : </label> <input type="text" name="materiaux"><br>
                                <label>Matériaux (anglais) : </label> <input type="text" name="materiauxAng"><br><br>
                             
-                            <input type="hidden" name="validationAjout" value="<?php echo $validationAjout; ?>"/>
-                            <input type="submit" name="sauvegarder" value="Valider">
+                            <input type="submit" name="sauvegarder" value="Valider"> <span><?php echo $message; ?></span>
                        </form>
 
                    </div>
@@ -852,7 +855,7 @@ class VueDefaut
     
     public function afficheListeSupprimerArtistes($aArtistes){
         ?>
-            <h2>Eliminer nos <span class="artistes">artistes</span> et <span class="collectif">collectifs</span></h2>
+            <h2>Supprimer un <span class="artistes">artiste</span> ou <span class="collectif">collectif</span></h2>
             <section class='contenu container'>
                 <div class='tableArtistes'>
         <?php

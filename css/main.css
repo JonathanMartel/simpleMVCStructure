@@ -1,6 +1,9 @@
 /********
 * Votre CSS
 ********/
+
+/*SLIDER */
+
 .slides{
    width: 100%;
 }
@@ -43,8 +46,7 @@
 }
 
 
-
-
+/*CONTENU */
 
 
 h2 {
@@ -87,7 +89,7 @@ header .conteneurNav img{
 figure{
 padding:5px;
 margin:20px;
-background-color: #354a5d;
+background-color: #ccc;
 
 
 }
@@ -344,6 +346,7 @@ i:after {
 }
 
 /*MOTEUR DE RECHERCHE _Auteure: Thuy Tien Vo*/
+
 .moteurRecherche 
 {
     width: 600px;
@@ -473,6 +476,7 @@ i:after {
 } 
 
 /*AFFICHER LA PAGE DE CONNEXION*/
+
 #titre1
 {
     margin:20px 720px 0px 710px;
@@ -485,11 +489,6 @@ i:after {
  
 } 
 
-/*AFFICHER LA PAGE DE CONNEXION*/
-#titre1
-{
-    margin:20px 720px 0px 710px;
-}
 
 .formulaire1
 {
@@ -571,6 +570,8 @@ i:after {
     float: right;
     width: 77%;
 }
+
+/* FORMULAIRE ADMIN */
 
 .administration label {
     display: block;
