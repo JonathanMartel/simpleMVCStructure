@@ -47,18 +47,18 @@ class MCategories
 	 * @access public
 	 * @return Int
 	 */
-	public function getidCategorie() 
+	public function getIdCategorie() 
 	{
 		return $this->idCategorie;		
 			
 	}
     
-    public function getnomCategorie() 
+    public function getNomCategorie() 
 	{
 		return $this->nomCategorie;				
 	}
     
-    public function getnomCatAng() 
+    public function getNomCatAng() 
 	{
 		return $this->nomCatAng;				
     }
