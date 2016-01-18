@@ -953,7 +953,7 @@ class VueDefaut
                         $idUtilisateur = $utilisateur->getIdUtilisateur();
                         echo "<td><span class='icon-user'></span>";
                         echo "<td>" .$utilisateur->getLoginUtilisateur()."</td>" ;
-                        echo "<td><a href='index.php?requete=eliminerUtilisateur&idUtilisateur=$idUtilisateur'><span class='icon-remove-user'></span></a></td>";
+                        echo "<td><a href='index.php?requete=supprimerUtilisateurs&idUtilisateur=$idUtilisateur'><span class='icon-remove-user'></span></a></td>";
                         echo "</tr>";
                 }
                 echo "</table>";
