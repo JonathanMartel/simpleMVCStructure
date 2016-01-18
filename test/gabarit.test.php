@@ -18,7 +18,6 @@
             
             include ("../modeles/MOeuvres.class.php");
             include ("../lib/PdoBDD.class.php");
-            include("./lib/config/mesParametresBD.php");
             
 			//$oArrondisement = new MArrondissement('', '');
 			//$aArrondissements = $oArrondisement::listeArrondissement();

@@ -855,7 +855,7 @@ class VueDefaut
     
     public function afficheListeSupprimerArtistes($aArtistes){
         ?>
-            <h2>Eliminer nos <span class="artistes">artistes</span> et <span class="collectif">collectifs</span></h2>
+            <h2>Supprimer un <span class="artistes">artiste</span> ou <span class="collectif">collectif</span></h2>
             <section class='contenu container'>
                 <div class='tableArtistes'>
         <?php

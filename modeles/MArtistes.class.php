@@ -84,6 +84,7 @@ class MArtistes {
 	}
     
     /*
+     * Fonction qui liste tous les artistes
 	 * @access public static
      * @author Gautier Piatek
 	 * @return Array Tableau contenant la liste de tous les artistes
@@ -97,6 +98,21 @@ class MArtistes {
 			$artistes[] = $unArtiste;
 		}
 		return $artistes;
+	}
+    
+    /*
+     * Fonction qui supprime un artiste
+	 * @access public static
+     * @author Gautier Piatek
+	 * @return none
+	 */
+	public static function supprimerArtiste($idArtiste) 
+	{
+		self::$database->query("DELETE FROM artiste WHERE idArtiste=:idArtiste");
+        //On lie les paramètres auxvaleurs
+        self::$database->bind(':idArtiste', $idArtiste);
+
+        return(self::$database->execute());
 	}
     
 }
