@@ -138,7 +138,7 @@ class MArtistes {
      * @author Gautier Piatek
 	 * @return none
 	 */
-	public static function modificationArtiste($idArtiste, $prenom, $nom, $collectif, $photoArtiste) 
+	public static function modifierArtiste($idArtiste, $prenom, $nom, $collectif, $photoArtiste) 
 	{
 		self::$database->query("UPDATE artiste SET prenom = :prenom, nom = :nom, collectif = :collectif, photoArtiste = :photoArtiste WHERE idArtiste = :idArtiste");
         //On lie les paramètres auxvaleurs

@@ -301,7 +301,7 @@ class MOeuvres {
     /**
 	 * @access public static
      * @author German Mahecha
-	 * @return Array Tableau contenant la liste de tous 
+	 * @return Array Tableau contenant la liste de tout
 	 */
 	public static function listeOeuvres() {
 		self::$database->query('
@@ -322,7 +322,7 @@ class MOeuvres {
      /**
 	 * @access public static
      * @author German Mahecha
-	 * @return Array Tableau contenant la liste de tous 
+	 * @return Array Tableau contenant la liste de tout
 	 */
 	public static function listeUnOeuvre($idcon) {
 		self::$database->query('
@@ -338,7 +338,22 @@ class MOeuvres {
 	}
     
      
-    
+    /*
+     * Fonction qui récupère les infos d'une oeuvre selon son id
+	 * @access public static
+     * @author Gautier Piatek
+	 * @return array
+	 */
+	public static function getOeuvreParId($idOeuvre) 
+	{
+		self::$database->query("SELECT * FROM oeuvre WHERE idOeuvre=:idOeuvre");
+        //On lie les paramètres auxvaleurs
+        self::$database->bind(':idOeuvre', $idOeuvre);
+        
+        $ligne = self::$database->uneLigne();
+        
+        return $ligne;
+	}
     
     
     /**
@@ -416,6 +431,36 @@ class MOeuvres {
     }
     
     /**
+	 * Fonction de modification d'oeuvre
+	 * @return none
+     * @author Gautier Piatek
+     * @version 1.0
+     * 
+     */
+    public static function modifierOeuvre($idOeuvre, $titre, $titreVariante, $technique, $techniqueAng, $description, $validationOeuvre, $idArrondissement, $idAdresse, $idArtiste, $idCategorie, $idSousCategorie, $nomMateriaux, $nomMateriauxAng) {
+        
+        self::$database->query("UPDATE oeuvre SET titre = :titre, titreVariante = :titreVariante, technique = :technique, techniqueAng = :techniqueAng,  description = :description, validationOeuvre = :validationOeuvre, idArrondissement = :idArrondissement, idAdresse = :idAdresse, idArtiste = :idArtiste, nomMateriaux = :nomMateriaux, nomMateriauxAng = :nomMateriauxAng, idCategorie = :idCategorie, idSousCategorie = :idSousCategorie)");
+        //On lie les paramètres auxvaleurs
+        
+        self::$database->bind(':titre', $titre);
+        self::$database->bind(':titreVariante', $titreVariante);
+        self::$database->bind(':technique', $technique);
+        self::$database->bind(':techniqueAng', $techniqueAng);
+        self::$database->bind(':description', $description);
+        self::$database->bind(':validationOeuvre', $validationOeuvre);
+        self::$database->bind(':idArrondissement', $idArrondissement);
+        self::$database->bind(':idAdresse', $idAdresse);
+        self::$database->bind(':idArtiste', $idArtiste);
+        self::$database->bind(':idCategorie', $idCategorie);
+        self::$database->bind(':idSousCategorie', $idSousCategorie);
+        self::$database->bind(':nomMateriaux', $nomMateriaux);
+        self::$database->bind(':nomMateriauxAng', $nomMateriauxAng);
+       
+        return(self::$database->execute());
+        
+    }
+    
+    /**
      * Fonction d'ajout d'adresse
 	 * @access public static
      * @author Gautier Piatek
@@ -435,6 +480,62 @@ class MOeuvres {
     }
     
     /**
+     * Fonction de modification d'adresse
+	 * @access public static
+     * @author Gautier Piatek
+	 * @return none
+	 */
+    public static function modifierAdresse($idAdresse, $adresse, $batiment, $parc, $latitude, $longitude) {
+        self::$database->query("UPDATE adresse SET adresseCiv = :adresse, batiment = :batiment, parc = :parc, latitude = :latitude, longitude = :longitude WHERE idAdresse = :idAdresse");
+        //On lie les paramètres auxvaleurs
+        
+        self::$database->bind(':idAdresse', $idAdresse);
+        self::$database->bind(':adresse', $adresse);
+        self::$database->bind(':batiment', $batiment);
+        self::$database->bind(':parc', $parc);
+        self::$database->bind(':latitude', $latitude);
+        self::$database->bind(':longitude', $longitude);
+       
+        return(self::$database->execute());
+    }
+    
+    /*
+     * Fonction qui récupère les infos d'une adresse selon son id
+	 * @access public static
+     * @author Gautier Piatek
+	 * @return array
+	 */
+	public static function getAdresseParId($idAdresse) 
+	{
+		self::$database->query("SELECT * FROM adresse WHERE idAdresse=:idAdresse");
+        //On lie les paramètres auxvaleurs
+        self::$database->bind(':idAdresse', $idAdresse);
+        
+        $ligne = self::$database->uneLigne();
+        
+        return $ligne;
+	}
+    
+    /*
+     * Fonction qui récupère l'id de l'adresse d'une oeuvre selon son id
+	 * @access public static
+     * @author Gautier Piatek
+	 * @return int
+	 */
+	public static function recupererIdAdresse($idOeuvre) 
+	{
+		self::$database->query("SELECT adresse.idAdresse FROM adresse JOIN oeuvre ON oeuvre.idAdresse = adresse.idAdresse WHERE oeuvre.idOeuvre = :idOeuvre");
+        
+        //On lie les paramètres auxvaleurs
+        self::$database->bind(':idOeuvre', $idOeuvre);
+        
+        $ligne = self::$database->uneLigne();
+        
+        return $ligne['idAdresse'];
+	}
+    
+    
+    /**
      * Fonction qui récupère le dernier Id inséré dans la BDD
 	 * @access public static
      * @author Gautier Piatek
@@ -445,10 +546,6 @@ class MOeuvres {
         return(self::$database->dernierId());
     }
 
-
-
-
-    
     /**
      * Fonction qui supprime une oeuvre de la BDD
 	 * @access public static
@@ -463,6 +560,8 @@ class MOeuvres {
 
         return(self::$database->execute());
     }
+    
+    
     
     /**
 	 * @access public static

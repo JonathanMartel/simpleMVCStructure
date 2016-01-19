@@ -660,13 +660,13 @@ class VueDefaut
     }
     
     /**
-     * Affiche le contenu de l'admin
+     * Affiche l'ajout d'oeuvre
      * @access public
      * @author Gautier Piatek
      * @version 1.0
      * 
      */
-    public function afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message) 
+    public function afficheAjoutOeuvre($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message) 
 
     {   
         
@@ -808,55 +808,127 @@ class VueDefaut
         
         
         <?php
-
         
     }
     
-    
-    
-     /**
-     * Affiche Liste Artistes
+    /**
+     * Fonction qui modifie une Oeuvre
      * @access public
-     * @author German Mahecha
+     * @author Gautier Piatek
      * @version 1.0
      */
     
-    public function afficheListeModifierArtistes($aArtistes){
+    public function modifierOeuvre($aOeuvre, $aAdresse, $aArrondissements, $aArtistes, $aCategories, $aSousCategories, $erreurTitre, $message) {
+        
+        $idOeuvre = $aOeuvre['idOeuvre'];
+        $titre = $aOeuvre['titreOeuvre'];
+        $titreVariante = $aOeuvre['titreVariante'];
+        $technique = $aOeuvre['technique'];
+        $techniqueAng = $aOeuvre['techniqueAng'];
+        $description = $aOeuvre['description'];
+        $validation = $aOeuvre['validationOeuvre'];
+        $adresseCiv = $aAdresse['adresseCiv'];
+        $batiment = $aAdresse['batiment'];
+        $parc = $aAdresse['parc'];
+        $latitude = $aAdresse['latitude'];
+        $longitude = $aAdresse['longitude'];
+        $idArrondissement = $aOeuvre['idArrondissement'];
+        $idCategorie = $aOeuvre['idCategorie'];
+        $idSousCategorie = $aOeuvre['idSousCategorie'];
+        $nomMateriaux = $aOeuvre['nomMateriaux'];
+        $nomMateriauxAng = $aOeuvre['nomMateriauxAng'];
+        $idArtiste = $aOeuvre['idArtiste'];
         ?>
-            <h2>Modifier nos <span class="artistes">artistes</span> et <span class="collectif">collectifs</span></h2>
-            <section class='contenu container'>
-                <div class='tableArtistes'>
-        <?php
-                echo "<table>";
-                echo "<tr>";
-                echo "<th></th>";
-                echo "<th>Artiste</th>";
-                echo "<th>Modifier</th>	";
-                echo "</tr>";
-                    foreach($aArtistes as $artiste) {
-                        echo "<tr>";
-                        $idArtiste = $artiste->getIdArtiste();
-                        if($artiste->getNom()==NULL) {
-                            echo "<td><span class='icon-users'></span>";
-                            echo "<td>" .$artiste->getCollectif()."</td>" ;
+        <div class="administration">
+                   <div class="twelvecol">
+                       <h3>Modifier une oeuvre</h3>
 
-                        }else{
-                            echo "<td><span class='icon-user'></span>";
-                            echo "<td>".$artiste->getPrenom()." ". $artiste->getNom()."</td>" ;
-                        }
-                        echo "<td><a href='index.php?requete=modifierArtiste&idArtiste=$idArtiste'><span class='icon-edit'></span></a></td>";
-                        
-                        //$idArtiste = $artiste->getIdArtiste();
-                         echo "</tr>";
-                    }
-                echo "</table>";
-                echo "</div>";
-            echo "</section> ";
-       echo "</div>";
+                       <form method="POST" action="index.php?requete=modifierOeuvre&idOeuvre=<?php echo $idOeuvre; ?>&action=valider">
+                           
+                            <label>Titre : </label> <input type="text" name="titre" value="<?php echo $titre; ?>"><span><?php echo $erreurTitre;?><br>
+                            <label>Titre (Variante) : </label> <input type="text" name="titreVariante" value="<?php echo $titreVariante; ?>"><br>
+                            <label>Technique : </label> <input type="text" name="technique" value="<?php echo $technique; ?>"><br>
+                            <label>Technique (anglais) : </label> <input type="text" name="techniqueAng" value="<?php echo $techniqueAng; ?>"><br>
+                            <label>Description : </label> <input type="text" name="description" value="<?php echo $description; ?>"><br>
+                            <label>Validation : </label> <input type="radio" checked name="validation" value="1"> Oui <input type="radio" name="validation" value="0"> Non<br>
+                            
+                            <label>Adresse Civique : </label> <input type="text" name="adresse" value="<?php echo $adresseCiv; ?>"><br>
+                            <label>Batiment : </label> <input type="text" name="batiment" value="<?php echo $batiment; ?>"><br>
+                            <label>Parc : </label> <input type="text" name="parc" value="<?php echo $parc; ?>"><br>
+                            <label>Latitude : </label> <input type="text" name="latitude" value="<?php echo $latitude; ?>"><br>
+                            <label>Longitude : </label> <input type="text" name="longitude" value="<?php echo $longitude; ?>"><br>
+                            <label>Arrondissement : </label> <select name="arrondissement" >
+                                <option value="nonChoisi">Choisir un Arrondissement</option>
+                            <?php
+                                foreach ($aArrondissements as $arrondissement) {
+                                    echo "<option value='". $arrondissement->getidArrondissement() . "'";
+                                    if($arrondissement->getidArrondissement() == $idArrondissement){
+                                        echo " selected";
+                                    }  
+                                    echo ">".$arrondissement->getnomArrondissement()."</option>"; 
+                                }
+                            ?>
+                           </select><br>
+                               <label>Artiste/Collectif : </label> <select name="artiste">
+                                <option value="nonChoisi">Choisir un Artiste/Collectif</option>
+                            <?php
+                                foreach ($aArtistes as $artiste) {
+                                    
+                                    if($artiste->getNom() == "") {
+                                        
+                                        echo "<option value='".$artiste->getIdArtiste()."'";
+                                        if($artiste->getIdArtiste() == $idArtiste){
+                                            echo " selected";
+                                        } 
+                                        echo ">".$artiste->getCollectif()."</option>"; 
+                                    } else {                                    
+                                       
+                                        echo "<option value='".$artiste->getIdArtiste()."'";
+                                        if($artiste->getIdArtiste() == $idArtiste){
+                                            echo " selected";
+                                        }
+                                        echo ">". $artiste->getPrenom() . " " . $artiste->getNom()."</option>";
+                                    }
+                                }
+                            ?>
+                           </select><br>
+                               <label>Catégorie : </label> <select name="categorie">
+                                <option value="nonChoisi">Choisir une Catégorie</option>
+                            <?php 
+                                foreach ($aCategories as $categorie) {
+                                    echo "<option value='".$categorie->getidCategorie()."'";
+                                    if($categorie->getidCategorie() == $idCategorie){
+                                        echo " selected";
+                                    }
+                                    echo">".$categorie->getnomCategorie()."</option>"; 
+                                }
+                            ?>
+                           </select><br>
+                               <label>Sous-Catégorie : </label> <select name="sousCategorie">
+                                <option value="nonChoisi">Choisir une Sous-Catégorie</option>
+                            <?php
+                                foreach ($aSousCategories as $sousCategorie) {
+                                    echo "<option value='".$sousCategorie->getidSousCategorie()."'";
+                                    if($sousCategorie->getidSousCategorie() == $idSousCategorie){
+                                        echo " selected";
+                                    }
+                                    echo ">".$sousCategorie->getnomSousCategorie()."</option>"; 
+                                }
+                            ?>    
+                           </select><br>
+                               <label>Matériaux : </label> <input type="text" name="materiaux" value="<?php echo $nomMateriaux; ?>"><br>
+                               <label>Matériaux (anglais) : </label> <input type="text" name="materiauxAng" value="<?php echo $nomMateriauxAng; ?>"><br><br>
+                            
+                            <input type="submit" name="sauvegarder" value="Valider"> <span><?php echo $message; ?></span>
+                       </form>
+
+                   </div>
+
+                </div> 
+                <?
     }
-    
-    
-        /**
+      
+    /**
      * Affiche Liste Artistes
      * @access public
      * @author German Mahecha
@@ -894,6 +966,47 @@ class VueDefaut
                 echo "</div>";
             echo "</section> ";
        echo "</div>";
+    }
+    
+     /**
+     * Affiche Liste Artistes
+     * @access public
+     * @author German Mahecha
+     * @version 1.0
+     */
+    public function afficheListeModifierArtistes($aArtistes){
+        ?>
+            <h2>Modifier nos <span class="artistes">artistes</span> et <span class="collectif">collectifs</span></h2>
+            <section class='contenu container'>
+                <div class='tableArtistes'>
+        <?php
+                echo "<table>";
+                echo "<tr>";
+                echo "<th></th>";
+                echo "<th>Artiste</th>";
+                echo "<th>Modifier</th>	";
+                echo "</tr>";
+                    foreach($aArtistes as $artiste) {
+                        echo "<tr>";
+                        $idArtiste = $artiste->getIdArtiste();
+                        if($artiste->getNom()==NULL) {
+                            echo "<td><span class='icon-users'></span>";
+                            echo "<td>" .$artiste->getCollectif()."</td>" ;
+
+                        }else{
+                            echo "<td><span class='icon-user'></span>";
+                            echo "<td>".$artiste->getPrenom()." ". $artiste->getNom()."</td>" ;
+                        }
+                        echo "<td><a href='index.php?requete=modifierArtiste&idArtiste=$idArtiste'><span class='icon-edit'></span></a></td>";
+                        
+                        //$idArtiste = $artiste->getIdArtiste();
+                         echo "</tr>";
+                    }
+                echo "</table>";
+                echo "</div>";
+            echo "</section> ";
+       echo "</div>";
+    
     }
     
      /**
@@ -1273,7 +1386,100 @@ class VueDefaut
 
     }
     
-    
+     /**
+     * Affiche l'ajout d'oeuvre
+     * @access public
+     * @author Gautier Piatek
+     * @version 1.0
+     * 
+     */
+    public function afficheContenuAdmin() 
+
+    {   
+        
+        ?>
+        <div class="admin">
+           <div class="menuAdmin">
+                <nav>
+                    <ul>
+                         
+                        <li>
+                            GESTION
+                            <ul>
+                                <li>
+                                    <a href="#">OEUVRES</a>
+                                       <ul>
+                                            <li><a href="index.php?requete=ajoutOeuvre">Ajouter</a></li>
+                                            <li><a href="index.php?requete=listeModifierOeuvres">Modifier</a></li>
+                                            <li><a href="index.php?requete=listeSupprimerOeuvres">Supprimer</a></li>
+                                        </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#">ARTISTES</a>
+                                        <ul>
+                                            <li><a href="index.php?requete=ajouterUnArtiste">Ajouter</a></li>
+                                            <li><a href="index.php?requete=listeModifierArtistes">Modifier</a></li>
+                                            <li><a href="index.php?requete=listeSupprimerArtistes">Supprimer</a></li>
+                                        </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#">CATEGORIES</a>
+                                        <ul>
+                                            <li><a href="#">Ajouter</a></li>
+                                            <li><a href="index.php?requete=listeModifierCategories">Modifier</a></li>
+                                            <li><a href="index.php?requete=listeSupprimerCategories">Supprimer</a></li>
+                                        </ul>
+                                </li>
+
+                                <li>
+                                    <a href="index.php?requete=listerUtilisateurs">UTILISATEURS</a>
+                                        <ul>
+                                            <li><a href="index.php?requete=afficheInscription">Ajouter</a></li>
+                                            <li><a href="index.php?requete=listeModifierUtilisateurs">Modifier</a></li>
+                                            <li><a href="index.php?requete=listeSupprimerUtilisateurs">Supprimer</a></li>
+                                        </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            MODERATION
+                            <ul>
+                                <li><a href="#">Photos</a></li>
+                                <li><a href="#">Commentaires</a></li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="#">MISE A JOUR BDD</a>
+                        </li> 
+
+                    </ul>
+
+                </nav>
+            </div>
+            
+            <section class="contenu container">
+        
+                <h2>Gestion</h2>
+
+                <div class="administration">
+                   <div class="twelvecol">
+                       
+                    
+                     
+                   </div>
+
+                </div>
+            </section>
+        </div>
+        
+        
+        <?php
+
+        
+    }
     
     
     
