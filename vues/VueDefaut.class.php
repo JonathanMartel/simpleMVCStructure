@@ -937,7 +937,7 @@ class VueDefaut
     
     public function afficheListeSupprimerUtilisateurs($aUtilisateurs){
         ?>
-            <h2>Eliminer nos utilisateurs</h2>
+            <h2>Supprimer nos utilisateurs</h2>
             <section class='contenu container'>
                 <div class='tableArtistes'>
         <?php
@@ -1007,7 +1007,7 @@ class VueDefaut
     
      public function afficheListeSupprimerCategories($aCategories){
         ?>
-            <h2>Eliminer nos categories</h2>
+            <h2>Supprimer nos categories</h2>
             <section class='contenu container'>
                 <div class='tableArtistes'>
         <?php
@@ -1078,7 +1078,7 @@ class VueDefaut
     
      public function afficheListeSupprimerOeuvres($aOeuvres){
         ?>
-            <h2>Eliminer nos categories</h2>
+            <h2>Supprimer une oeuvre</h2>
             <section class='contenu container'>
                 <div class='tableArtistes'>
         <?php
@@ -1112,17 +1112,17 @@ class VueDefaut
     }
 
 
-        /**
+    /**
      * Affiche la page pour ajouter un artiste
      * @access public
-     * @auteure: Jorge Blanco
+     * @author: Jorge Blanco
      */
     public function ajouterUnArtiste() 
     {
         ?>
         <div>
         <h2 id="titre">Ajouter un artiste</h2>
-        <form class="formulaire"action="">
+        <form class="formulaire" action="">
             <fieldset>
             Prénom:<br>
             <input type="text" name="prenom" >
@@ -1134,7 +1134,7 @@ class VueDefaut
             <input  type="text" name="Collectif" >
              <br> <br>
             Prendre une photo:<br><br>
-            <input type="button" name="courriel" value = "prendre une photo" >
+            <input type="button" name="photoArtiste" value = "prendre une photo" >
             <br> <br>
             
             <input type="submit" value="Envoyer" id="button">
@@ -1147,7 +1147,44 @@ class VueDefaut
 
     }
 
+    /**
+     * Affiche la page pour modifier un artiste
+     * @access public
+     * @author: Gautier Piatek
+     */
+    public function modifierUnArtiste($aArtiste) 
+    {
+        $prenom = $aArtiste['prenom'];
+        $nom = $aArtiste['nom'];
+        $collectif = $aArtiste['collectif'];
+        $photoArtiste = $aArtiste['photoArtiste'];
+        ?>
+        <div>
+        <h2 id="titre">Modifier un artiste</h2>
+        <form class="formulaire" action="index.php?requete=modifierOeuvre&action=valider">
+            <fieldset>
+            Prénom:<br>
+            <input type="text" name="prenom" value="<?php echo $prenom; ?>">
+            <br> <br>
+            Nom:<br>
+            <input type="text" name="nom" value="<?php echo $nom; ?>">
+            <br> <br>
+            Collectif:<br>
+            <input  type="text" name="Collectif" value="<?php echo $collectif; ?>">
+             <br> <br>
+            Photo:<br><br>
+            <input type="text" name="photoArtiste" value="<?php echo $photoArtiste; ?>">
+            <br> <br>
+            
+            <input type="submit" value="Envoyer" id="button">
+            <fieldset>
+        </form>  
+        </fieldset>
+        </fieldset>
+        </div>          
+        <?php
 
+    }
 
     /**
      * Affiche la page d'inscription - admin

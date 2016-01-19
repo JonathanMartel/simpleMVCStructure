@@ -115,6 +115,23 @@ class MArtistes {
         return(self::$database->execute());
 	}
     
+    /*
+     * Fonction qui récupère les infos d'un artiste selon son id
+	 * @access public static
+     * @author Gautier Piatek
+	 * @return array
+	 */
+	public static function getArtisteParId($idArtiste) 
+	{
+		self::$database->query("SELECT * FROM artiste WHERE idArtiste=:idArtiste");
+        //On lie les paramètres auxvaleurs
+        self::$database->bind(':idArtiste', $idArtiste);
+        
+        $ligne = self::$database->uneLigne();
+        $unArtiste = new MArtistes($ligne['idArtiste'], $ligne['prenom'], $ligne['nom'], $ligne['collectif'], $ligne['noInterne'], $ligne['photoArtiste']);
+        $artiste[] = $unArtiste;
+        return $artiste;
+	}
 }
 
 
