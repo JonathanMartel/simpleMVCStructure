@@ -348,81 +348,66 @@ i:after {
     font-weight: bold;
 }
 
+
 /*MOTEUR DE RECHERCHE _Auteure: Thuy Tien Vo*/
+#recherche
+{  
+    width: 400px;
+    height: 25px;
+    margin-left: 750px;
+    margin-top: 30px;
 
-.moteurRecherche 
-{
-    width: 600px;
-    padding: 5px;
-    margin-top: 0px;
-    margin-bottom: 35px;
-    margin-left: 400px;
-    overflow: hidden;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #dedede #bababa #aaa #bababa;
-    box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
-    border-radius: 10px;    
-    background-color: #f6f6f6;
-   
+
 }
 
-.moteurRecherche #recherche 
-{
-    width: 460px;
-    height: 20px;
-    padding: 10px 5px;
-    float: left;    
-    font: bold 16px ;
-    border: 1px solid #ccc;
-    box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #fff;
-    border-radius: 3px;      
-}
 
-.moteurRecherche #recherche:focus 
+#recherche input[type="text"] 
 {
-    outline: 0; 
-    border-color: #aaa;
-    box-shadow: 0 1px 1px #bbb inset;  
-}
+    width: 200px;
 
-.moteurRecherche #submit 
+    margin-left: 110px;
+    padding: 5px 0px 5px 0px;
+    border-width: 0px;
+    border-radius: 6px;
+    font-family: "Arial ", Arial, sans-serif;
+    font-size: 14px;
+    color: #828282;
+    display: inline-table;
+    vertical-align: top;
+}
+#submit 
 {
-    float: right;    
-    border: 1px solid #f6c351;
-    height: 42px;
-    width: 120px;
-    padding: 0;
+
+    border-width: 0px;
     cursor: pointer;
-    font: bold 15px Arial;
-    color: #fafafa;
-    text-transform: uppercase;    
-    background-color: #f6c351;
-    box-shadow: 0 1px 3px 4px rgba(255, 255, 255, 0.3) inset, 0 1px 0 #fff;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 6px;      
-    text-shadow: 0 1px 0 rgba(0, 0 ,0, .3);
-    
+    float:right;
+    font: bold 14px Arial;
+    border-radius: 6px; 
+    margin-right: 45px;
+    width: 40px;
+    height: 25px;
+    background-color:#f6c351;
 }
+
   
-.moteurRecherche #submit:hover,
-.moteurRecherche #submit:focus 
+ #submit:hover
 {       
-    background-color: #354a5d;
+    background-color: #83defe;
  
 }   
   
-.moteurRecherche #submit:active 
+ #submit:active 
 {
     outline: 0;    
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;    
 }
   
-.moteurRecherche #submit::-moz-focus-inner 
+#submit::-moz-focus-inner 
 {
     border: 0;
 }
+
+
 
 /*AFFICHER LA PAGE D'INSCRIPTION*/
 #titre

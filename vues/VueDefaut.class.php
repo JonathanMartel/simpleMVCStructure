@@ -60,6 +60,14 @@ class VueDefaut
          
                             </div>
 
+                            <div id="recherche" >
+                                <form action="index.php?requete=recherche"  method="post" >
+                                <input type="text"  name="mot"  value=""> 
+                                <input type="submit" id="submit" value="OK"   >
+                                </form>
+                            </div>
+
+
                             <div class="menu">
                                 <nav>
                                     <a href="index.php?requete=accueil" class="accueil"><span class='icon-home'></span> ACCUEIL</a>
@@ -82,28 +90,6 @@ class VueDefaut
 
     }
     
-
-    /**
-     * Affiche le moteur de RECHERCHE
-     * Auteure: Thuy Tien VO
-     * @access public
-     *
-     */
-    public function afficheMoteurRecherche()
-
-    { 
-        ?>
-
-            <div class="moteurRecherche">
-                    <form action="index.php?requete=recherche"  method="post" >
-                    <input type="text" id="recherche" name="mot" size="40" value=""> 
-                    <input type="submit" id="submit" name="submit" value="Rechercher" alt="Lancer la recherche">
-                    </form>
-            </div>
-
-        <?php
-
-    }
 
     /**
      * Affiche le résultat de RECHERCHE
