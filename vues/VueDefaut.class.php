@@ -660,13 +660,13 @@ class VueDefaut
     }
     
     /**
-     * Affiche le contenu de l'admin
+     * Affiche l'ajout d'oeuvre
      * @access public
      * @author Gautier Piatek
      * @version 1.0
      * 
      */
-    public function afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message) 
+    public function afficheAjoutOeuvre($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message) 
 
     {   
         
@@ -808,7 +808,6 @@ class VueDefaut
         
         
         <?php
-
         
     }
     
@@ -1388,7 +1387,100 @@ class VueDefaut
 
     }
     
-    
+     /**
+     * Affiche l'ajout d'oeuvre
+     * @access public
+     * @author Gautier Piatek
+     * @version 1.0
+     * 
+     */
+    public function afficheContenuAdmin() 
+
+    {   
+        
+        ?>
+        <div class="admin">
+           <div class="menuAdmin">
+                <nav>
+                    <ul>
+                         
+                        <li>
+                            GESTION
+                            <ul>
+                                <li>
+                                    <a href="#">OEUVRES</a>
+                                       <ul>
+                                            <li><a href="index.php?requete=ajoutOeuvre">Ajouter</a></li>
+                                            <li><a href="index.php?requete=listeModifierOeuvres">Modifier</a></li>
+                                            <li><a href="index.php?requete=listeSupprimerOeuvres">Supprimer</a></li>
+                                        </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#">ARTISTES</a>
+                                        <ul>
+                                            <li><a href="index.php?requete=ajouterUnArtiste">Ajouter</a></li>
+                                            <li><a href="index.php?requete=listeModifierArtistes">Modifier</a></li>
+                                            <li><a href="index.php?requete=listeSupprimerArtistes">Supprimer</a></li>
+                                        </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#">CATEGORIES</a>
+                                        <ul>
+                                            <li><a href="#">Ajouter</a></li>
+                                            <li><a href="index.php?requete=listeModifierCategories">Modifier</a></li>
+                                            <li><a href="index.php?requete=listeSupprimerCategories">Supprimer</a></li>
+                                        </ul>
+                                </li>
+
+                                <li>
+                                    <a href="index.php?requete=listerUtilisateurs">UTILISATEURS</a>
+                                        <ul>
+                                            <li><a href="index.php?requete=afficheInscription">Ajouter</a></li>
+                                            <li><a href="index.php?requete=listeModifierUtilisateurs">Modifier</a></li>
+                                            <li><a href="index.php?requete=listeSupprimerUtilisateurs">Supprimer</a></li>
+                                        </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            MODERATION
+                            <ul>
+                                <li><a href="#">Photos</a></li>
+                                <li><a href="#">Commentaires</a></li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="#">MISE A JOUR BDD</a>
+                        </li> 
+
+                    </ul>
+
+                </nav>
+            </div>
+            
+            <section class="contenu container">
+        
+                <h2>Gestion</h2>
+
+                <div class="administration">
+                   <div class="twelvecol">
+                       
+                    
+                     
+                   </div>
+
+                </div>
+            </section>
+        </div>
+        
+        
+        <?php
+
+        
+    }
     
     
     

@@ -152,6 +152,11 @@ class Controler
                 case 'listerUtilisateurs':
                     $this->listerUtilisateurs();
                     break;
+                
+                case 'admin':
+                    $this->admin();
+                    break;
+                    
                 default:
 			    $this->accueil();
 				break;
@@ -432,7 +437,7 @@ class Controler
             
             $oVue = new VueDefaut();
             $oVue->afficheHeaderAdmin();
-            $oVue->afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message);
+            $oVue->afficheAjoutOeuvre($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message);
             $oVue->afficheFooter();
         }
     
@@ -568,7 +573,7 @@ class Controler
                 
             }
             
-            $oVue->afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message);
+            $oVue->afficheAjoutOeuvre($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message);
             $oVue->afficheFooter();
 
         }
@@ -601,7 +606,25 @@ class Controler
             $oVue->afficheFooter();
         }
 
-
+         private function admin()
+        {
+             
+            $oOeuvres = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $aOeuvres = $oOeuvres->listeOeuvres();
+             
+            $oArtistes = new MArtistes('', '', '', '', '', '');
+            $aArtistes = $oArtistes::listeArtistes();
+             
+            $oUtilisateurs = new MUtilisateurs('', '', '', '', '', '');
+            $aUtilisateurs = $oUtilisateurs->listeUtilisateurs();
+             
+            $oVue = new VueDefaut();
+            $oVue->afficheHeaderAdmin();
+            $oVue->afficheListeModifierOeuvres($aOeuvres);
+            $oVue->afficheListeModifierUtilisateurs($aUtilisateurs);
+             $oVue->afficheListeModifierArtistes($aArtistes);
+            $oVue->afficheFooter();
+        }
 
 }
 ?>
