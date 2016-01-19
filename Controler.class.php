@@ -613,7 +613,7 @@ class Controler
             $aOeuvres = $oOeuvres->listeOeuvres();
              
             $oArtistes = new MArtistes('', '', '', '', '', '');
-            $aArtistes = $oArtistes::listeArtistes();
+            $aArtistes = $oArtistes->listeArtistes();
              
             $oUtilisateurs = new MUtilisateurs('', '', '', '', '', '');
             $aUtilisateurs = $oUtilisateurs->listeUtilisateurs();
@@ -622,7 +622,7 @@ class Controler
             $oVue->afficheHeaderAdmin();
             $oVue->afficheListeModifierOeuvres($aOeuvres);
             $oVue->afficheListeModifierUtilisateurs($aUtilisateurs);
-             $oVue->afficheListeModifierArtistes($aArtistes);
+            $oVue->afficheListeModifierArtistes($aArtistes);
             $oVue->afficheFooter();
         }
 

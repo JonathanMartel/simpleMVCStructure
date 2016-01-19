@@ -850,7 +850,7 @@ class VueDefaut
                             <label>Technique : </label> <input type="text" name="technique" value="<?php echo $technique; ?>"><br>
                             <label>Technique (anglais) : </label> <input type="text" name="techniqueAng" value="<?php echo $techniqueAng; ?>"><br>
                             <label>Description : </label> <input type="text" name="description" value="<?php echo $description; ?>"><br>
-                            <label>Validation : </label> <input type="radio" checked name="validation" value="<?php echo $validation; ?>"> Oui <input type="radio" name="validation" value="0"> Non<br>
+                            <label>Validation : </label> <input type="radio" checked name="validation" value="1"> Oui <input type="radio" name="validation" value="0"> Non<br>
                             
                             <label>Adresse Civique : </label> <input type="text" name="adresse" value="<?php echo $adresseCiv; ?>"><br>
                             <label>Batiment : </label> <input type="text" name="batiment" value="<?php echo $batiment; ?>"><br>
@@ -927,50 +927,8 @@ class VueDefaut
                 </div> 
                 <?
     }
-    
-     /**
-     * Affiche Liste Artistes
-     * @access public
-     * @author German Mahecha
-     * @version 1.0
-     */
-    
-    public function afficheListeModifierArtistes($aArtistes){
-        ?>
-            <h2>Modifier nos <span class="artistes">artistes</span> et <span class="collectif">collectifs</span></h2>
-            <section class='contenu container'>
-                <div class='tableArtistes'>
-        <?php
-                echo "<table>";
-                echo "<tr>";
-                echo "<th></th>";
-                echo "<th>Artiste</th>";
-                echo "<th>Modifier</th>	";
-                echo "</tr>";
-                    foreach($aArtistes as $artiste) {
-                        echo "<tr>";
-                        $idArtiste = $artiste->getIdArtiste();
-                        if($artiste->getNom()==NULL) {
-                            echo "<td><span class='icon-users'></span>";
-                            echo "<td>" .$artiste->getCollectif()."</td>" ;
-
-                        }else{
-                            echo "<td><span class='icon-user'></span>";
-                            echo "<td>".$artiste->getPrenom()." ". $artiste->getNom()."</td>" ;
-                        }
-                        echo "<td><a href='index.php?requete=modifierArtiste&idArtiste=$idArtiste'><span class='icon-edit'></span></a></td>";
-                        
-                        //$idArtiste = $artiste->getIdArtiste();
-                         echo "</tr>";
-                    }
-                echo "</table>";
-                echo "</div>";
-            echo "</section> ";
-       echo "</div>";
-    }
-    
-    
-        /**
+      
+    /**
      * Affiche Liste Artistes
      * @access public
      * @author German Mahecha
@@ -1008,6 +966,47 @@ class VueDefaut
                 echo "</div>";
             echo "</section> ";
        echo "</div>";
+    }
+    
+     /**
+     * Affiche Liste Artistes
+     * @access public
+     * @author German Mahecha
+     * @version 1.0
+     */
+    public function afficheListeModifierArtistes($aArtistes){
+        ?>
+            <h2>Modifier nos <span class="artistes">artistes</span> et <span class="collectif">collectifs</span></h2>
+            <section class='contenu container'>
+                <div class='tableArtistes'>
+        <?php
+                echo "<table>";
+                echo "<tr>";
+                echo "<th></th>";
+                echo "<th>Artiste</th>";
+                echo "<th>Modifier</th>	";
+                echo "</tr>";
+                    foreach($aArtistes as $artiste) {
+                        echo "<tr>";
+                        $idArtiste = $artiste->getIdArtiste();
+                        if($artiste->getNom()==NULL) {
+                            echo "<td><span class='icon-users'></span>";
+                            echo "<td>" .$artiste->getCollectif()."</td>" ;
+
+                        }else{
+                            echo "<td><span class='icon-user'></span>";
+                            echo "<td>".$artiste->getPrenom()." ". $artiste->getNom()."</td>" ;
+                        }
+                        echo "<td><a href='index.php?requete=modifierArtiste&idArtiste=$idArtiste'><span class='icon-edit'></span></a></td>";
+                        
+                        //$idArtiste = $artiste->getIdArtiste();
+                         echo "</tr>";
+                    }
+                echo "</table>";
+                echo "</div>";
+            echo "</section> ";
+       echo "</div>";
+    
     }
     
      /**
