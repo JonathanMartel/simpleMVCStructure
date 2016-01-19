@@ -1,3 +1,602 @@
 /********
 * Votre CSS
 ********/
+
+/*SLIDER */
+
+.slides{
+   width: 100%;
+}
+.slides img{
+    width: 100%;
+}
+.slidesjs-pagination {
+	background:#424242;
+	list-style:none;
+	overflow:hidden;
+}
+ 
+.slidesjs-pagination li {
+	float:left;
+}
+ 
+.slidesjs-pagination li a {
+	display:block;
+	padding:10px 20px;
+	color:#fff;
+	text-decoration:none;
+}
+ 
+.slidesjs-pagination li a:hover {
+	background:#000;
+}
+ 
+.slides .active {
+	background:#000;
+}
+ 
+.slidesjs-navigation{
+	background:#424242;
+	color:#fff;
+	text-decoration:none;
+	display:inline-block;
+	padding:13.5px;
+	float:right;
+    margin-top: 15px;
+}
+
+
+/*CONTENU */
+
+
+h2 {
+    text-align: center;
+}
+
+header .conteneurNav
+{
+/*    border: solid 1px black;*/
+    height: 95%;
+    background-color: #354a5d;
+    position: static;
+}
+
+header .conteneurNav img{
+     width: 17em;
+}
+
+.container:after
+{
+      content:"";
+      display:table;
+      clear:both;
+}
+
+.contenu
+{
+    width : 100%;
+   /* margin: 60px auto 0 auto;*/
+    text-align: justify;
+    line-height: 1.5em;
+}
+
+
+.conteneurMenu
+{
+    float: right;
+    width: 75%;
+}
+
+figure{
+    padding:5px;
+    margin:20px;
+    background-color: #ccc;
+
+
+}
+figure img{
+    display:block;
+    width:100%;
+
+
+}
+figure figcaption
+{
+    color: white;
+    text-align:center;
+}
+
+
+.menu
+{
+    margin: 44px 50px 0 0;
+    float: left;
+}
+
+.langue
+{
+    /*margin-left: 382px;*/
+    float: right;
+
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    margin-left: 20px;
+    padding: 5px;
+}
+section a{
+    color:black;
+}
+
+.accueil
+{
+    color: #47d4ba;
+}
+.accueil:hover
+{
+    background-color: #47d4ba;
+    color:white;
+}
+
+.artiste
+{
+    color: #fc705c;
+
+}
+.artiste:hover
+{
+    background-color: #fc705c;
+    color:white;
+
+}
+.tableArtistes{
+    
+    margin: auto ;  
+    width: 350px;  
+    margin-bottom: 30px;
+        
+}
+
+table a{
+    padding: 5px  25px  5px  15px;
+}
+table,tr, th, td {
+    text-align: center;
+    border: 1px solid black;
+    padding: 5px  15px  5px  15px;
+}
+
+
+.arrondisement
+{
+    color: #83defe;
+
+}
+.arrondisement:hover
+{
+    background-color: #83defe;
+    color:#676767;
+
+}
+
+.categorie
+{
+    color: #f6c351;
+
+}
+
+.categorie:hover
+{
+    background-color: #f6c351;
+    color:white;
+
+}
+
+.proposser
+{
+    color: #e2e2e2;
+
+}
+.proposser:hover
+{
+    background-color: #e2e2e2;
+    color:#676767;
+
+}
+
+
+#gallery img
+{
+    clear: both;
+    width: 100%;
+}
+
+/*PAGE ARTISTES */
+
+.artistes p, .collectif p {
+    cursor: pointer;
+}
+
+.artistes:hover {
+    background-color: pink;
+}
+
+.collectif:hover {
+    background-color: greenyellow;
+}
+
+.artistes img, .collectif img {
+    width: 5%;
+    height: auto;
+    float: left;
+    overflow: hidden;
+    margin: 1% 3% 1% 3%;
+
+}
+
+/*Accordeon CSS source : http://codepen.io/abergin/pen/ihlDf */
+      
+.transition, .accordion-contenu, .accordion-contenu p, .accordion i:before, .accordion i:after {
+    transition: all 0.25s ease-in-out;
+}
+
+.flipIn, .accordion {
+    animation: flipdown 0.5s ease both;
+}
+
+i {
+    position: absolute;
+    transform: translate( -35px , -60px );
+    margin-top: 16px;
+    right: 0;
+}
+
+i:before , i:after {
+    content: "";
+    @extend .transition;
+    position: absolute;
+    background-color: white;
+    width: 9px;
+    height: 27px;
+}
+
+
+i:before {
+    transform: translate( -16px , 0 ) rotate( 45deg );
+}
+
+
+i:after {
+    transform: translate( -2px , 0 ) rotate( -45deg );
+}
+
+.accordion input[type=checkbox] {
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+}
+
+.accordion input[type=checkbox]:checked ~ .accordion-contenu {
+    margin-top: 0;
+    max-height: 0;
+    opacity: 0;
+    transform: translate( 0 , 50% );
+}
+
+.accordion input[type=checkbox]:checked ~ i:before {
+    transform: translate( -16px , 0 ) rotate( -45deg );
+}
+
+.accordion input[type=checkbox]:checked ~ i:after {
+    transform: translate( -2px , 0 ) rotate( 45deg );
+}
+
+@keyframes flipdown {
+    0% {
+        opacity: 0;
+        transform-origin: top center;
+        transform: rotateX(-90deg);
+    }
+
+    5%{
+        opacity: 1;
+    }
+
+    80%{
+         transform: rotateX(8deg);
+    }
+
+    83%{
+        transform: rotateX(6deg);
+    }
+
+    92%{
+        transform: rotateX(-3deg);
+    }
+
+    100%{
+        transform-origin: top center;
+    }
+
+}
+
+
+.accordion-contenu {
+    
+    @extend .flipIn;
+    position: relative;
+    overflow: auto;
+    max-height: 400px;
+    @extend .transition;
+    opacity: 1;
+    transform: translate( 0 , 0 ) ;
+    margin-top: 14px;
+    z-index: 2;
+    animation-delay: 0.5s;
+}
+
+.accordion-contenu li {
+    text-align: left;
+}
+
+.accordion p {
+    font-weight: bold;
+}
+
+
+/*MOTEUR DE RECHERCHE _Auteure: Thuy Tien Vo*/
+#recherche
+{  
+    width: 400px;
+    height: 25px;
+    margin-left: 750px;
+    margin-top: 30px;
+
+
+}
+
+
+#recherche input[type="text"] 
+{
+    width: 200px;
+
+    margin-left: 110px;
+    padding: 5px 0px 5px 0px;
+    border-width: 0px;
+    border-radius: 6px;
+    font-family: "Arial ", Arial, sans-serif;
+    font-size: 14px;
+    color: #828282;
+    display: inline-table;
+    vertical-align: top;
+}
+#submit 
+{
+
+    border-width: 0px;
+    cursor: pointer;
+    float:right;
+    font: bold 14px Arial;
+    border-radius: 6px; 
+    margin-right: 45px;
+    width: 40px;
+    height: 25px;
+    background-color:#f6c351;
+}
+
+  
+ #submit:hover
+{       
+    background-color: #83defe;
+ 
+}   
+  
+ #submit:active 
+{
+    outline: 0;    
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;    
+}
+  
+#submit::-moz-focus-inner 
+{
+    border: 0;
+}
+
+
+
+/*AFFICHER LA PAGE D'INSCRIPTION*/
+#titre
+{
+    margin:0px 595px 0px 650px;
+}
+.formulaire
+{
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:40px;
+    max-width: 600px;
+    background: #FFF;
+    border-radius: 10px;
+    padding: 30px 30px 20px 30px;
+    box-shadow: rgba(187, 187, 187, 1) 0 0px 20px -1px;
+    color: #666;
+}
+
+.formulaire input[type="text"], input[type="date"]
+{  
+    width:200px;
+}
+
+.formulaire #button 
+{
+    -moz-box-shadow:inset 0px 1px 0px 0px #fbafe3;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #fbafe3;
+     box-shadow: 0 1px 3px 4px rgba(255, 255, 255, 0.3) inset, 0 1px 0 #fff;
+   
+    background-color:#f6c351;
+    border-radius:9px;
+    -webkit-border-radius:9px;
+    -moz-border-border-radius:9px;
+    border:1px solid #f6c351;
+ 
+    cursor: pointer;
+    font: bold 18px Arial;
+    color: #fafafa;
+    height: 35px;
+    line-height: 30px;
+    width:120px;
+    text-decoration:none;
+    text-align:center;
+    margin-top: 20px;
+   
+}
+
+.formulaire #button:hover,
+.formulaire #button:focus 
+{       
+    background-color: #354a5d;
+ 
+} 
+
+/*AFFICHER LA PAGE DE CONNEXION*/
+
+#titre1
+{
+    margin:20px 720px 0px 710px;
+}
+
+.formulaire #button:hover,
+.formulaire #button:focus 
+{       
+    background-color: #354a5d;
+ 
+} 
+
+
+.formulaire1
+{
+
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:40px;
+    max-width: 200px;
+    background: #FFF;
+    border-radius: 10px;
+    padding: 30px 30px 20px 30px;
+    box-shadow: rgba(187, 187, 187, 1) 0 0px 20px -1px;
+    color: #666;
+}
+
+.formulaire1 input[type="text"], input[type="date"]
+{  
+    width:200px;
+}
+
+.formulaire1 #button 
+{
+    -moz-box-shadow:inset 0px 1px 0px 0px #fbafe3;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #fbafe3;
+     box-shadow: 0 1px 3px 4px rgba(255, 255, 255, 0.3) inset, 0 1px 0 #fff;
+   
+    background-color:#f6c351;
+    border-radius:9px;
+    -webkit-border-radius:9px;
+    -moz-border-border-radius:9px;
+    border:1px solid #f6c351;
+ 
+    cursor: pointer;
+    font: bold 16px Arial;
+    color: #fafafa;
+    height: 32px;
+    line-height: 30px;
+    width:100px;
+    margin-left: 50px;
+    text-decoration:none;
+    text-align:center;
+
+}
+
+.formulaire1 #button:hover,
+.formulaire1 #button:focus 
+{       
+    background-color: #354a5d;
+ 
+} 
+
+
+/*ADMIN*/
+
+.admin {
+    overflow: hidden;
+    position: relative;
+}
+/*MENU ADMIN*/
+
+.menuAdmin {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #354a5d;
+    width: 272px;
+    height: 100%;
+}
+
+.menuAdmin ul li ul {
+    display: none;
+}
+
+.menuAdmin ul li:hover ul {
+    display: block;
+}
+
+.administration {
+    float: right;
+    width: 77%;
+}
+
+/* FORMULAIRE ADMIN */
+
+.administration label {
+    display: block;
+    width: 150px;
+    float: left;
+}
+
+.administration input, .administration select {
+    margin-bottom: 1%;
+}
+
+/* FOOTER */
+
+footer
+{
+/*    margin-top: 50px;*/
+    width: 100%;
+    height: 81px;
+/*    position: absolute;*/
+    bottom: 0;
+    left: 0;
+    background-color: #354a5d;
+    color: white;
+    text-align: center;
+    padding: 1%;
+}
+
+
+/*
+@media only screen and (max-width: 708px){
+
+            .contenu
+        {
+            width : 960px;
+        }
+
+}
+*/
+
+

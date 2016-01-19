@@ -14,7 +14,18 @@
 			<h1>Test - Modèles</h1>
 		</div>
 		<div id="contenu">
-			<?php // Placer vos tests unitaires ici... ?>
+			<?php
+            
+            include ("../modeles/MOeuvres.class.php");
+            include ("../lib/PdoBDD.class.php");
+            
+			//$oArrondisement = new MArrondissement('', '');
+			//$aArrondissements = $oArrondisement::listeArrondissement();
+			//var_dump($oArrondisement);
+            
+            $oOeuvre = new MOeuvres('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            $aOeuvre = $oOeuvre::ajouterOeuvre();
+			?>
 		</div>
 		<div id="footer">
 
