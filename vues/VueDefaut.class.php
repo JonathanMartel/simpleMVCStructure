@@ -297,7 +297,7 @@ class VueDefaut
                    $titre = $oeuvre->getTitreOeuvre();
                    $arrondissement= $oeuvre ->getNomArrondissement();
                    $prenom = $oeuvre->getPrenomArtiste();
-                   $nom = $oeuvre->getPreNomArtiste();
+                   $nom = $oeuvre->getNomArtiste();
                    $collectif = $oeuvre->getCollectif();
                    $categorie = $oeuvre->getNomCategorie();
 
