@@ -624,6 +624,7 @@ class VueDefaut
                 <link rel="stylesheet" href="./css/base_h5bp.css" type="text/css" media="screen">
                 <link rel="stylesheet" href="./css/main.css" type="text/css" media="screen">
                 <link rel="stylesheet" href="./css/_grid.css" type="text/css" media="screen">
+                <link rel="stylesheet" href="fonts/style.css" type="text/css">
 
                 <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
                 <script src="./js/plugins.js"></script>
@@ -643,7 +644,7 @@ class VueDefaut
 
                                 <a href="index.php?requete=connexion" class="connexion">SE CONNECTER</a>
                                 <a href="#">FR/EN</a>
-                                <a href="index.php?requete=accueil" class="accueil"><span class="icon-home"></span>ACCUEIL</a>
+                                <a href="index.php?requete=accueil" class="accueil"><span class="icon-home"></span> ACCUEIL</a>
          
                             </div>
 
@@ -681,7 +682,7 @@ class VueDefaut
                                 <li>
                                     <a href="#">OEUVRES</a>
                                        <ul>
-                                            <li><a href="#">Ajouter</a></li>
+                                            <li><a href="index.php?requete=ajoutOeuvre">Ajouter</a></li>
                                             <li><a href="index.php?requete=listeModifierOeuvres">Modifier</a></li>
                                             <li><a href="index.php?requete=listeSupprimerOeuvres">Supprimer</a></li>
                                         </ul>
@@ -708,7 +709,7 @@ class VueDefaut
                                 <li>
                                     <a href="index.php?requete=listerUtilisateurs">UTILISATEURS</a>
                                         <ul>
-                                            <li><a href="index.php?requete=afficheInscriptionAdmin">Ajouter</a></li>
+                                            <li><a href="index.php?requete=afficheInscription">Ajouter</a></li>
                                             <li><a href="index.php?requete=listeModifierUtilisateurs">Modifier</a></li>
                                             <li><a href="index.php?requete=listeSupprimerUtilisateurs">Supprimer</a></li>
                                         </ul>
@@ -740,7 +741,7 @@ class VueDefaut
                    <div class="twelvecol">
                        <h3>Ajouter une oeuvre</h3>
 
-                       <form method="POST" action="index.php?requete=admin&action=ajoutOeuvre">
+                       <form method="POST" action="index.php?requete=ajoutOeuvre&action=ajoutOeuvre">
                            
                             <label>Titre : </label> <input type="text" name="titre"><span><?php echo $erreurTitre;?><br>
                             <label>Titre (Variante) : </label> <input type="text" name="titreVariante"><br>
@@ -937,7 +938,7 @@ class VueDefaut
     
     public function afficheListeSupprimerUtilisateurs($aUtilisateurs){
         ?>
-            <h2>Eliminer nos utilisateurs</h2>
+            <h2>Supprimer nos utilisateurs</h2>
             <section class='contenu container'>
                 <div class='tableArtistes'>
         <?php
@@ -1007,7 +1008,7 @@ class VueDefaut
     
      public function afficheListeSupprimerCategories($aCategories){
         ?>
-            <h2>Eliminer nos categories</h2>
+            <h2>Supprimer nos categories</h2>
             <section class='contenu container'>
                 <div class='tableArtistes'>
         <?php
@@ -1078,7 +1079,7 @@ class VueDefaut
     
      public function afficheListeSupprimerOeuvres($aOeuvres){
         ?>
-            <h2>Eliminer nos categories</h2>
+            <h2>Supprimer une oeuvre</h2>
             <section class='contenu container'>
                 <div class='tableArtistes'>
         <?php
@@ -1112,17 +1113,17 @@ class VueDefaut
     }
 
 
-        /**
+    /**
      * Affiche la page pour ajouter un artiste
      * @access public
-     * @auteure: Jorge Blanco
+     * @author: Jorge Blanco
      */
     public function ajouterUnArtiste() 
     {
         ?>
         <div>
         <h2 id="titre">Ajouter un artiste</h2>
-        <form class="formulaire"action="">
+        <form class="formulaire" action="">
             <fieldset>
             Prénom:<br>
             <input type="text" name="prenom" >
@@ -1134,7 +1135,7 @@ class VueDefaut
             <input  type="text" name="Collectif" >
              <br> <br>
             Prendre une photo:<br><br>
-            <input type="button" name="courriel" value = "prendre une photo" >
+            <input type="button" name="photoArtiste" value = "prendre une photo" >
             <br> <br>
             
             <input type="submit" value="Envoyer" id="button">
@@ -1147,7 +1148,45 @@ class VueDefaut
 
     }
 
+    /**
+     * Affiche la page pour modifier un artiste
+     * @access public
+     * @author: Gautier Piatek
+     */
+    public function modifierUnArtiste($aArtiste) 
+    {   
+        $idArtiste = $aArtiste['idArtiste'];
+        $prenom = $aArtiste['prenom'];
+        $nom = $aArtiste['nom'];
+        $collectif = $aArtiste['collectif'];
+        $photoArtiste = $aArtiste['photoArtiste'];
+        ?>
+        <div>
+        <h2 id="titre">Modifier un artiste</h2>
+        <form class="formulaire" action="index.php?requete=modifierArtiste&idArtiste=<?php echo $idArtiste; ?>&action=valider" method='POST'>
+            <fieldset>
+            Prénom:<br>
+            <input type="text" name="prenom" value="<?php echo $prenom; ?>">
+            <br> <br>
+            Nom:<br>
+            <input type="text" name="nom" value="<?php echo $nom; ?>">
+            <br> <br>
+            Collectif:<br>
+            <input  type="text" name="collectif" value="<?php echo $collectif; ?>">
+             <br> <br>
+            Photo:<br><br>
+            <input type="text" name="photoArtiste" value="<?php echo $photoArtiste; ?>">
+            <br> <br>
+            
+            <input type="submit" value="Envoyer" id="button">
+            <fieldset>
+        </form>  
+        </fieldset>
+        </fieldset>
+        </div>          
+        <?php
 
+    }
 
     /**
      * Affiche la page d'inscription - admin

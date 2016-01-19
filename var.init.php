@@ -38,14 +38,31 @@
 	{
 		$_GET['action'] = '';
 	}
+
     if(empty($_GET['idArtiste']))
     {
 		$_GET['idArtiste'] = '';
 	}
+
     if(empty($_GET['idUtilisateur']))
     {
 		$_GET['idUtilisateur'] = '';
 	}
     
+    if(empty($prenom)) {
+        $prenom ='';
+    }
+
+    if(empty($nom)) {
+        $nom ='';
+    }
+
+    if(empty($collectif)) {
+        $collectif ='';
+    }
+
+    if(empty($photoArtiste)) {
+        $photoArtiste ='';
+    }
 
 ?>

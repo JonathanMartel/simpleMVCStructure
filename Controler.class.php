@@ -70,12 +70,8 @@ class Controler
                         $this->listeSupprimerOeuvres();
                     break;   
                     
-                    
-                    
-                    
-                    
-                case 'modifierArtistes':
-                        $this->modifierArtistes($_GET['idArtiste']);
+                case 'modifierArtiste':
+                        $this->modifierArtiste($_GET['idArtiste']);
                     break;
                 case 'supprimerArtistes':
                         $this->supprimerArtistes($_GET['idArtiste']);
@@ -95,7 +91,9 @@ class Controler
                 case 'supprimerOeuvres':
                         $this->supprimerOeuvres($_GET['idOeuvre']);
                     break; 
-                    
+                case 'modifierOeuvres':
+                        $this->modifierOeuvres($_GET['idOeuvre']);
+                    break;     
                     
                     
                 case 'inscription':
@@ -139,8 +137,8 @@ class Controler
                  	$this->oeuvresParArr();
                  	break;
 
-                case 'admin':
-                    $this->admin();
+                case 'ajoutOeuvre':
+                    $this->ajoutOeuvre();
                     break;
 
                 case 'ajouterUnArtiste':
@@ -317,24 +315,51 @@ class Controler
     
         private function modifierArtiste($idArt)
         {   
-            $oArtiste = new MArtistes('', '', '', '', '');
+            $oArtiste = new MArtistes('', '', '', '', '', '');
+            $aArtiste = $oArtiste->getArtisteParId($idArt);
+            $aArtistes = $oArtiste->listeArtistes();
             
+            $oVue = new VueDefaut();
+            $oVue->afficheHeaderAdmin();
             
+            if($_GET['idArtiste'] && $_GET['action'] == 'valider') {
+                
+                try
+                {
+                $oArtiste->modificationArtiste($_GET['idArtiste'], $_POST['prenom'], $_POST['nom'], $_POST['collectif'], $_POST['photoArtiste']);
+                
+                $oVue = new VueDefaut();
+                $aArtistes = $oArtiste->listeArtistes();
+                $oVue->afficheListeModifierArtistes($aArtistes); 
+                    
+                }
+                catch (Exception $e)
+                {
+                    $message = $e->getMessage();     
+                } 
+                
+    
+            } else {
+                $oVue->modifierUnArtiste($aArtiste);
+            }     
+            $oVue->afficheFooter();   
         }
     
         private function supprimerArtistes($idArtiste)
         {   
             $oArtiste = new MArtistes('', '', '', '', '', '');
             $oArtiste->supprimerArtiste($idArtiste);
+            $aArtistes = $oArtiste::listeArtistes();
             
             $oVue = new VueDefaut();
             $oVue->afficheHeaderAdmin();
-            $oVue->afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message);
+            $oVue->afficheListeSupprimerArtistes($aArtistes);
             $oVue->afficheFooter();
         }
         
         private function modifierUtilisateur($idUtil)
         {   
+            
         }
     
         private function supprimerUtilisateurs($idUtil)
@@ -350,9 +375,45 @@ class Controler
     
         private function modifierOeuvre($idOeuvre)
         {   
+            $erreurTitre ='';
+            $message ='';
+            
+            $oArtistes = new MArtistes('', '', '' ,'', '', '');
+            $aArtistes = $oArtistes::listeArtistes();
+            
+            $oCategories = new MCategories('', '', '' ,'', '','');
+            $aCategories = $oCategories::listeCategories();
+            
+            $oSousCategories = new MSousCategories('', '', '', '');
+            $aSousCategories = $oSousCategories::listeSousCategories();
+            
+            $oArrondissements = new MArrondissement('', '');
+            $aArrondissements = $oArrondissements::listeArrondissement();
+            
+            $oVue = new VueDefaut();
+            $oVue->afficheHeaderAdmin();
+            
+            if($_GET['action'] == 'ajoutOeuvre') {
+                $oOeuvre = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+                
+                $oOeuvre->ajouterAdresse($_POST['adresse'], $_POST['batiment'], $_POST['parc'], $_POST['latitude'], $_POST['longitude']);
+                $idAdresse = $oOeuvre->recupererDernierId();
+                                         
+                try
+                {
+                    $oOeuvre->ajouterOeuvre($_POST['titre'], $_POST['titreVariante'],  $_POST['technique'], $_POST['techniqueAng'], $_POST['description'], $_POST['validation'], $_POST['arrondissement'], $idAdresse, $_POST['artiste'], $_POST['categorie'], $_POST['sousCategorie'], $_POST['materiaux'], $_POST['materiauxAng']);
+                
+                $message = "Oeuvre ajoutée.";
+                    
+                }
+                catch (Exception $e)
+                {
+                    $message = $e->getMessage();     
+                } 
+            }
         }
     
-        private function supprimerOeuvres($idOeuvre)
+        private function supprimerOeuvres($idOeuvre) 
         {   
             $oOeuvre = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
             $oOeuvre->supprimerOeuvre($idOeuvre);
@@ -455,7 +516,7 @@ class Controler
                 
         }
     
-        private function admin()
+        private function ajoutOeuvre()
         {
             $erreurTitre ='';
             $message ='';
