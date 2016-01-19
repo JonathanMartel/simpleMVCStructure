@@ -145,6 +145,13 @@ class Controler
                     $this->ajouterUnArtiste();
                     break;
 
+                case 'profilUtilisateur':
+                    $this->profilUtilisateur();
+                    break;
+
+                case 'listerUtilisateurs':
+                    $this->listerUtilisateurs();
+                    break;
                 default:
 			    $this->accueil();
 				break;
@@ -215,6 +222,19 @@ class Controler
             $oVue->afficheFooter();
     
 		}
+
+
+        private function listerUtilisateurs()
+        {
+            $oUtilisateurs = new MUtilisateurs('','','','','','');
+            $aUtilisateurs = $oUtilisateurs::listeUtilisateurs();
+
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            $oVue->afficheMoteurRecherche();
+            $oVue->listerUtilisateurs($aUtilisateurs);
+            $oVue->afficheFooter();
+        }
     
         private function listeModifierUtilisateurs()
 		{
@@ -451,14 +471,8 @@ class Controler
             }
 
             $oVue->afficheInscription();
-            $oVue->afficheFooter();
-
-            
-            
+            $oVue->afficheFooter();    
         } 
-
-
-
 
         private function connexion()
         {
@@ -542,6 +556,16 @@ class Controler
             $oVue->ajouterUnArtiste();
             $oVue->afficheFooter();
         }
+
+        private function profilUtilisateur()
+        {
+            $oVue = new VueDefaut();
+            $oVue->afficheHeader();
+            //$oVue->ajouterUnArtiste();
+            $oVue->afficheFooter();
+        }
+
+
 
 }
 ?>
