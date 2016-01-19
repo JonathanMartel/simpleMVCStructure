@@ -170,7 +170,6 @@ class Controler
             $aOeuvres = $oOeuvres::listeOeuvres();
             $oVue = new VueDefaut();
 			$oVue->afficheHeader();
-            $oVue->afficheMoteurRecherche();
 			$oVue->afficheAccueil($aOeuvres);
 			$oVue->afficheFooter();
 			
@@ -197,7 +196,6 @@ class Controler
               
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-            $oVue->afficheMoteurRecherche();
 			$oVue->afficheArtistes($aArtistes, $oOeuvres);
             $oVue->afficheFooter();
     
@@ -210,7 +208,6 @@ class Controler
               
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-            $oVue->afficheMoteurRecherche();
 			$oVue->afficheListeModifierArtistes($aArtistes);
             $oVue->afficheFooter();
     
@@ -222,7 +219,6 @@ class Controler
               
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-            $oVue->afficheMoteurRecherche();
 			$oVue->afficheListeSupprimerArtistes($aArtistes);
             $oVue->afficheFooter();
     
@@ -236,7 +232,6 @@ class Controler
 
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-            $oVue->afficheMoteurRecherche();
             $oVue->listerUtilisateurs($aUtilisateurs);
             $oVue->afficheFooter();
         }
@@ -248,7 +243,6 @@ class Controler
               
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-            $oVue->afficheMoteurRecherche();
 			$oVue->afficheListeModifierUtilisateurs($aUtilisateurs);
             $oVue->afficheFooter();
     
@@ -260,7 +254,6 @@ class Controler
               
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-            $oVue->afficheMoteurRecherche();
 			$oVue->afficheListeSupprimerUtilisateurs($aUtilisateurs);
             $oVue->afficheFooter();
     
@@ -273,7 +266,6 @@ class Controler
               
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-            $oVue->afficheMoteurRecherche();
 			$oVue->afficheListeModifierCategories($aCategories);
             $oVue->afficheFooter();
     
@@ -285,7 +277,6 @@ class Controler
               
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-            $oVue->afficheMoteurRecherche();
 			$oVue->afficheListeSupprimerCategories($aCategories);
             $oVue->afficheFooter();
     
@@ -298,7 +289,6 @@ class Controler
               
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-            $oVue->afficheMoteurRecherche();
 			$oVue->afficheListeModifierOeuvres($aOeuvres);
             $oVue->afficheFooter();
     
@@ -310,7 +300,6 @@ class Controler
               
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-            $oVue->afficheMoteurRecherche();
 			$oVue->afficheListeSupprimerOeuvres($aOeuvres);
             $oVue->afficheFooter();
     
@@ -451,7 +440,6 @@ class Controler
 
             $oVue = new VueDefaut();
             $oVue->afficheHeader();
-            $oVue->afficheMoteurRecherche();
 			$oVue->afficheArrondissements($aArrondissements);
             $oVue->afficheFooter();
     
@@ -464,7 +452,6 @@ class Controler
             $oVue = new VueDefaut();
 
             $oVue->afficheHeader();
-            $oVue->afficheMoteurRecherche();
 			$oVue->afficheCategories($aCategories);
             $oVue->afficheFooter();
     
