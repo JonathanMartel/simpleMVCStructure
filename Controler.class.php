@@ -91,8 +91,8 @@ class Controler
                 case 'supprimerOeuvres':
                         $this->supprimerOeuvres($_GET['idOeuvre']);
                     break; 
-                case 'modifierOeuvres':
-                        $this->modifierOeuvres($_GET['idOeuvre']);
+                case 'modifierOeuvre':
+                        $this->modifierOeuvre($_GET['idOeuvre']);
                     break;     
                     
                     
@@ -326,7 +326,7 @@ class Controler
                 
                 try
                 {
-                $oArtiste->modificationArtiste($_GET['idArtiste'], $_POST['prenom'], $_POST['nom'], $_POST['collectif'], $_POST['photoArtiste']);
+                $oArtiste->modifierArtiste($_GET['idArtiste'], $_POST['prenom'], $_POST['nom'], $_POST['collectif'], $_POST['photoArtiste']);
                 
                 $oVue = new VueDefaut();
                 $aArtistes = $oArtiste->listeArtistes();
@@ -390,27 +390,39 @@ class Controler
             $oArrondissements = new MArrondissement('', '');
             $aArrondissements = $oArrondissements::listeArrondissement();
             
+            $oOeuvre = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+            
+            $aOeuvre = $oOeuvre->getOeuvreParId($idOeuvre);
+            $aOeuvres = $oOeuvre->listeOeuvres();
+            
+            $idAdresse = $oOeuvre->recupererIdAdresse($idOeuvre);
+            $aAdresse = $oOeuvre->getAdresseParId($idAdresse);
+                       
             $oVue = new VueDefaut();
             $oVue->afficheHeaderAdmin();
             
-            if($_GET['action'] == 'ajoutOeuvre') {
+            
+            if($_GET['idOeuvre'] && $_GET['action'] == 'valider') {
                 $oOeuvre = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
                 
-                $oOeuvre->ajouterAdresse($_POST['adresse'], $_POST['batiment'], $_POST['parc'], $_POST['latitude'], $_POST['longitude']);
-                $idAdresse = $oOeuvre->recupererDernierId();
+                $oOeuvre->modifierAdresse($idAdresse, $_POST['adresse'], $_POST['batiment'], $_POST['parc'], $_POST['latitude'], $_POST['longitude']);
+                
                                          
                 try
                 {
-                    $oOeuvre->ajouterOeuvre($_POST['titre'], $_POST['titreVariante'],  $_POST['technique'], $_POST['techniqueAng'], $_POST['description'], $_POST['validation'], $_POST['arrondissement'], $idAdresse, $_POST['artiste'], $_POST['categorie'], $_POST['sousCategorie'], $_POST['materiaux'], $_POST['materiauxAng']);
+                    $oOeuvre->modifierOeuvre($_GET['idOeuvre'], $_POST['titre'], $_POST['titreVariante'],  $_POST['technique'], $_POST['techniqueAng'], $_POST['description'], $_POST['validation'], $_POST['arrondissement'], $idAdresse, $_POST['artiste'], $_POST['categorie'], $_POST['sousCategorie'], $_POST['materiaux'], $_POST['materiauxAng']);
                 
-                $message = "Oeuvre ajoutée.";
+                $message = "Oeuvre modifiée.";
                     
                 }
                 catch (Exception $e)
                 {
                     $message = $e->getMessage();     
                 } 
-            }
+            } else {
+                $oVue->modifierOeuvre($aOeuvre, $aAdresse, $aArrondissements, $aArtistes, $aCategories, $aSousCategories, $erreurTitre, $message);
+            }     
+            $oVue->afficheFooter();  
         }
     
         private function supprimerOeuvres($idOeuvre) 

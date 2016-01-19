@@ -812,7 +812,122 @@ class VueDefaut
         
     }
     
+    /**
+     * Fonction qui modifie une Oeuvre
+     * @access public
+     * @author Gautier Piatek
+     * @version 1.0
+     */
     
+    public function modifierOeuvre($aOeuvre, $aAdresse, $aArrondissements, $aArtistes, $aCategories, $aSousCategories, $erreurTitre, $message) {
+        
+        $idOeuvre = $aOeuvre['idOeuvre'];
+        $titre = $aOeuvre['titreOeuvre'];
+        $titreVariante = $aOeuvre['titreVariante'];
+        $technique = $aOeuvre['technique'];
+        $techniqueAng = $aOeuvre['techniqueAng'];
+        $description = $aOeuvre['description'];
+        $validation = $aOeuvre['validationOeuvre'];
+        $adresseCiv = $aAdresse['adresseCiv'];
+        $batiment = $aAdresse['batiment'];
+        $parc = $aAdresse['parc'];
+        $latitude = $aAdresse['latitude'];
+        $longitude = $aAdresse['longitude'];
+        $idArrondissement = $aOeuvre['idArrondissement'];
+        $idCategorie = $aOeuvre['idCategorie'];
+        $idSousCategorie = $aOeuvre['idSousCategorie'];
+        $nomMateriaux = $aOeuvre['nomMateriaux'];
+        $nomMateriauxAng = $aOeuvre['nomMateriauxAng'];
+        $idArtiste = $aOeuvre['idArtiste'];
+        ?>
+        <div class="administration">
+                   <div class="twelvecol">
+                       <h3>Modifier une oeuvre</h3>
+
+                       <form method="POST" action="index.php?requete=modifierOeuvre&idOeuvre=<?php echo $idOeuvre; ?>&action=valider">
+                           
+                            <label>Titre : </label> <input type="text" name="titre" value="<?php echo $titre; ?>"><span><?php echo $erreurTitre;?><br>
+                            <label>Titre (Variante) : </label> <input type="text" name="titreVariante" value="<?php echo $titreVariante; ?>"><br>
+                            <label>Technique : </label> <input type="text" name="technique" value="<?php echo $technique; ?>"><br>
+                            <label>Technique (anglais) : </label> <input type="text" name="techniqueAng" value="<?php echo $techniqueAng; ?>"><br>
+                            <label>Description : </label> <input type="text" name="description" value="<?php echo $description; ?>"><br>
+                            <label>Validation : </label> <input type="radio" checked name="validation" value="<?php echo $validation; ?>"> Oui <input type="radio" name="validation" value="0"> Non<br>
+                            
+                            <label>Adresse Civique : </label> <input type="text" name="adresse" value="<?php echo $adresseCiv; ?>"><br>
+                            <label>Batiment : </label> <input type="text" name="batiment" value="<?php echo $batiment; ?>"><br>
+                            <label>Parc : </label> <input type="text" name="parc" value="<?php echo $parc; ?>"><br>
+                            <label>Latitude : </label> <input type="text" name="latitude" value="<?php echo $latitude; ?>"><br>
+                            <label>Longitude : </label> <input type="text" name="longitude" value="<?php echo $longitude; ?>"><br>
+                            <label>Arrondissement : </label> <select name="arrondissement" >
+                                <option value="nonChoisi">Choisir un Arrondissement</option>
+                            <?php
+                                foreach ($aArrondissements as $arrondissement) {
+                                    echo "<option value='". $arrondissement->getidArrondissement() . "'";
+                                    if($arrondissement->getidArrondissement() == $idArrondissement){
+                                        echo " selected";
+                                    }  
+                                    echo ">".$arrondissement->getnomArrondissement()."</option>"; 
+                                }
+                            ?>
+                           </select><br>
+                               <label>Artiste/Collectif : </label> <select name="artiste">
+                                <option value="nonChoisi">Choisir un Artiste/Collectif</option>
+                            <?php
+                                foreach ($aArtistes as $artiste) {
+                                    
+                                    if($artiste->getNom() == "") {
+                                        
+                                        echo "<option value='".$artiste->getIdArtiste()."'";
+                                        if($artiste->getIdArtiste() == $idArtiste){
+                                            echo " selected";
+                                        } 
+                                        echo ">".$artiste->getCollectif()."</option>"; 
+                                    } else {                                    
+                                       
+                                        echo "<option value='".$artiste->getIdArtiste()."'";
+                                        if($artiste->getIdArtiste() == $idArtiste){
+                                            echo " selected";
+                                        }
+                                        echo ">". $artiste->getPrenom() . " " . $artiste->getNom()."</option>";
+                                    }
+                                }
+                            ?>
+                           </select><br>
+                               <label>Catégorie : </label> <select name="categorie">
+                                <option value="nonChoisi">Choisir une Catégorie</option>
+                            <?php 
+                                foreach ($aCategories as $categorie) {
+                                    echo "<option value='".$categorie->getidCategorie()."'";
+                                    if($categorie->getidCategorie() == $idCategorie){
+                                        echo " selected";
+                                    }
+                                    echo">".$categorie->getnomCategorie()."</option>"; 
+                                }
+                            ?>
+                           </select><br>
+                               <label>Sous-Catégorie : </label> <select name="sousCategorie">
+                                <option value="nonChoisi">Choisir une Sous-Catégorie</option>
+                            <?php
+                                foreach ($aSousCategories as $sousCategorie) {
+                                    echo "<option value='".$sousCategorie->getidSousCategorie()."'";
+                                    if($sousCategorie->getidSousCategorie() == $idSousCategorie){
+                                        echo " selected";
+                                    }
+                                    echo ">".$sousCategorie->getnomSousCategorie()."</option>"; 
+                                }
+                            ?>    
+                           </select><br>
+                               <label>Matériaux : </label> <input type="text" name="materiaux" value="<?php echo $nomMateriaux; ?>"><br>
+                               <label>Matériaux (anglais) : </label> <input type="text" name="materiauxAng" value="<?php echo $nomMateriauxAng; ?>"><br><br>
+                            
+                            <input type="submit" name="sauvegarder" value="Valider"> <span><?php echo $message; ?></span>
+                       </form>
+
+                   </div>
+
+                </div> 
+                <?
+    }
     
      /**
      * Affiche Liste Artistes
