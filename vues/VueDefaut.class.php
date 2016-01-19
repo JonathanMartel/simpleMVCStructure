@@ -706,7 +706,7 @@ class VueDefaut
                                 </li>
 
                                 <li>
-                                    <a href="#">UTILISATEURS</a>
+                                    <a href="index.php?requete=listerUtilisateurs">UTILISATEURS</a>
                                         <ul>
                                             <li><a href="index.php?requete=afficheInscriptionAdmin">Ajouter</a></li>
                                             <li><a href="index.php?requete=listeModifierUtilisateurs">Modifier</a></li>
@@ -1196,6 +1196,41 @@ class VueDefaut
         </fieldset>
         </div>          
         <?php
+
+    }
+
+
+    /**
+     * Afficher un liste d'utilisateurs 
+     * @access public
+     * @auteure: Jorge Blanco
+     */
+    public function listerUtilisateurs($aUtilisateurs)
+    {
+        ?>
+            <h2>Utilisateurs</h2>
+            <section class='contenu container'>
+                <div class='tableArtistes'>
+        <?php
+                echo "<table>";
+                echo "<tr>";
+                echo "<th></th>";
+                echo "<th>Utilisateur</th>";
+                //echo "<th>Supprimer</th>    ";
+                echo "</tr>";
+                
+                foreach($aUtilisateurs as $utilisateur) {
+                        echo "<tr>";
+                        $idUtilisateur = $utilisateur->getIdUtilisateur();
+                        echo "<td><span class='icon-user'></span>";
+                        echo "<td><a href='index.php?requete=profilUtilisateur&idUtilisateur=$idUtilisateur'>".$utilisateur->getLoginUtilisateur()."</a>" ."</td>" ;
+                        //echo "<td><a href='index.php?requete=supprimerUtilisateurs&idUtilisateur=$idUtilisateur'><span class='icon-remove-user'></span></a></td>";
+                        echo "</tr>";
+                }
+                echo "</table>";
+                echo "</div>";
+            echo "</section> ";
+       echo "</div>";
 
     }
     
