@@ -128,9 +128,28 @@ class MArtistes {
         self::$database->bind(':idArtiste', $idArtiste);
         
         $ligne = self::$database->uneLigne();
-        $unArtiste = new MArtistes($ligne['idArtiste'], $ligne['prenom'], $ligne['nom'], $ligne['collectif'], $ligne['noInterne'], $ligne['photoArtiste']);
-        $artiste[] = $unArtiste;
-        return $artiste;
+        
+        return $ligne;
+	}
+    
+    /*
+     * Fonction qui récupère met à jour un artiste
+	 * @access public static
+     * @author Gautier Piatek
+	 * @return none
+	 */
+	public static function modificationArtiste($idArtiste, $prenom, $nom, $collectif, $photoArtiste) 
+	{
+		self::$database->query("UPDATE artiste SET prenom = :prenom, nom = :nom, collectif = :collectif, photoArtiste = :photoArtiste WHERE idArtiste = :idArtiste");
+        //On lie les paramètres auxvaleurs
+        self::$database->bind(':idArtiste', $idArtiste);
+        self::$database->bind(':prenom', $prenom);
+        self::$database->bind(':nom', $nom);
+        self::$database->bind(':collectif', $collectif);
+        self::$database->bind(':photoArtiste', $photoArtiste);
+        
+        return(self::$database->execute());
+        
 	}
 }
 

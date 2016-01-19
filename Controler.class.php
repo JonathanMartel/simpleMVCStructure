@@ -70,8 +70,8 @@ class Controler
                         $this->listeSupprimerOeuvres();
                     break;   
                     
-                case 'modifierArtistes':
-                        $this->modifierArtistes($_GET['idArtiste']);
+                case 'modifierArtiste':
+                        $this->modifierArtiste($_GET['idArtiste']);
                     break;
                 case 'supprimerArtistes':
                         $this->supprimerArtistes($_GET['idArtiste']);
@@ -317,26 +317,49 @@ class Controler
         {   
             $oArtiste = new MArtistes('', '', '', '', '', '');
             $aArtiste = $oArtiste->getArtisteParId($idArt);
+            $aArtistes = $oArtiste->listeArtistes();
             
             $oVue = new VueDefaut();
             $oVue->afficheHeaderAdmin();
-            $oVue->modifierUnArtiste($aArtiste);
-            $oVue->afficheFooter();
+            
+            if($_GET['idArtiste'] && $_GET['action'] == 'valider') {
+                
+                try
+                {
+                $oArtiste->modificationArtiste($_GET['idArtiste'], $_POST['prenom'], $_POST['nom'], $_POST['collectif'], $_POST['photoArtiste']);
+                
+                $oVue = new VueDefaut();
+                $aArtistes = $oArtiste->listeArtistes();
+                $oVue->afficheListeModifierArtistes($aArtistes); 
+                    
+                }
+                catch (Exception $e)
+                {
+                    $message = $e->getMessage();     
+                } 
+                
+    
+            } else {
+                $oVue->modifierUnArtiste($aArtiste);
+            }     
+            $oVue->afficheFooter();   
         }
     
         private function supprimerArtistes($idArtiste)
         {   
             $oArtiste = new MArtistes('', '', '', '', '', '');
             $oArtiste->supprimerArtiste($idArtiste);
+            $aArtistes = $oArtiste::listeArtistes();
             
             $oVue = new VueDefaut();
             $oVue->afficheHeaderAdmin();
-            $oVue->afficheContenuAdmin($aArtistes, $aCategories, $aArrondissements, $aSousCategories, $erreurTitre, $message);
+            $oVue->afficheListeSupprimerArtistes($aArtistes);
             $oVue->afficheFooter();
         }
         
         private function modifierUtilisateur($idUtil)
         {   
+            
         }
     
         private function supprimerUtilisateurs($idUtil)
@@ -389,6 +412,7 @@ class Controler
                 } 
             }
         }
+    
         private function supprimerOeuvres($idOeuvre) 
         {   
             $oOeuvre = new MOeuvres('', '', '','', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');

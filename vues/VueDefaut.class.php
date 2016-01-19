@@ -624,6 +624,7 @@ class VueDefaut
                 <link rel="stylesheet" href="./css/base_h5bp.css" type="text/css" media="screen">
                 <link rel="stylesheet" href="./css/main.css" type="text/css" media="screen">
                 <link rel="stylesheet" href="./css/_grid.css" type="text/css" media="screen">
+                <link rel="stylesheet" href="fonts/style.css" type="text/css">
 
                 <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
                 <script src="./js/plugins.js"></script>
@@ -643,7 +644,7 @@ class VueDefaut
 
                                 <a href="index.php?requete=connexion" class="connexion">SE CONNECTER</a>
                                 <a href="#">FR/EN</a>
-                                <a href="index.php?requete=accueil" class="accueil"><span class="icon-home"></span>ACCUEIL</a>
+                                <a href="index.php?requete=accueil" class="accueil"><span class="icon-home"></span> ACCUEIL</a>
          
                             </div>
 
@@ -708,7 +709,7 @@ class VueDefaut
                                 <li>
                                     <a href="index.php?requete=listerUtilisateurs">UTILISATEURS</a>
                                         <ul>
-                                            <li><a href="index.php?requete=afficheInscriptionAdmin">Ajouter</a></li>
+                                            <li><a href="index.php?requete=afficheInscription">Ajouter</a></li>
                                             <li><a href="index.php?requete=listeModifierUtilisateurs">Modifier</a></li>
                                             <li><a href="index.php?requete=listeSupprimerUtilisateurs">Supprimer</a></li>
                                         </ul>
@@ -1153,7 +1154,8 @@ class VueDefaut
      * @author: Gautier Piatek
      */
     public function modifierUnArtiste($aArtiste) 
-    {
+    {   
+        $idArtiste = $aArtiste['idArtiste'];
         $prenom = $aArtiste['prenom'];
         $nom = $aArtiste['nom'];
         $collectif = $aArtiste['collectif'];
@@ -1161,7 +1163,7 @@ class VueDefaut
         ?>
         <div>
         <h2 id="titre">Modifier un artiste</h2>
-        <form class="formulaire" action="index.php?requete=modifierOeuvre&action=valider">
+        <form class="formulaire" action="index.php?requete=modifierArtiste&idArtiste=<?php echo $idArtiste; ?>&action=valider" method='POST'>
             <fieldset>
             Prénom:<br>
             <input type="text" name="prenom" value="<?php echo $prenom; ?>">
@@ -1170,7 +1172,7 @@ class VueDefaut
             <input type="text" name="nom" value="<?php echo $nom; ?>">
             <br> <br>
             Collectif:<br>
-            <input  type="text" name="Collectif" value="<?php echo $collectif; ?>">
+            <input  type="text" name="collectif" value="<?php echo $collectif; ?>">
              <br> <br>
             Photo:<br><br>
             <input type="text" name="photoArtiste" value="<?php echo $photoArtiste; ?>">
