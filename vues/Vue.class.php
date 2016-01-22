@@ -1,11 +1,12 @@
 <?php
 /**
  * Class Vue
- * Template de classe Vue. Dupliquer et modifier pour votre usage.
+ * Modèle de classe Vue. Dupliquer et modifier pour votre usage.
  * 
  * @author Jonathan Martel
- * @version 1.0
+ * @version 1.1
  * @update 2013-12-11
+ * @update 2016-01-22 : Adaptation du code aux standards de codage du département de TIM
  * @license Creative Commons BY-NC 3.0 (Licence Creative Commons Attribution - Pas d’utilisation commerciale 3.0 non transposé)
  * @license http://creativecommons.org/licenses/by-nc/3.0/deed.fr
  * 
@@ -17,7 +18,7 @@ class Vue {
 	/**
 	 * Affiche la page d'accueil 
 	 * @access public
-	 * 
+	 * @return void
 	 */
 	public function afficheAccueil() {
 		?>
