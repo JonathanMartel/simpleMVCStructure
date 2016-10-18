@@ -29,7 +29,7 @@ class Modele {
 	 * @access public
 	 * @return Array
 	 */
-	public function getDonnes() 
+	public function getDonnees() 
 	{
 		$aDonnees = array('');
 		
