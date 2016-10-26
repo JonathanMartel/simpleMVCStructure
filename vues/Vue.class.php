@@ -16,11 +16,11 @@
 class Vue {
 
 	/**
-	 * Affiche la page d'accueil 
+	 * Produit l'entête html
 	 * @access public
 	 * @return void
 	 */
-	public function afficheAccueil() {
+	public function afficheEntete() {
 		?>
 		<!DOCTYPE html>
 <html lang="fr">
@@ -41,24 +41,46 @@ class Vue {
 	</head>
 
 	<body>
+		<?php
+	}
+	
+	/**
+	 * Contenu de la page d'accueil
+	 * @access public
+	 * @return void
+	 */
+	public function afficheAccueil() {
+		
+		?>
 		<article>
 			<h1>Bienvenue sur Simple MVC Structure </h1>
-			<p>Simple MVC Structure  n'est pas un framework, mais seulement une structure de base qui permet de monter un MVC rapidement en php. 
-				Il suffit de forker le <a href="#">dépot Github</a> et de dupliquer les classes vues et modele afin d'en disposer à votre convenance.</p>
+			<p>Simple MVC Structure n'est pas un framework, mais seulement une structure de base qui permet de monter un MVC rapidement en php. 
+				Il suffit de forker le <a href="https://github.com/JonathanMartel/simpleMVCStructure">dépot Github</a> et de dupliquer les classes vues et modele afin d'en disposer à votre convenance.</p>
 		</article>
-		
-			<div id="footer">
-				Certains droits réservés @ Jonathan Martel (2013)<br>
-				Sous licence Creative Commons (BY-NC 3.0)
-			</div>
-		</div>	
-	</body>
-</html>
-
 		<?php
 		
 	}
 	
-
+	
+	/**
+	 * Produit le html du pied de page
+	 * @access public
+	 * @return void
+	 */
+	public function affichePied()
+	{
+		?>
+		<div id="footer">
+					Certains droits réservés @ Jonathan Martel (2013)<br>
+					Sous licence Creative Commons (BY-NC 3.0)
+				</div>
+			</div>	
+		</body>
+	</html>
+	<?php
+	}
+	
+	
+	
 }
 ?>

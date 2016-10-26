@@ -34,7 +34,9 @@ class Controleur
 		private function accueil()
 		{
 			$oVue = new Vue();
+			$oVue->afficheEntete();
 			$oVue->afficheAccueil();
+			$oVue->affichePied();
 		}
 		// Placer les méthodes du controleur.
 		
