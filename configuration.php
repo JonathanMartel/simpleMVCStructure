@@ -30,9 +30,9 @@
 		foreach ($aDossierClasse as $sDossier) 
 		{
 			//var_dump('./'.$dossier.$class.'.class.php');
-			if(file_exists('./'.$sDossier.$sClass.'.class.php'))
+			if(file_exists('./'.$sDossier.$sClasse.'.class.php'))
 			{
-				require_once('./'.$sDossier.$sClass.'.class.php');
+				require_once('./'.$sDossier.$sClasse.'.class.php');
 			}
 		}
 	}

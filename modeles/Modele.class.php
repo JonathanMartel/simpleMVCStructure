@@ -33,7 +33,7 @@ class Modele {
 	{
 		$aDonnees = array('');
 		
-		return $aDonnees();
+		return $aDonnees;
 	}
 }
 
